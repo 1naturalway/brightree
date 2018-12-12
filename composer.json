@@ -1,0 +1,32 @@
+{
+  "name": "1naturalway/brightree",
+  "description": "Brightree API Wrapper for PHP",
+  "license": "GPL-3.0+",
+  "require": {
+    "php": ">=7.2.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.5.1",
+    "mockery/mockery": "^1.2.0"
+  },
+  "authors": [
+    {
+      "name": "Andrew Donald Johnson",
+      "email": "ajohnson6494@gmail.com"
+    },
+    {
+      "name": "Matthew Kulina",
+      "email": "matthew.kulina@1naturalway.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "1naturalway\\Brightree\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "1naturalway\\Brightree\\Tests\\": "tests/"
+    }
+  }
+}

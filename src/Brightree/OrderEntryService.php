@@ -2,7 +2,7 @@
 
 namespace onenaturalway\Brightree;
 
-class BrightreeClient {
+class OrderEntryService {
   private $params;
 
   function __construct($params) {

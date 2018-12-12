@@ -2,6 +2,8 @@
 
 namespace onenaturalway\Brightree;
 
+use onenaturalway\Brightree\SalesOrder\Salesorder;
+
 class OrderEntryService {
   private $params;
 
@@ -15,7 +17,7 @@ class OrderEntryService {
     return $response;
   }
 
-  public function call(){
-    return "Blah";
+  public function createSalesOrder() {
+    return new SalesOrder();
   }
 }

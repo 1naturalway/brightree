@@ -26,7 +26,8 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "onenaturalway\\Brightree\\Tests\\": "tests/"
+      "onenaturalway\\Brightree\\Tests\\": "tests/",
+      "onenaturalway\\Brightree\\Samples\\": "samples/"
     }
   }
 }

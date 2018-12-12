@@ -29,5 +29,12 @@
       "Brightree\\Tests\\": "tests/",
       "Brightree\\Samples\\": "samples/"
     }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Brightree\\FrameworkSupport\\Laravel\\BrightreeServiceProvider"
+      ]
+    }
   }
 }

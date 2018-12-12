@@ -34,7 +34,10 @@
     "laravel": {
       "providers": [
         "Brightree\\FrameworkSupport\\Laravel\\BrightreeServiceProvider"
-      ]
+      ],
+      "aliases": {
+        "Brightree": "Brightree\\FrameworkSupport\\Laravel\\BrightreeFacade"
+      }
     }
   }
 }

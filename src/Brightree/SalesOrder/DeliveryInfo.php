@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Library\Brightree\SalesOrder;
+namespace Brightree\SalesOrder;
 
 class DeliveryInfo {
   public $Address;

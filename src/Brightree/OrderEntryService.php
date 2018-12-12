@@ -1,8 +1,8 @@
 <?php
 
-namespace onenaturalway\Brightree;
+namespace Brightree;
 
-use onenaturalway\Brightree\SalesOrder\Salesorder;
+use Brightree\SalesOrder\Salesorder;
 
 class OrderEntryService {
   private $params;

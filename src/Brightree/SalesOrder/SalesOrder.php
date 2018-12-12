@@ -1,8 +1,8 @@
 <?php
 
-namespace onenaturalway\Brightree\SalesOrder;
+namespace Brightree\SalesOrder;
 
-use onenaturalway\Brightree\SalesOrder\DeliveryInfo;
+use Brightree\SalesOrder\DeliveryInfo;
 
 class SalesOrder {
   public $DeliveryInfo;

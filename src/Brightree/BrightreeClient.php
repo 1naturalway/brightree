@@ -1,6 +1,6 @@
 <?php
 
-namespace onenaturalway\Brightree;
+namespace Brightree;
 
 use SoapClient;
 

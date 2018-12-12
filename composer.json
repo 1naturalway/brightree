@@ -21,12 +21,12 @@
   ],
   "autoload": {
     "psr-4": {
-      "1naturalway\\Brightree\\": "src/"
+      "onenaturalway\\Brightree\\": "src/Brightree"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "1naturalway\\Brightree\\Tests\\": "tests/"
+      "onenaturalway\\Brightree\\Tests\\": "tests/"
     }
   }
 }

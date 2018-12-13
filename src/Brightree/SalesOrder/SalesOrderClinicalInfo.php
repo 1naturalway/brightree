@@ -2,7 +2,6 @@
 
 namespace Brightree\SalesOrderClinicalInfo;
 
-
 class SalesOrderClinicalInfo {
   public $DiagnosisCodes;
   public $EPSDTCertificationCodeIndicator;
@@ -19,11 +18,7 @@ class SalesOrderClinicalInfo {
   }
 
   public function setEPSDTCertificationCodeIndicator(EPSDTCertificationCondInd $code) {
-    $this->DiagnosisCodes = $code;
-  }
-
-  public function setDiagnosisCodes(DiagnosisCodes $codes) {
-    $this->DiagnosisCodes = $codes;
+    $this->EPSDTCertificationCodeIndicator = $code;
   }
 
   public function setOrderingDoctor(DoctorInfo $doctorInfo) {

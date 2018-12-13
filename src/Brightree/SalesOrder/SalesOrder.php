@@ -15,9 +15,8 @@ class SalesOrder {
 
   public function __construct() {
     $this->DeliveryInfo = new DeliveryInfo();
-
-    $this->SalesOrderGeneralInfo = array();
-    $this->SalesOrderClinicalInfo = array();
+    $this->SalesOrderGeneralInfo = new SalesOrderGeneralInfo();
+    $this->SalesOrderClinicalInfo = new SalesOrderClinicalInfo();
     $this->SalesOrderItems = array();
     $this->ShippingTrackingInfos = array();
   }

@@ -5,4 +5,4 @@ require_once 'vendor/autoload.php';
 use Brightree\BrightreeClient;
 
 $bt = new BrightreeClient("","");
-var_dump($bt->orderEntryService()->createSalesOrder());
+echo json_encode($bt->orderEntryService()->createSalesOrder(), JSON_PRETTY_PRINT) . PHP_EOL;

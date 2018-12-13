@@ -12,6 +12,9 @@ class SalesOrder {
   public $ShippingTrackingInfos;
 
   public function __construct() {
+    $this->DeliveryInfo = new DeliveryInfo();
+
+
     $this->SalesOrderItems = array();
     $this->ShippingTrackingInfos = array();
   }

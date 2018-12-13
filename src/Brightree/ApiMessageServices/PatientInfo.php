@@ -1,11 +1,11 @@
 <?php
 
-namespace Brightree\ApiMessageServices\PatientInfo;
+namespace Brightree\ApiMessageServices;
 
 use Brightree\CommonServices\ContactInfo;
 use Brighttree\ApiMessageServices\LookupValue;
 
-class PatientInfo; {
+class PatientInfo {
   public $BrightreeID;
   public $Name;
   public $Address;

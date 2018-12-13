@@ -1,6 +1,6 @@
 <?php
 
-namespace Brightree\SalesOrderGeneralInfo;
+namespace Brightree\SalesOrder;
 
 
 class SalesOrderGeneralInfo {

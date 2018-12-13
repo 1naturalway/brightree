@@ -3,8 +3,8 @@
 namespace Brightree\SalesOrder;
 
 use Brightree\SalesOrder\DeliveryInfo;
-use Brighttree\SalesOrder\SalesOrderClinicalInfo;
-use Brighttree\SalesOrder\SalesOrderGeneralInfo;
+use Brightree\SalesOrder\SalesOrderClinicalInfo;
+use Brightree\SalesOrder\SalesOrderGeneralInfo;
 
 class SalesOrder {
   public $DeliveryInfo;

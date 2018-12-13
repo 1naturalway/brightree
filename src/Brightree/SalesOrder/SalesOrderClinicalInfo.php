@@ -6,7 +6,6 @@ use Brightree\ApiMessageServices\ICDCodeInfo;
 use Brightree\ApiMessageServices\DoctorInfo;
 use Brighttree\ApiMessageServices\PatientInfo;
 
-
 class SalesOrderClinicalInfo {
   public $DiagnosisCodes;
   public $EPSDTCertificationCodeIndicator;
@@ -22,8 +21,13 @@ class SalesOrderClinicalInfo {
     $this->DiagnosisCodes = $codes;
   }
 
+<<<<<<< HEAD
   public function setEPSDTCertificationCodeIndicator(EPSDTCertificationCondInd $code) { //What is RenderingProvider
     $this->EPSDTCertificationCodeIndicators = $code;
+=======
+  public function setEPSDTCertificationCodeIndicator(EPSDTCertificationCondInd $code) {
+    $this->EPSDTCertificationCodeIndicator = $code;
+>>>>>>> d43e91c116db37993a73e80e6d473aac7b277df1
   }
 
   public function setOrderingDoctor(DoctorInfo $doctorInfo) {

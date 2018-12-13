@@ -3,6 +3,8 @@
 namespace Brightree\SalesOrder;
 
 use Brightree\SalesOrder\DeliveryInfo;
+use Brighttree\SalesOrder\SalesOrderClinicalInfo;
+use Brighttree\SalesOrder\SalesOrderGeneralInfo;
 
 class SalesOrder {
   public $DeliveryInfo;
@@ -14,7 +16,8 @@ class SalesOrder {
   public function __construct() {
     $this->DeliveryInfo = new DeliveryInfo();
 
-
+    $this->SalesOrderGeneralInfo = array();
+    $this->SalesOrderClinicalInfo = array();
     $this->SalesOrderItems = array();
     $this->ShippingTrackingInfos = array();
   }

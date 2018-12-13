@@ -28,4 +28,11 @@ class SalesOrderGeneralInfo {
   public $User3;
   public $User4;
 
+  public function setSalesOrderStatus(SalesOrderStatus $status) {
+    $this->SalesOrderStatus = $status;
+  }
+
+  public function setTemplateStatus(TemplateStatus $status) {
+    $this->TemplateStatus = $status;
+  }
 }

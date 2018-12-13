@@ -1,6 +1,10 @@
 <?php
 
-namespace Brightree\SalesOrderClinicalInfo;
+namespace Brightree\SalesOrder\SalesOrderClinicalInfo;
+
+use Brightree\ApiMessageServices\ICDCodeInfo;
+use Brightree\ApiMessageServices\DoctorInfo;
+use Brighttree\ApiMessageServices\PatientInfo;
 
 
 class SalesOrderClinicalInfo {
@@ -10,7 +14,7 @@ class SalesOrderClinicalInfo {
   public $MarketingReferral;
   public $OrderingDoctor;
   public $Patient;
-  public $RederingProvider;
+  public $RenderingProvider;
   public $SOHeight;
   public $SOWeight;
 
@@ -18,12 +22,8 @@ class SalesOrderClinicalInfo {
     $this->DiagnosisCodes = $codes;
   }
 
-  public function setEPSDTCertificationCodeIndicator(EPSDTCertificationCondInd $code) {
-    $this->DiagnosisCodes = $code;
-  }
-
-  public function setDiagnosisCodes(DiagnosisCodes $codes) {
-    $this->DiagnosisCodes = $codes;
+  public function setEPSDTCertificationCodeIndicator(EPSDTCertificationCondInd $code) { //What is RenderingProvider
+    $this->EPSDTCertificationCodeIndicators = $code;
   }
 
   public function setOrderingDoctor(DoctorInfo $doctorInfo) {
@@ -34,7 +34,7 @@ class SalesOrderClinicalInfo {
     $this->Patient = $patientInfo;
   }
 
-  public function setRederingProvider(RederingProvider $rederingProvider) {
-    $this->RenderingProvider = $rederingProvider;
+  public function setRenderingProvider(RenderingProvider $renderingProvider) { //What is RenderingProvider
+    $this->RenderingProvider = $renderingProvider;
   }
 }

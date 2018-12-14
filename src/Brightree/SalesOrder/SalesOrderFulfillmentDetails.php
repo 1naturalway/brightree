@@ -12,6 +12,11 @@ class SalesOrderFulfillmentDetails {
   public $Status;
   public $statusCode;
 
+  public function __construct() {
+    $this->FulfillmentVendor = new LookupValue();
+    $this->ShipBy = new LookupValue();
+  }
+
   public function getFulfillmentVendor(LookupValue $vendor) {
      return $this->FulfillmentVendor = $vendor;
   }

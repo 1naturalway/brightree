@@ -2,9 +2,6 @@
 
 namespace Brightree\CommonServices;
 
-use Brightree\CommonServices\Address;
-use Brightree\CommonServices\ContactInfo;
-
 class Patient {
   public $AccountGroup;
   public $AccountNumber;

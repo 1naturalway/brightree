@@ -4,7 +4,6 @@ namespace Brightree\SalesOrder;
 
 use Brightree\CommonServices\Address;
 use Brightree\CommonServices\ContactInfo;
-use Brightree\SalesOrder\SalesOrderFulfillmentDetails;
 use Brightree\ApiMessageServices\LookupValue;
 
 class DeliveryInfo {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Brightree\ApiMessageServices\DoctorInfo;
+namespace Brightree\ApiMessageServices;
 
 class DoctorInfo {
   public $Doctor;

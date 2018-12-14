@@ -3,6 +3,7 @@
 namespace Brightree;
 
 use Brightree\SalesOrder\Salesorder;
+use SoapClient;
 
 class OrderEntryService {
   private $params;

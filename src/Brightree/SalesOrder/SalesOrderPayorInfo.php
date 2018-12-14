@@ -18,6 +18,10 @@ class SalesOrderPayorInfo {
   public $PayPercentEqualToZero;
   public $WaitForPreviousPayForBilling;
 
+  public function __contruct() {
+    $this->payorPolicyInfo = new payorPolicyInfo();
+  }
+
 
   public function getPayorPolicyInfo(payorPolicyInfo $Info) {
     return $this->payorPolicyInfo = $Info;

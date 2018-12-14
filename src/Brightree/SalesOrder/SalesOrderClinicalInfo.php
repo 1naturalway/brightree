@@ -33,4 +33,29 @@ class SalesOrderClinicalInfo {
   public function setRenderingProvider(RenderingProvider $renderingProvider) {
     $this->RenderingProvider = $renderingProvider;
   }
+
+  public function setEPSDTCertificationCodeIndicator($EPSDTCertificationCodeIndicator) {
+    $this->EPSDTCertificationCodeIndicator = $EPSDTCertificationCodeIndicator;
+    return $this;
+  }
+
+  public function setEPSDTConditionCode($EPSDTConditionCode) {
+    $this->EPSDTConditionCode = $EPSDTConditionCode;
+    return $this;
+  }
+
+  public function setMarketingReferral($MarketingReferral) {
+    $this->MarketingReferral = $MarketingReferral;
+    return $this;
+  }
+
+  public function setSOHeight($SOHeight) {
+    $this->SOHeight = $SOHeight;
+    return $this;
+  }
+
+  public function setSOWeight($SOWeight) {
+    $this->SOWeight = $SOWeight;
+    return $this;
+  }
 }

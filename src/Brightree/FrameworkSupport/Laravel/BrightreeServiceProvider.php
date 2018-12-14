@@ -3,7 +3,7 @@
 namespace Brightree\FrameworkSupport\Laravel;
 
 use Illuminate\Support\ServiceProvider;
-use Brightree;
+use Brightree\BrightreeClient;
 
 class BrightreeServiceProvider extends ServiceProvider {
 

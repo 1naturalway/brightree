@@ -7,10 +7,10 @@ use SoapClient;
 class BrightreeClient {
   private $params;
 
-  function __construct($username, $password) {
+  function __construct($params) {
     $this->params = [
-      'login' => $username,
-      'password' => $password,
+      'login' => $params['username'],
+      'password' => $params['password'],
       'trace' => 1,
       'stream_context' => stream_context_create(array(
         'ssl' => array(

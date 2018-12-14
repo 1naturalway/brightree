@@ -7,27 +7,18 @@ class RenderingProvider {
   public $Facility;
   public $Type;
 
-  /**
-   * Set the value of Doctor
-   *
-   * @return  self
-   */
-  public function setDoctor($Doctor)
-  {
+  public function setDoctor($Doctor) {
     $this->Doctor = $Doctor;
-
     return $this;
   }
 
-  /**
-   * Set the value of Facility
-   *
-   * @return  self
-   */
-  public function setFacility($Facility)
-  {
+  public function setFacility($Facility) {
     $this->Facility = $Facility;
+    return $this;
+  }
 
+  public function setType($Type) {
+    $this->Type = $Type;
     return $this;
   }
 }

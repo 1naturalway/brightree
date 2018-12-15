@@ -29,4 +29,8 @@ class BrightreeClient {
   public function orderEntryService() {
     return new OrderEntryService($this->params);
   }
+
+  public function referenceDataService() {
+    return new referenceDataService($this->params);
+  }
 }

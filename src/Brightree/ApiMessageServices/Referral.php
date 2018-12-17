@@ -2,7 +2,7 @@
 
 namespace Brightree\ApiMessageServices;
 
-use Brightree\CommonServies\Address;
+use Brightree\CommonServices\Address;
 
 class Referral {
   public $Address;

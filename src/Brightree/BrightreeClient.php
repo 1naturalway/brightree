@@ -3,6 +3,8 @@
 namespace Brightree;
 
 use SoapClient;
+use Brightree\Services\PatientService;
+use Brightree\Services\SalesOrderService;
 
 class BrightreeClient {
   private $params;
@@ -26,8 +28,12 @@ class BrightreeClient {
     return $response;
   }
 
-  public function orderEntryService() {
-    return new OrderEntryService($this->params);
+  public function SalesOrderService() {
+    return new SalesOrderService($this->params);
+  }
+
+  public function PatientService() {
+    return new PatientService($this->params);
   }
 
   public function referenceDataService() {

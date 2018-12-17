@@ -7,7 +7,7 @@ use SoapClient;
 
 class OrderEntryService {
   private $params;
-  private $wsdl_path = "https://webservices.brightree.net/v0100-1807/OrderEntryService/SalesOrderService.svc?singleWsdl";
+  private $wsdl_path;
 
   function __construct($params) {
     $this->params = $params;
@@ -17,9 +17,5 @@ class OrderEntryService {
     $client = new SoapClient($this->wsdl_path, $this->params);
     $response = $client->$call($query);
     return $response;
-  }
-
-  public function createSalesOrder() {
-    return new SalesOrder();
   }
 }

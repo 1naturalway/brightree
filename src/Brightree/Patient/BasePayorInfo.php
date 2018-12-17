@@ -4,7 +4,7 @@ namespace Brightree\Patient;
 
 use Brightree\CommonServices\payorPolicyInfo;
 
-class PatientPayorInfo {
+class BasePayorInfo {
   public $PayorLevel;
   public $payorPolicyInfo;
   public $PayPercent;

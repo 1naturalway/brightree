@@ -2,6 +2,9 @@
 
 namespace Brightree\ApiMessageServices;
 
+use Brightree\CommonServices\Address;
+use Brightree\CommonServices\Name;
+
 class DoctorInfo {
   public $Doctor;
   public $Name;

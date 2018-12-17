@@ -6,6 +6,7 @@ use Brightree\ApiMessageServices\ICDCodeInfo;
 use Brightree\ApiMessageServices\LookupValue;
 use Brightree\ApiMessageServices\Referral;
 use Brightree\ApiMessageServices\DoctorInfo;
+use Brightree\ApiMessageServices\RenderingProvider;
 
 class PatientClinicalInfo {
   public $DateOfDeath;
@@ -20,7 +21,7 @@ class PatientClinicalInfo {
   public $PatientCondition; // Not sure what this is
   public $Practitioner;
   public $PrimaryDoctor;
-  public $RenderingProvdier; //Not sure what this is
+  public $RenderingProvider;
   public $Weight;
 
   public function __construct() {
@@ -30,6 +31,7 @@ class PatientClinicalInfo {
     $this->MarketingRep = new LookupValue();
     $this->OrderingDoctor = new DoctorInfo();
     $this->PrimaryDoctor = new DoctorInfo();
+    $this->RenderingProvider = new RenderingProvider();
   }
 
   public function setDateOfDeath($DateOfDeath) {
@@ -37,12 +39,12 @@ class PatientClinicalInfo {
     return $this;
   }
 
-  public function getDiagnosisCodes(ICDCodeInfo $info) {
-    return $this->DiagnosisCodes = $info;
+  public function getDiagnosisCodes() {
+    return $this->DiagnosisCodes;
   }
 
-  public function getFunctionalAbility(LookupValue $ability) {
-    return $this->FunctionalAbility = $ability;
+  public function getFunctionalAbility() {
+    return $this->FunctionalAbility;
   }
 
   public function setGender($Gender) {
@@ -60,16 +62,16 @@ class PatientClinicalInfo {
     return $this;
   }
 
-  public function getMarketingReferral(Referral $referral) {
-    return $this->MarketingReferral = $referral;
+  public function getMarketingReferral() {
+    return $this->MarketingReferral;
   }
 
-  public function getMarketingRep(LookupValue $rep) {
-    return $this->MarketingRep = $rep;
+  public function getMarketingRep() {
+    return $this->MarketingRep;
   }
 
-  public function getOrderingDoctor(DoctorInfo $ordering) {
-    return $this->OrderingDoctor = $ordering;
+  public function getOrderingDoctor() {
+    return $this->OrderingDoctor;
   }
 
   public function getPatientCondition() {
@@ -80,12 +82,12 @@ class PatientClinicalInfo {
     return $this->Practitioner;
   }
 
-  public function getPrimaryDoctor(DoctorInfo $primary) {
-    return $this->PrimaryDoctor = $primary;
+  public function getPrimaryDoctor() {
+    return $this->PrimaryDoctor;
   }
 
-  public function getRenderingProvdier() {
-    return $this->RenderingProvdier;
+  public function getRenderingProvider() {
+    return $this->RenderingProvider;
   }
 
   public function setWeight($Weight) {

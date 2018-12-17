@@ -14,12 +14,12 @@ class PatientGeneralInfo {
   public $BillingContactInfo;
   public $BirthDate;
   public $Branch;
-  public $CustomerType; // Not sure on this one 'PatientCustomerType'
+  public $CustomerType;
   public $DateofAdmission;
   public $DeliveryAddress;
   public $DeliveryPhone;
   public $DiscountPercent;
-  public $EmergencyContact; // Not sure on this one 'PatientContact'
+  public $EmergencyContact;
   public $Facility;
   public $HIPAASignatureOnFile;
   public $HoldBillingStatement;

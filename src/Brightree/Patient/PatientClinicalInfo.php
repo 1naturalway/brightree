@@ -24,7 +24,6 @@ class PatientClinicalInfo {
   public $Weight;
 
   public function __construct() {
-    $this->BrightShip = new BrightShip();
     $this->DiagnosisCodes = new ICDCodeInfo();
     $this->FunctionalAbility = new LookupValue();
     $this->MarketingReferral = new Referral();

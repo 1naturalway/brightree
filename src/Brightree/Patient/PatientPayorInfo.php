@@ -4,7 +4,7 @@ namespace Brightree\Patient;
 
 use Brightree\CommonServices\Address;
 
-class PatientPayorInfo {
+class PatientPayorInfo extends BasePayorInfo {
   public $BrightreeID;
   public $Deductable;
   public $Address;

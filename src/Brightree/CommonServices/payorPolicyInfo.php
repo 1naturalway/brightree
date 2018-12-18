@@ -2,8 +2,6 @@
 
 namespace Brightree\CommonServices;
 
-use Brightree\CommonServices\Name;
-
 class payorPolicyInfo {
   public $BrightreeID;
   public $EffectiveDate;

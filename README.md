@@ -52,3 +52,10 @@ Access Brightree SDK from the Facade or Binding
 
  $service = app('brightree)->orderEntryService();
 ```
+
+## Processing a Customer
+
+1) Create Patient
+2) Add Insurance to Patient
+3) Create Sales Order
+4) Add Items to Sales Order

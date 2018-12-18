@@ -1,6 +1,10 @@
 <?php
 
-namespace Brightree\ApiMessageServices\DoctorInfo;
+namespace Brightree\ApiMessageServices;
+
+use Brightree\CommonServices\Address;
+use Brightree\CommonServices\Name;
+use Brightree\ApiMessageServices\LookupValue;
 
 class DoctorInfo {
   public $Doctor;
@@ -14,7 +18,7 @@ class DoctorInfo {
   public function __construct() {
     $this->Address = new Address();
     $this->Name = new Name();
-
+    $this->Doctor = new LookupValue();
   }
   public function getAddress(Address $address) {
     $this->Address = $address;

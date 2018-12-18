@@ -1,6 +1,6 @@
 <?php
 
-namespace Brightree\CommonServices;
+namespace Brightree\ApiMessageServices;
 
 class eClaimsInfo {
   public $AttachmentNumber;

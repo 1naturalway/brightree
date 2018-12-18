@@ -13,6 +13,12 @@ class SalesOrderInsuranceInfo {
   public $eClaimsInfo;
   public $workersCompensation;
 
+  public function __construct() {
+    $this->Payors =  new Payors();
+    $this->eClaimsInfo = new eClaimsInfo();
+    $this->workersCompensation = new workersCompensation();
+  }
+
 
   public function getPayors(Payors $payors) {
     return $this->Payors = $payors;

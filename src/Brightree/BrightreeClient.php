@@ -2,7 +2,11 @@
 
 namespace Brightree;
 
-use SoapClient;
+use Brightree\Services\DoctorService;
+use Brightree\Services\InsuranceService;
+use Brightree\Services\PatientService;
+use Brightree\Services\ReferenceDataService;
+use Brightree\Services\SalesOrderService;
 
 class BrightreeClient {
   private $params;
@@ -20,13 +24,23 @@ class BrightreeClient {
     ];
   }
 
-  public function apiCall($call,$query) {
-    $client = new SoapClient($this->wsdl, $this->params);
-    $response = $client->$call($query);
-    return $response;
+  public function DoctorService() {
+    return new DoctorService($this->params);
   }
 
-  public function orderEntryService() {
-    return new OrderEntryService($this->params);
+  public function InsuranceService() {
+    return new InsuranceService($this->params);
+  }
+
+  public function PatientService() {
+    return new PatientService($this->params);
+  }
+
+  public function ReferenceDataService() {
+    return new ReferenceDataService($this->params);
+  }
+
+  public function SalesOrderService() {
+    return new SalesOrderService($this->params);
   }
 }

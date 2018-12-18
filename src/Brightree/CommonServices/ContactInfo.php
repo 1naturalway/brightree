@@ -8,7 +8,7 @@ class ContactInfo {
   public $FaxAttention;
   public $MobilePhoneNumber;
   public $EmailAddress;
-  public $ExcludeFaxServices;
+  public $ExcludeFaxService;
 
   public function setPhoneNumber($PhoneNumber) {
     $this->PhoneNumber = $PhoneNumber;
@@ -35,8 +35,8 @@ class ContactInfo {
     return $this;
   }
 
-  public function setExcludeFaxServices($ExcludeFaxServices) {
-    $this->ExcludeFaxServices = $ExcludeFaxServices;
+  public function setExcludeFaxService($ExcludeFaxService) {
+    $this->ExcludeFaxServices = $ExcludeFaxService;
     return $this;
   }
 }

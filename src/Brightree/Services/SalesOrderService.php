@@ -1,15 +1,14 @@
 <?php
 
-namespace Brightree;
+namespace Brightree\Services;
 
-use Brightree\SalesOrder\Salesorder;
+use Brighree\OrderEntryService;
+use SoapClient;
 
-class OrderEntryService {
-  private $params;
-  private $wsdl_path = "https://webservices.brightree.net/v0100-1807/OrderEntryService/SalesOrderService.svc?singleWsdl";
-
-  function __construct($params) {
+class SalesOrderService {
+  public function __construct($params) {
     $this->params = $params;
+    $this->wsdl_path = "https://webservices.brightree.net/v0100-1807/OrderEntryService/SalesOrderService.svc?singleWsdl";
   }
 
   public function apiCall($call,$query) {

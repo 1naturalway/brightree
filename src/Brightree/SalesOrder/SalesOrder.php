@@ -35,8 +35,8 @@ class SalesOrder {
     $this->SalesOrderInsuranceInfo = new SalesOrderInsuranceInfo();
     $this->SalesOrderMessages = new SalesOrderMessages();
     $this->SalesOrderWIPInfo = new SalesOrderWIPInfo();
-    $this->SalesOrderItems = array();
-    $this->ShippingTrackingInfos = array();
+    $this->SalesOrderItems = new SalesOrderItems();
+    $this->ShippingTrackingInfos = new ShippingTrackingInfo();
   }
 
   public function getBrightShip(BrightShip $brightship) {

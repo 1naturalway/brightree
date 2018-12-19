@@ -17,7 +17,7 @@ class SalesOrderService {
     return $response;
   }
 
-  public function createSalesOrder() {
+  public function CreateSalesOrder() {
     return new SalesOrder();
   }
 }

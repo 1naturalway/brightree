@@ -2,6 +2,11 @@
 
 namespace Brightree\SalesOrder;
 
-class Salesorderitems {
+class SalesOrderitems {
+  public $SalesOrderItemInfo;
+
+  public function __construct() {
+    $this->SalesOrderItemInfo = new SalesOrderItemInfo;
+  }
 
 }

@@ -12,7 +12,7 @@ class ReferenceDataService {
     $this->params = $params;
   }
 
-  public function apiCall($call,$query) {
+  public function ApiCall($call,$query) {
     $client = new SoapClient($this->wsdl_path, $this->params);
     $response = $client->$call($query);
     return $response;

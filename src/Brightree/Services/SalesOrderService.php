@@ -12,7 +12,7 @@ class SalesOrderService {
     $this->wsdl_path = "https://webservices.brightree.net/v0100-1807/OrderEntryService/SalesOrderService.svc?singleWsdl";
   }
 
-  public function apiCall($call,$query) {
+  public function ApiCall($call,$query) {
     $client = new SoapClient($this->wsdl_path, $this->params);
     $response = $client->$call($query);
     return $response;

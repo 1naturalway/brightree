@@ -2,7 +2,6 @@
 
 namespace Brightree\SalesOrder;
 
-use Brightree\CommonServices\Payors;
 use Brightree\ApiMessageServices\eClaimsInfo;
 use Brightree\ApiMessageServices\WorkersCompensation;
 

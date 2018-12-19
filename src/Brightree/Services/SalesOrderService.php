@@ -18,6 +18,6 @@ class SalesOrderService {
   }
 
   public function CreateSalesOrder() {
-    return new SalesOrder();
+    return new SalesOrderService();
   }
 }

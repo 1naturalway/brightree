@@ -8,4 +8,5 @@ class SOItemQuickAdd {
   public $Qty;
   public $ItemId;
   public $BarCode;
+  public $locKey;
 }

@@ -5,7 +5,7 @@ namespace Brightree\SalesOrder;
 use Brightree\ApiMessageServices\LookupValue;
 use Brightree\ApiMessageServices\ICDCodeInfo;
 
-class SalesOrderitemInfo {
+class SalesOrderItemInfo {
   public $AcceptAssignment;
   public $AddMod1;
   public $AddMod2;

@@ -21,4 +21,8 @@ class SalesOrderService {
   public function CreateSalesOrder() {
     return new SalesOrder();
   }
+
+  public function CreateSalesOrderItems() {
+    return new SOItemQuickAdd();
+  }
 }

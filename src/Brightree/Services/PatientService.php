@@ -19,11 +19,15 @@ class PatientService {
     return $response;
   }
 
-  public function CreatePatient() {
-    return new Patient();
+  public function createPatient(Patient $patient) {
+    return Brightree::PatientService()->apiCall('PatientCreate', ['Patient' => $patient]);
   }
 
-  public function AddPayor() {
-    return new PatientPayor();
+  public function addPayor($patientPayor) {
+    $response = Brightree::PatientService()->apiCall('PatientPayorAdd', [
+      'PatientKey' => $patientPayor->PatientKey,
+      'PayorKey' => $patientPayor->PayorKey,
+      'PatientPayor' => $patientPayor
+    ]);
   }
 }

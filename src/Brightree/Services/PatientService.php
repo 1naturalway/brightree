@@ -23,6 +23,13 @@ class PatientService {
     return Brightree::PatientService()->apiCall('PatientCreate', ['Patient' => $patient]);
   }
 
+  public function updatePatient(Patient $patient, $patientBrightreeID) {
+    return Brightree::PatientService()->apiCall('PatientCreate', [
+      'BrightreeID' => $patientBrightreeID,
+      'Patient' => $patient
+    ]);
+  }
+
   public function addPayor($patientPayor) {
     $response = Brightree::PatientService()->apiCall('PatientPayorAdd', [
       'PatientKey' => $patientPayor->PatientKey,
@@ -30,4 +37,5 @@ class PatientService {
       'PatientPayor' => $patientPayor
     ]);
   }
+
 }

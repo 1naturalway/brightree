@@ -19,6 +19,10 @@ class PatientService {
     return $response;
   }
 
+  public function getPatient($patientBrightreeID) {
+    return $this->apiCall('PatientFetchbyBrightreeID', ['BrightreeID' => $patientBrightreeID]);
+  }
+
   public function createPatient(Patient $patient) {
     return $this->apiCall('PatientCreate', ['Patient' => $patient]);
   }
@@ -36,5 +40,10 @@ class PatientService {
       'PayorKey' => $patientPayor->PayorKey,
       'PatientPayor' => $patientPayor
     ]);
+  }
+
+  public function getPayors($patientBrightreeID) {
+   $patient = $this->apiCall('PatientFetchbyBrightreeID', ['BrightreeID' => $patientBrightreeID]);
+   $response = $patient->PatientFetchByBrightreeIDResult->Items->Patient->PatientInsuranceInfo->Payors->PatientPayorInfo;
   }
 }

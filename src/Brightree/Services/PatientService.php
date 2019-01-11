@@ -35,7 +35,7 @@ class PatientService {
   }
 
   public function addPayor($patientPayor) {
-    $response = $this->apiCall('PatientPayorAdd', [
+    return $this->apiCall('PatientPayorAdd', [
       'PatientKey' => $patientPayor->PatientKey,
       'PayorKey' => $patientPayor->PayorKey,
       'PatientPayor' => $patientPayor
@@ -44,6 +44,6 @@ class PatientService {
 
   public function getPayors($patientBrightreeID) {
    $patient = $this->apiCall('PatientFetchbyBrightreeID', ['BrightreeID' => $patientBrightreeID]);
-   $response = $patient->PatientFetchByBrightreeIDResult->Items->Patient->PatientInsuranceInfo->Payors->PatientPayorInfo;
+   return $patient->PatientFetchByBrightreeIDResult->Items->Patient->PatientInsuranceInfo->Payors->PatientPayorInfo;
   }
 }

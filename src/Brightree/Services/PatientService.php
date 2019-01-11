@@ -28,7 +28,7 @@ class PatientService {
   }
 
   public function updatePatient(Patient $patient, $patientBrightreeID) {
-    return $this->apiCall('PatientCreate', [
+    return $this->apiCall('PatientUpdate', [
       'BrightreeID' => $patientBrightreeID,
       'Patient' => $patient
     ]);

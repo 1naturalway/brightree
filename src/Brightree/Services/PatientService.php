@@ -2,9 +2,6 @@
 
 namespace Brightree\Services;
 
-use Brightree\OrderEntryService;
-use Brightree\Patient\Patient;
-use Brightree\Patient\PatientPayor;
 use SoapClient;
 
 class PatientService {

@@ -2,9 +2,6 @@
 
 namespace Brightree\Services;
 
-use Brighree\OrderEntryService;
-use Brightree\SalesOrder\SalesOrder;
-use Brightree\ApiMessageServices\SOItemQuickAdd;
 use SoapClient;
 
 class SalesOrderService {

@@ -19,11 +19,17 @@ class SalesOrderService {
     return $response;
   }
 
-  public function CreateSalesOrder() {
-    return new SalesOrder();
+  public function SalesOrderCreate($SalesOrder) {
+    return $this->ApiCall('SalseOrderCreate', ['SalesOrder' => $SalesOrder]);
+  }
+  public function SalesOrderConfirm($BrightreeID) {
+    return $this->ApiCall('SalesOrderConfirm', ['BrightreeID' => $BrightreeID]);
   }
 
-  public function CreateSalesOrderItems() {
-    return new SOItemQuickAdd();
+  public function SalesOrderQuickAddItem($BrightreeID, $SOItemQuickAdd) {
+    return $this->ApiCall('SalesorderQuickAddItem', [
+      'BrightreeID' => $BrightreeID,
+      'SOItemQuickAdd' => $SOItemQuickAdd
+    ]);
   }
-}
+

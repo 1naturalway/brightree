@@ -30,4 +30,4 @@ class SalesOrderService {
       'SOItemQuickAdd' => $SOItemQuickAdd
     ]);
   }
-
+}

@@ -2,6 +2,7 @@
 
 namespace Brightree\Services;
 
+use Brightree\OrderEntryService;
 use SoapClient;
 
 class SalesOrderService {

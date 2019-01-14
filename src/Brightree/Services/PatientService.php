@@ -31,11 +31,6 @@ class PatientService {
     ]);
   }
 
-  public function PatientPayorInfo($BrightreeID) {
-   $patient = $this->ApiCall('PatientFetchbyBrightreeID', ['BrightreeID' => $BrightreeID]);
-   return $patient->PatientFetchByBrightreeIDResult->Items->Patient->PatientInsuranceInfo->Payors->PatientPayorInfo;
-  }
-
   public function PatientPayorAdd($PatientPayor) {
     return $this->ApiCall('PatientPayorAdd', [
       'PatientKey' => $PatientPayor->PatientKey,
@@ -60,5 +55,10 @@ class PatientService {
 
   public function PatientPayorFetchAll($PatientKey) {
     return $this->ApiCall('PatientPayorFetchAll', ['PatientKey' => $PatientKey]);
+  }
+
+  public function PatientPayorInfo($BrightreeID) {
+    $patient = $this->ApiCall('PatientFetchbyBrightreeID', ['BrightreeID' => $BrightreeID]);
+    return $patient->PatientFetchByBrightreeIDResult->Items->Patient->PatientInsuranceInfo->Payors->PatientPayorInfo;
   }
 }

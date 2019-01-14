@@ -15,4 +15,8 @@ class InsuranceService {
     $response = $client->$call($query);
     return $response;
   }
+
+    public function PatientPayorFetch($patientKey, $payorKey) {
+    return $this->apiCall('PatientPayorFetch', ['PatientKey' => $patientKey, 'PayorKey' => $payorKey]);
+  }
 }

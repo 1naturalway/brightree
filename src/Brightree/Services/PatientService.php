@@ -3,6 +3,8 @@
 namespace Brightree\Services;
 
 use Brightree\OrderEntryService;
+use Brightree\Patient\Patient;
+use Brightree\Patient\PatientPayor;
 use SoapClient;
 
 class PatientService {
@@ -27,8 +29,8 @@ class PatientService {
 
   public function PatientUpdate(Patient $Patient, $BrightreeID) {
     return $this->ApiCall('PatientUpdate', [
-      'BrightreeID' => $BrightreeID,
-      'Patient' => $Patient
+      'Patient' => $Patient,
+      'BrightreeID' => $BrightreeID
     ]);
   }
 

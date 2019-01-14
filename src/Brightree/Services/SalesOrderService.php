@@ -3,6 +3,8 @@
 namespace Brightree\Services;
 
 use Brightree\OrderEntryService;
+use Brightree\SalesOrder\SalesOrder;
+use Brightree\ApiMessageServices\SOItemQuickAdd;
 use SoapClient;
 
 class SalesOrderService {

@@ -20,8 +20,9 @@ class SalesOrderService {
   }
 
   public function SalesOrderCreate($SalesOrder) {
-    return $this->ApiCall('SalseOrderCreate', ['SalesOrder' => $SalesOrder]);
+    return $this->ApiCall('SalesOrderCreate', ['SalesOrder' => $SalesOrder]);
   }
+
   public function SalesOrderConfirm($BrightreeID) {
     return $this->ApiCall('SalesOrderConfirm', ['BrightreeID' => $BrightreeID]);
   }

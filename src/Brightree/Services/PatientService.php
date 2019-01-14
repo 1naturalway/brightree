@@ -46,4 +46,12 @@ class PatientService {
    $patient = $this->apiCall('PatientFetchbyBrightreeID', ['BrightreeID' => $patientBrightreeID]);
    return $patient->PatientFetchByBrightreeIDResult->Items->Patient->PatientInsuranceInfo->Payors->PatientPayorInfo;
   }
+
+
+  public function PatientPayorFetch($patientKey, $payorKey) {
+    return $this->apiCall('PatientPayorFetch', [
+      'PatientKey' => $patientKey,
+      'PayorKey' => $payorKey
+    ]);
+  }
 }

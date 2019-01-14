@@ -20,27 +20,27 @@ class PatientService {
   }
 
   public function PatientFetchbyBrightreeID($BrightreeID) {
-    return $this->apiCall('PatientFetchbyBrightreeID', ['BrightreeID' => $BrightreeID]);
+    return $this->ApiCall('PatientFetchbyBrightreeID', ['BrightreeID' => $BrightreeID]);
   }
 
   public function PatientCreate(Patient $Patient) {
-    return $this->apiCall('PatientCreate', ['Patient' => $Patient]);
+    return $this->ApiCall('PatientCreate', ['Patient' => $Patient]);
   }
 
   public function PatientUpdate(Patient $Patient, $BrightreeID) {
-    return $this->apiCall('PatientUpdate', [
+    return $this->ApiCall('PatientUpdate', [
       'BrightreeID' => $BrightreeID,
       'Patient' => $Patient
     ]);
   }
 
   public function PatientPayorInfo($BrightreeID) {
-   $patient = $this->apiCall('PatientFetchbyBrightreeID', ['BrightreeID' => $BrightreeID]);
+   $patient = $this->ApiCall('PatientFetchbyBrightreeID', ['BrightreeID' => $BrightreeID]);
    return $patient->PatientFetchByBrightreeIDResult->Items->Patient->PatientInsuranceInfo->Payors->PatientPayorInfo;
   }
 
   public function PatientPayorAdd($PatientPayor) {
-    return $this->apiCall('PatientPayorAdd', [
+    return $this->ApiCall('PatientPayorAdd', [
       'PatientKey' => $PatientPayor->PatientKey,
       'PayorKey' => $PatientPayor->PayorKey,
       'PatientPayor' => $PatientPayor
@@ -48,20 +48,20 @@ class PatientService {
   }
 
   public function PatientPayorUpdate($BrightreeID, $PatientPayor) {
-    return $this->apiCall('PatientPayorUpdate', [
+    return $this->ApiCall('PatientPayorUpdate', [
       'BrightreeID' => $BrightreeID,
       'PatientPayor' => $PatientPayor
     ]);
   }
 
   public function PatientPayorFetch($PatientKey, $PayorKey) {
-    return $this->apiCall('PatientPayorFetch', [
+    return $this->ApiCall('PatientPayorFetch', [
       'PatientKey' => $PatientKey,
       'PayorKey' => $PayorKey
     ]);
   }
 
   public function PatientPayorFetchAll($PatientKey) {
-    return $this->apiCall('PatientPayorFetchAll', ['PatientKey' => $PatientKey]);
+    return $this->ApiCall('PatientPayorFetchAll', ['PatientKey' => $PatientKey]);
   }
 }

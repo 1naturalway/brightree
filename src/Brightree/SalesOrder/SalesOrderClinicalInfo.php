@@ -2,7 +2,7 @@
 
 namespace Brightree\SalesOrder;
 
-use Brightree\ApiMessageServices\ICDCodeInfo;
+
 use Brightree\ApiMessageServices\DoctorInfo;
 use Brightree\ApiMessageServices\PatientInfo;
 use Brightree\ApiMessageServices\RenderingProvider;
@@ -28,7 +28,7 @@ class SalesOrderClinicalInfo {
     $this->RenderingProvider = new RenderingProvider();
   }
 
-  public function setDiagnosisCodes(ICDCodeInfo $codes) {
+  public function setDiagnosisCodes(DiagnosisCodes $codes) {
     $this->DiagnosisCodes = $codes;
   }
 

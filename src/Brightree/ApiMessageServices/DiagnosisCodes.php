@@ -3,13 +3,13 @@
 namespace Brightree\ApiMessageServices;
 
 class DiagnosisCodes {
-  public $DiagnosisCodes;
+  public $ICDCodeInfo;
 
   public function __construct() {
-    $this->DiagnosisCodes = new ICDCodeInfo();
+    $this->ICDCodeInfo = new ICDCodeInfo();
   }
 
-  public function setDiagnosisCodes(ICDCodeInfo $codes) {
-    $this->DiagnosisCodes = $codes;
+  public function setICDCodeInfo(ICDCodeInfo $codes) {
+    $this->ICDCodeInfo = $codes;
   }
 }

@@ -7,6 +7,7 @@ use Brightree\ApiMessageServices\DoctorInfo;
 use Brightree\ApiMessageServices\PatientInfo;
 use Brightree\ApiMessageServices\RenderingProvider;
 use Brightree\ApiMessageServices\LookupValue;
+use Brightree\ApiMessageServices\DiagnosisCodes;
 
 class SalesOrderClinicalInfo {
   public $DiagnosisCodes;
@@ -20,7 +21,7 @@ class SalesOrderClinicalInfo {
   public $SOWeight;
 
   public function __construct() {
-    $this->DiagnosisCodes = new ICDCodeInfo();
+    $this->DiagnosisCodes = new DiagnosisCodes();
     $this->EPSDTConditionCode = new LookupValue();
     $this->OrderingDoctor = new DoctorInfo();
     $this->Patient = new PatientInfo();

@@ -6,7 +6,7 @@ use Brightree\ApiMessageServices\eClaimsInfo;
 use Brightree\ApiMessageServices\WorkersCompensation;
 
 class SalesOrderInsuranceInfo {
-  public $CooverageVerified;
+  public $CoverageVerified;
   public $InsuranceVerified;
   public $Payors;
   public $eClaimsInfo;

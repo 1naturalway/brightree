@@ -4,10 +4,11 @@ namespace Brightree\SalesOrder;
 
 
 use Brightree\ApiMessageServices\DoctorInfo;
+use Brightree\ApiMessageServices\DiagnosisCodes;
 use Brightree\ApiMessageServices\PatientInfo;
 use Brightree\ApiMessageServices\RenderingProvider;
 use Brightree\ApiMessageServices\LookupValue;
-use Brightree\ApiMessageServices\DiagnosisCodes;
+
 
 class SalesOrderClinicalInfo {
   public $DiagnosisCodes;
@@ -28,12 +29,12 @@ class SalesOrderClinicalInfo {
     $this->RenderingProvider = new RenderingProvider();
   }
 
-  public function setDiagnosisCodes(DiagnosisCodes $codes) {
-    $this->DiagnosisCodes = $codes;
+  public function setDiagnosisCodes(DiagnosisCodes $diagnosisCodes) {
+    $this->DiagnosisCodes = $diagnosisCodes;
   }
 
   public function setOrderingDoctor(DoctorInfo $doctorInfo) {
-    $this->OrderingDoctor = $cdoctorInfo;
+    $this->OrderingDoctor = $doctorInfo;
   }
 
   public function setPatientInfo(PatientInfo $patientInfo) {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Brightree\SalesOrder;
+namespace Brightree\ApiMessageServices;
 
 class DiagnosisCodes {
   public $DiagnosisCodes;

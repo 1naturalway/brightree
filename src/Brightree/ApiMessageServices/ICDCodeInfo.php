@@ -5,7 +5,7 @@ namespace Brightree\ApiMessageServices;
 class ICDCodeInfo {
   public $ICDCode;
   public $Description;
-  public $Sequence;
+  public $Sequence = 1;
   public $SeletedForUse;
   public $DiagType;
 

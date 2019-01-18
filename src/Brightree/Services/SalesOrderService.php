@@ -19,6 +19,18 @@ class SalesOrderService {
     return $response;
   }
 
+  public function SalesOrderFetchByBrightreeID($brightreeID) {
+    return $this->ApiCall('SalesOrderFetchByBrightreeID', ['BrightreeID' => $brightreeID]);
+  }
+
+  public function SalesOrderUpdateInsurance($brightreeID, $SalesOrderInsuranceInfo) {
+    return $this->ApiCall('SalesOrderUpdateInsurance', ['BrightreeID' => $brightreeID, 'SalesOrderInsuranceInfo' => $SalesOrderInsuranceInfo]);
+  }
+
+  public function SalesOrderUpdate($brightreeID, $SalesOrder) {
+    return $this->ApiCall('SalesOrderUpdate', ['BrightreeID' => $brightreeID, 'SalesOrder' => $SalesOrder]);
+  }
+
   public function SalesOrderCreate($SalesOrder) {
     return $this->ApiCall('SalesOrderCreate', ['SalesOrder' => $SalesOrder]);
   }
@@ -28,9 +40,9 @@ class SalesOrderService {
   }
 
   public function SalesOrderQuickAddItem($BrightreeID, $SOItemQuickAdd) {
-    return $this->ApiCall('SalesorderQuickAddItem', [
+    return $this->ApiCall('SalesOrderQuickAddItem', [
       'BrightreeID' => $BrightreeID,
-      'SOItemQuickAdd' => $SOItemQuickAdd
+      'SalesOrderItemInfo' => $SOItemQuickAdd
     ]);
   }
 

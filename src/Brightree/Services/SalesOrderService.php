@@ -40,9 +40,9 @@ class SalesOrderService {
   }
 
   public function SalesOrderQuickAddItem($BrightreeID, $SOItemQuickAdd) {
-    return $this->ApiCall('SalesorderQuickAddItem', [
+    return $this->ApiCall('SalesOrderQuickAddItem', [
       'BrightreeID' => $BrightreeID,
-      'SOItemQuickAdd' => $SOItemQuickAdd
+      'SalesOrderItemInfo' => $SOItemQuickAdd
     ]);
   }
 }

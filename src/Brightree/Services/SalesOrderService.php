@@ -33,4 +33,12 @@ class SalesOrderService {
       'SOItemQuickAdd' => $SOItemQuickAdd
     ]);
   }
+
+  public function SalesOrderUpdateItemPayor($BrightreeID, $BrightreeDetailID, $SalesOrderItemInfo) {
+    return $this->ApiCall('SalesOrderUpdateItemPayor', [
+      'BrightreeID' => $BrightreeID,
+      'BrightreeDetailID' => $BrightreeDetailID,
+      'SalesOrderItemInfo' => $SalesOrderItemInfo
+    ]);
+  }
 }

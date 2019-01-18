@@ -40,6 +40,7 @@ class SalesOrderItemInfo {
   public $Note;
   public $Opt;
   public $OverrideTaxRate;
+  public $PayorInfo;
   public $PickedUpQuantity;
   public $PriceOption;
   public $ProcCode;
@@ -64,6 +65,7 @@ class SalesOrderItemInfo {
     $this->LotNumberInfo = array();
     $this->LotNumbers = array();
     $this->NonTaxReason = new LookupValue;
+    $this->PayorInfo = new SalesOrderItemPayorInfo;
     $this->SerialNumberInfo = array();
     $this->SerialNumbers = array();
   }

@@ -7,6 +7,7 @@ use Brightree\CommonServices\Address;
 use Brightree\CommonServices\ContactInfo;
 use Brightree\CommonServices\Name;
 use Brightree\CommonServices\EmergencyContact;
+use Brightree\CommonServices\ResponsiblePartyContact;
 
 class PatientGeneralInfo {
   public $AccountGroup;
@@ -49,7 +50,8 @@ class PatientGeneralInfo {
     $this->Facility = new LookupValue();
     $this->Name = new Name();
     $this->PlaceOfService = new LookupValue();
-    $this->SecurityGroup = new LookupValue;
+    $this->ResponsiblePartyContact = new ResponsiblePartyContact();
+    $this->SecurityGroup = new LookupValue();
   }
 
   public function getAccountGroup(LookupValue $accountNumber) {
@@ -144,8 +146,8 @@ class PatientGeneralInfo {
     return $this;
   }
 
-  public function getResponsibleParty() {
-    return $this->ResponsibleParty;
+  public function getResponsiblePartyContact() {
+    return $this->ResponsiblePartyContact;
   }
 
   public function getTaxZone(LookupValue $taxZone) {

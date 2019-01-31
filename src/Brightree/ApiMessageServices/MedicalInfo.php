@@ -2,7 +2,7 @@
 
 namespace Brightree\ApiMessageServices;
 
-class = MedicalInfo {
+class MedicalInfo {
   $public $NPI;
 
   public function __construct() {

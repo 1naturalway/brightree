@@ -15,4 +15,8 @@ class DoctorService {
     $response = $client->$call($query);
     return $response;
   }
+
+  public function DoctorCreate($doctor) {
+    return $this->ApiCall('DoctorCreate', ['Doctor' => $doctor]);
+  }
 }

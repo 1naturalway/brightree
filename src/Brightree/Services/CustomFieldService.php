@@ -5,7 +5,7 @@ namespace Brightree\Services;
 use SoapClient;
 
 class CustomFieldService {
-  public function __constuct($params) {
+  public function __construct($params) {
     $this->params = $params;
     $this->wsdl_path = "https://webservices.brightree.net/v0100-1610/CustomFieldService/CustomFieldService.svc?singleWsdl";
   }

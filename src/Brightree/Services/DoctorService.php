@@ -2,7 +2,6 @@
 
 namespace Brightree\Services;
 
-
 class DoctorService {
 
   use \Brightree\Traits\ApiTrait;

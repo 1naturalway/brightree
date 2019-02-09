@@ -6,7 +6,6 @@ use Brightree\OrderEntryService;
 use Brightree\SalesOrder\SalesOrder;
 use Brightree\ApiMessageServices\SOItemQuickAdd;
 
-
 class SalesOrderService {
 
   use \Brightree\Traits\ApiTrait;

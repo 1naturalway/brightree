@@ -2,19 +2,15 @@
 
 namespace Brightree\Services;
 
-use SoapClient;
 use Brightree\DocumentManagement\DocumentManagement;
 
 class DocumentManagementService{
+
+  use \Brightree\Traits\ApiTrait;
+
   public function __construct($params) {
     $this->params = $params;
     $this->wsdl_path = "https://webservices.brightree.net/v0100-1610/DocumentationService/DocumentManagementService.svc?singleWsdl";
-  }
-
-  public function ApiCall($call,$query) {
-    $client = new SoapClient($this->wsdl_path, $this->params);
-    $response = $client->$call($query);
-    return $response;
   }
 
   public function DocumentBatchCreate($BrightreeID) {

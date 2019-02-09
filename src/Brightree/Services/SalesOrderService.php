@@ -5,18 +5,14 @@ namespace Brightree\Services;
 use Brightree\OrderEntryService;
 use Brightree\SalesOrder\SalesOrder;
 use Brightree\ApiMessageServices\SOItemQuickAdd;
-use SoapClient;
 
 class SalesOrderService {
+
+  use \Brightree\Traits\ApiTrait;
+
   public function __construct($params) {
     $this->params = $params;
     $this->wsdl_path = "https://webservices.brightree.net/v0100-1807/OrderEntryService/SalesOrderService.svc?singleWsdl";
-  }
-
-  public function ApiCall($call,$query) {
-    $client = new SoapClient($this->wsdl_path, $this->params);
-    $response = $client->$call($query);
-    return $response;
   }
 
   public function SalesOrderFetchByBrightreeID($brightreeID) {

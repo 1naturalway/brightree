@@ -8,6 +8,7 @@ use Brightree\Services\PatientService;
 use Brightree\Services\ReferenceDataService;
 use Brightree\Services\SalesOrderService;
 use Brightree\Services\CustomFieldService;
+use Brightree\Services\DocumentManagementService;
 
 class BrightreeClient {
   private $params;
@@ -47,5 +48,9 @@ class BrightreeClient {
 
   public function CustomFieldService() {
     return new CustomFieldService($this->params);
+  }
+  
+  public function DocumentManagementService() {
+    return new DocumentManagementService($this->params);
   }
 }

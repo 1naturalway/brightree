@@ -49,4 +49,11 @@ class SalesOrderService {
       'SalesOrderItemInfo' => $SalesOrderItemInfo
     ]);
   }
+
+  public function SalesOrderUpdateWIPState($BrightreeID, $NewWIPStateID) {
+    return $this->ApiCall('SalesOrderUpdateWIPState', [
+      'BrightreeID' => $BrightreeID,
+      'NewWIPStateID' => $NewWIPStateID
+    ]);
+  }
 }

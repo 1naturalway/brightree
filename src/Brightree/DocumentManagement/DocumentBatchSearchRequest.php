@@ -1,6 +1,6 @@
 <?php
 
-namespace Brightree\DocumentServices;
+namespace Brightree\DocumentManagement;
 
 class DocumentBatchSearchRequest {
   public $BatchDescription;
@@ -10,7 +10,6 @@ class DocumentBatchSearchRequest {
   public $BrightreeID;
   public $Closed;
   public $CreatedDate;
-
 
   public function setBatchDescription($BatchDescription) {
     $this->BatchDescription = $BatchDescription;

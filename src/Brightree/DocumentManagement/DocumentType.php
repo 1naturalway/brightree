@@ -1,6 +1,6 @@
 <?php
 
-namespace Brightree\DocumentServices;
+namespace Brightree\DocumentManagement;
 
 use Brightree\ApiMessageServices\LookupValue;
 

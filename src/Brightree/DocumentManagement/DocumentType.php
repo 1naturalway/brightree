@@ -4,7 +4,7 @@ namespace Brightree\DocumentManagement;
 
 use Brightree\ApiMessageServices\LookupValue;
 
-class DocumentBatch {
+class DocumentType {
   public $DocumentTypeBrightreeID;
   public $Description;
   public $DocumentCategory;

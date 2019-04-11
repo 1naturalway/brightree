@@ -13,31 +13,38 @@ class DocumentManagementService{
     $this->wsdl_path = "https://webservices.brightree.net/v0100-1610/DocumentationService/DocumentManagementService.svc?singleWsdl";
   }
 
-  public function DocumentBatchCreate($BrightreeID) {
-    return $this->ApiCall('DocumentBatchCreate', ['BrightreeID' => $BrightreeID]);
+  public function DocumentBatchCreate($Batch) {
+    return $this->ApiCall('DocumentBatchCreate', ['batch' => $Batch]);
   }
 
-  public function DocumentBatchSearch($BrightreeID) {
-    return $this->ApiCall('DocumentBatchSearch', ['BrightreeID' => $BrightreeID]);
-  }
-
-  public function DocumentSearch($PtID) {
-    return $this->ApiCall('DocumentSearch', ['searchRequest' => [ 'PatientID' => $PtID ], 'sortRequest' => '']);
+  public function DocumentBatchSearch($searchRequest, $sortRequest, $pageSize, $page) {
+    return $this->ApiCall('DocumentBatchSearch', [
+      'searchRequest' => $searchRequest,
+      'sortRequest' => $sortRequest,
+      'pageSize' => $pageSize,
+      'page' => $page
+      ]);
   }
 
   public function DocumentTypesFetchAll() {
     return $this->ApiCall('DocumentTypesFetchAll',[]);
   }
 
-  public function FetchDocumentContent($DocumentKey) {
-    return $this->ApiCall('FetchDocumentContent', ['documentKey' => $DocumentKey]);
+  public function GenerateDocumentID($DocumentTypeBrightreeID, $EntityType, $EntityBrightreeID) {
+    return $this->ApiCall('GenerateDocumentID', [
+      'DocumentTypeBrightreeID' => $DocumentTypeBrightreeID,
+      'EntityType' => $EntityType,
+      'EntityBrightreeID' => $EntityBrightreeID
+      ]);
   }
 
-  public function GenerateDocumentID($BrightreeID) {
-    return $this->ApiCall('GenerateDocumentID', ['DocumentTypeBrightreeID' => $BrightreeID]);
-  }
-
-  public function StoreDocument($Contents) {
-    return $this->ApiCall('StoreDocument', ['Contents' => $Contents]);
+  public function StoreDocument($BatchBrightreeID, $DocumentTypeBrightreeID, $PropertyBag, $SearchforBarCode, $FileContents) {
+    return $this->ApiCall('StoreDocument', [
+      'BatchBrightreeID' => $BatchBrightreeID,
+      'DocumentTypeBrightreeID' => $DocumentTypeBrightreeID,
+      'PropertyBag' => $PropertyBag,
+      'SearchforBarCode' => $SearchforBarCode,
+      'FileContents' => $FileContents
+      ]);
   }
 }

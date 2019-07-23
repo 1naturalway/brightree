@@ -18,9 +18,14 @@ class BrightreeClient {
       'login' => $params['username'],
       'password' => $params['password'],
       'trace' => 1,
+      'exceptions' => true,
+      'cache_wsdl' => WSDL_CACHE_NONE,
       'stream_context' => stream_context_create(array(
         'ssl' => array(
             'crypto_method' =>  STREAM_CRYPTO_METHOD_TLSv1_2_CLIENT,
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true,
         )
      ))
     ];
@@ -49,7 +54,7 @@ class BrightreeClient {
   public function CustomFieldService() {
     return new CustomFieldService($this->params);
   }
-  
+
   public function DocumentManagementService() {
     return new DocumentManagementService($this->params);
   }

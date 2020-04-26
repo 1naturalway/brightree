@@ -3,11 +3,11 @@
   "description": "Brightree API Wrapper for PHP",
   "license": "GPL-3.0+",
   "require": {
-    "php": ">=7.2.0"
+    "php": "^7.3.0"
   },
   "require-dev": {
-    "phpunit/phpunit": "^7.5.1",
-    "mockery/mockery": "^1.2.0"
+    "phpunit/phpunit": "^9.0",
+    "mockery/mockery": "^1.3.0"
   },
   "authors": [
     {

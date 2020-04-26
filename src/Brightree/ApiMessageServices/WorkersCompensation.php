@@ -2,7 +2,7 @@
 
 namespace Brightree\ApiMessageServices;
 
-class workersCompensation {
+class WorkersCompensation {
   public $ConditionEmploy;
   public $ConditionAuto;
   public $ConditionOther;

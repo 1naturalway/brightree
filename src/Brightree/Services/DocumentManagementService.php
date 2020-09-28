@@ -2,15 +2,13 @@
 
 namespace Brightree\Services;
 
-use Brightree\DocumentManagement\DocumentManagement;
-
 class DocumentManagementService{
 
   use \Brightree\Traits\ApiTrait;
 
   public function __construct($params) {
     $this->params = $params;
-    $this->wsdl_path = "https://webservices.brightree.net/v0100-1610/DocumentationService/DocumentManagementService.svc?singleWsdl";
+    $this->wsdl_path = "https://webservices.brightree.net/v0100-1910/DocumentationService/DocumentManagementService.svc?singleWsdl";
   }
 
   public function DocumentBatchCreate($Batch) {

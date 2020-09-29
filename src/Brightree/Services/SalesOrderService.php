@@ -2,17 +2,13 @@
 
 namespace Brightree\Services;
 
-use Brightree\OrderEntryService;
-use Brightree\SalesOrder\SalesOrder;
-use Brightree\ApiMessageServices\SOItemQuickAdd;
-
 class SalesOrderService {
 
   use \Brightree\Traits\ApiTrait;
 
   public function __construct($params) {
     $this->params = $params;
-    $this->wsdl_path = "https://webservices.brightree.net/v0100-1807/OrderEntryService/SalesOrderService.svc?singleWsdl";
+    $this->wsdl_path = "https://webservices.brightree.net/v0100-2005/OrderEntryService/SalesOrderService.svc?singleWsdl";
   }
 
   public function SalesOrderFetchByBrightreeID($brightreeID) {
@@ -44,6 +40,14 @@ class SalesOrderService {
 
   public function SalesOrderUpdateItemPayor($BrightreeID, $BrightreeDetailID, $SalesOrderItemInfo) {
     return $this->ApiCall('SalesOrderUpdateItemPayor', [
+      'BrightreeID' => $BrightreeID,
+      'BrightreeDetailID' => $BrightreeDetailID,
+      'SalesOrderItemInfo' => $SalesOrderItemInfo
+    ]);
+  }
+
+  public function SalesOrderUpdateItem($BrightreeID, $BrightreeDetailID, $SalesOrderItemInfo) {
+    return $this->ApiCall('SalesOrderUpdateItem', [
       'BrightreeID' => $BrightreeID,
       'BrightreeDetailID' => $BrightreeDetailID,
       'SalesOrderItemInfo' => $SalesOrderItemInfo

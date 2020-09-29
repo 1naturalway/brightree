@@ -46,6 +46,14 @@ class SalesOrderService {
     ]);
   }
 
+  public function SalesOrderUpdateItem($BrightreeID, $BrightreeDetailID, $SalesOrderItemInfo) {
+    return $this->ApiCall('SalesOrderUpdateItem', [
+      'BrightreeID' => $BrightreeID,
+      'BrightreeDetailID' => $BrightreeDetailID,
+      'SalesOrderItemInfo' => $SalesOrderItemInfo
+    ]);
+  }
+
   public function SalesOrderUpdateWIPState($BrightreeID, $NewWIPStateID) {
     return $this->ApiCall('SalesOrderUpdateWIPState', [
       'BrightreeID' => $BrightreeID,

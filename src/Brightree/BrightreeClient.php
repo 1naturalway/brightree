@@ -9,6 +9,7 @@ use Brightree\Services\ReferenceDataService;
 use Brightree\Services\SalesOrderService;
 use Brightree\Services\CustomFieldService;
 use Brightree\Services\DocumentManagementService;
+use Brightree\Services\InventoryService;
 
 class BrightreeClient {
   private $params;
@@ -57,5 +58,9 @@ class BrightreeClient {
 
   public function DocumentManagementService() {
     return new DocumentManagementService($this->params);
+  }
+
+  public function InventoryService() {
+    return new InventoryService($this->params);
   }
 }

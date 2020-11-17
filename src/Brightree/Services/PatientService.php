@@ -2,15 +2,12 @@
 
 namespace Brightree\Services;
 
-use Brightree\OrderEntryService;
 use Brightree\Patient\Patient;
-use Brightree\Patient\PatientPayor;
 
 class PatientService {
 
   use \Brightree\Traits\ApiTrait;
   use \Brightree\Traits\CustomTrait;
-
 
   public function __construct($params) {
     $this->params = $params;
@@ -62,5 +59,4 @@ class PatientService {
     $patient = $this->ApiCall('PatientFetchbyBrightreeID', ['BrightreeID' => $BrightreeID]);
     return $patient->PatientFetchByBrightreeIDResult->Items->Patient->PatientInsuranceInfo->Payors->PatientPayorInfo;
   }
-
 }

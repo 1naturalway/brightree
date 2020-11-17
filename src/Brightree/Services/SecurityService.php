@@ -11,5 +11,4 @@ class SecurityService {
     $this->params = $params;
     $this->wsdl_path = "https://webservices.brightree.net/v0100-1906/SecurityService/UserSecurityService.svc?singleWsdl";
   }
-  
 }

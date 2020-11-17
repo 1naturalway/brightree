@@ -11,5 +11,4 @@ class InventoryService {
     $this->params = $params;
     $this->wsdl_path = "https://webservices.brightree.net/v0100-2006/InventoryService/InventoryService.svc?singleWsdl";
   }
-
 }

@@ -14,4 +14,9 @@ class CustomFieldService {
   public function CustomFieldValueSaveMultiple($category,$brightreeID,$fieldValues) {
     return $this->ApiCall('CustomFieldValueSaveMultiple', ['category' => $category, 'brightreeID' => $brightreeID, 'fieldValues' => $fieldValues]);
   }
+
+  public function Custom($method, $customInformation)
+  {
+    return $this->ApiCall($method, $customInformation);
+  }
 }

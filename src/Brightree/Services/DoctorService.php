@@ -14,4 +14,9 @@ class DoctorService {
   public function DoctorCreate($doctor) {
     return $this->ApiCall('DoctorCreate', ['Doctor' => $doctor]);
   }
+
+  public function Custom($method, $doctorInformation)
+  {
+    return $this->ApiCall($method, $doctorInformation);
+  }
 }

@@ -10,4 +10,9 @@ class DocumentationService{
     $this->params = $params;
     $this->wsdl_path = "https://webservices.brightree.net/v0100-2001/DocumentationService/DocumentationService.svc?singleWsdl";
   }
+
+  public function Custom($method, $documentationInformation)
+  {
+    return $this->ApiCall($method, $documentationInformation);
+  }
 }

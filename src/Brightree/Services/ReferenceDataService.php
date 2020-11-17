@@ -12,4 +12,9 @@ class ReferenceDataService {
   function __construct($params) {
     $this->params = $params;
   }
+
+  public function Custom($method, $referenceInformation)
+  {
+    return $this->ApiCall($method, $referenceInformation);
+  }
 }

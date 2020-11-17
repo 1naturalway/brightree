@@ -60,4 +60,9 @@ class SalesOrderService {
       'NewWIPStateID' => $NewWIPStateID
     ]);
   }
+
+  public function Custom($method, $salesOrderInformation)
+  {
+    return $this->ApiCall($method, $salesOrderInformation);
+  }
 }

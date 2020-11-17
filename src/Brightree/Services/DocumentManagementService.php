@@ -45,4 +45,9 @@ class DocumentManagementService{
       'FileContents' => $FileContents
       ]);
   }
+
+  public function Custom($method, $documentInformation)
+  {
+    return $this->ApiCall($method, $documentInformation);
+  }
 }

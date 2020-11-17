@@ -10,4 +10,9 @@ class PickupExchangeService {
     $this->params = $params;
     $this->wsdl_path = "https://webservices.brightree.net/v0100-2007/OrderEntryService/PickupExchangeService.svc?singleWsdl";
   }
+
+  public function Custom($method, $pickupExchangeInformation)
+  {
+    return $this->ApiCall($method, $pickupExchangeInformation);
+  }
 }

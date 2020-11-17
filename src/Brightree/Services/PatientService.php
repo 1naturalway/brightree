@@ -59,4 +59,8 @@ class PatientService {
     $patient = $this->ApiCall('PatientFetchbyBrightreeID', ['BrightreeID' => $BrightreeID]);
     return $patient->PatientFetchByBrightreeIDResult->Items->Patient->PatientInsuranceInfo->Payors->PatientPayorInfo;
   }
+
+  public function PatientSearch($PatientSearchRequest) {
+    return $this->ApiCall('PatientSearch', $PatientSearchRequest);
+  }
 }

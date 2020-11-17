@@ -10,4 +10,9 @@ class PricingService {
     $this->params = $params;
     $this->wsdl_path = "https://webservices.brightree.net/v0100-1908/InventoryService/PricingService.svc?singleWsdl";
   }
+
+  public function Custom($method, $pricingInformation)
+  {
+    return $this->ApiCall($method, $pricingInformation);
+  }
 }

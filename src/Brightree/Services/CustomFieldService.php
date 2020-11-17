@@ -5,6 +5,7 @@ namespace Brightree\Services;
 class CustomFieldService {
 
   use \Brightree\Traits\ApiTrait;
+  use \Brightree\Traits\CustomTrait;
 
   public function __construct($params) {
     $this->params = $params;

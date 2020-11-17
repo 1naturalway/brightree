@@ -12,7 +12,7 @@ class SalesOrderItemInfo {
   public $AddMod3;
   public $AddMod4;
   public $AllowAmt;
-  public $BillyQty;
+  public $BillQty;
   public $BrightreeDetailID;
   public $CancelledQty;
   public $ChargeAmt;

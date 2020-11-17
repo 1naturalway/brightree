@@ -9,6 +9,8 @@ use Brightree\Patient\PatientPayor;
 class PatientService {
 
   use \Brightree\Traits\ApiTrait;
+  use \Brightree\Traits\CustomTrait;
+
 
   public function __construct($params) {
     $this->params = $params;
@@ -61,7 +63,4 @@ class PatientService {
     return $patient->PatientFetchByBrightreeIDResult->Items->Patient->PatientInsuranceInfo->Payors->PatientPayorInfo;
   }
 
-  public function Custom($Method, $PatientInformation) {
-    return $this->ApiCall($Method, $PatientInformation);
-  }
 }

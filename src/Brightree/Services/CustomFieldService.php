@@ -5,6 +5,8 @@ namespace Brightree\Services;
 class CustomFieldService {
 
   use \Brightree\Traits\ApiTrait;
+  use \Brightree\Traits\CustomTrait;
+
 
   public function __construct($params) {
     $this->params = $params;
@@ -15,8 +17,4 @@ class CustomFieldService {
     return $this->ApiCall('CustomFieldValueSaveMultiple', ['category' => $category, 'brightreeID' => $brightreeID, 'fieldValues' => $fieldValues]);
   }
 
-  public function Custom($method, $customInformation)
-  {
-    return $this->ApiCall($method, $customInformation);
-  }
 }

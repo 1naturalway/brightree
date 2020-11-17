@@ -5,6 +5,8 @@ namespace Brightree\Services;
 class DoctorService {
 
   use \Brightree\Traits\ApiTrait;
+  use \Brightree\Traits\CustomTrait;
+
 
   public function __construct($params) {
     $this->params = $params;
@@ -15,8 +17,4 @@ class DoctorService {
     return $this->ApiCall('DoctorCreate', ['Doctor' => $doctor]);
   }
 
-  public function Custom($method, $doctorInformation)
-  {
-    return $this->ApiCall($method, $doctorInformation);
-  }
 }

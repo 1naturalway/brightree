@@ -5,6 +5,8 @@ namespace Brightree\Services;
 class DocumentManagementService{
 
   use \Brightree\Traits\ApiTrait;
+  use \Brightree\Traits\CustomTrait;
+
 
   public function __construct($params) {
     $this->params = $params;
@@ -46,8 +48,4 @@ class DocumentManagementService{
       ]);
   }
 
-  public function Custom($method, $documentInformation)
-  {
-    return $this->ApiCall($method, $documentInformation);
-  }
 }

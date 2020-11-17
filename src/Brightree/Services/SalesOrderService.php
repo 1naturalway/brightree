@@ -5,6 +5,8 @@ namespace Brightree\Services;
 class SalesOrderService {
 
   use \Brightree\Traits\ApiTrait;
+  use \Brightree\Traits\CustomTrait;
+
 
   public function __construct($params) {
     $this->params = $params;
@@ -61,8 +63,4 @@ class SalesOrderService {
     ]);
   }
 
-  public function Custom($method, $salesOrderInformation)
-  {
-    return $this->ApiCall($method, $salesOrderInformation);
-  }
 }

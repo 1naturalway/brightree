@@ -23,6 +23,7 @@ class DeliveryInfo {
   public function __construct() {
     $this->Address = new Address();
     $this->ContactInfo = new ContactInfo();
+    $this->Facility = new LookupValue();
     $this->SalesOrderFulFillmentDetails = new SalesOrderFulfillmentDetails;
     $this->TaxZone = new LookupValue();
   }

@@ -50,7 +50,7 @@ class SalesOrder {
     $this->PointOfDeliveryInfo = $pointOfDeliveryInfo;
   }
 
-  public function getSalesOrderAudioInfo(SalesOrderAudioInfov $salesOrderAudioInfo) {
+  public function getSalesOrderAudioInfo(SalesOrderAuditInfo $salesOrderAudioInfo) {
     $this->SalesOrderAudioInfo = $salesOrderAudioInfo;
   }
 

@@ -29,9 +29,9 @@ class PatientService {
     ]);
   }
 
-  public function PatientPayorAdd($PatientPayor) {
+  public function PatientPayorAdd($PatientKey, $PatientPayor) {
     return $this->ApiCall('PatientPayorAdd', [
-      'PatientKey' => $PatientPayor->PatientKey,
+      'PatientKey' => $PatientKey,
       'PayorKey' => $PatientPayor->PayorKey,
       'PatientPayor' => $PatientPayor
     ]);

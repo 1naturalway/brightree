@@ -4,7 +4,9 @@ namespace Brightree\SalesOrder;
 
 class ShippingTrackingInfo {
   public $Carrier;
+
   public $TrackingNumber;
+
   public $TrackingShipDate;
 
   public function setCarrier($Carrier) {

@@ -4,11 +4,17 @@ namespace Brightree\DocumentManagement;
 
 class DocumentBatchSearchRequest {
   public $BatchDescription;
+
   public $BatchName;
+
   public $BatchOwnerBrightreeID;
+
   public $BatchOwnerFullName;
+
   public $BrightreeID;
+
   public $Closed;
+
   public $CreatedDate;
 
   public function setBatchDescription($BatchDescription) {

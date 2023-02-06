@@ -6,11 +6,17 @@ use Brightree\ApiMessageServices\LookupValue;
 
 class DocumentType {
   public $DocumentTypeBrightreeID;
+
   public $Description;
+
   public $DocumentCategory;
+
   public $DocumentReviewMode;
+
   public $DocumentRulesEnabled;
+
   public $Enabled;
+
   public $Name;
 
   public function __construct() {

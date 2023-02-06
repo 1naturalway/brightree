@@ -4,7 +4,9 @@ namespace Brightree\SalesOrder;
 
 class SalesOrderMessages {
   public $BrightreeId;
+
   public $DetailMessages;
+
   public $HeaderMessages;
 
   public function setBrightreeId($BrightreeId) {

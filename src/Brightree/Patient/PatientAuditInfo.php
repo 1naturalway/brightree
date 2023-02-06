@@ -5,17 +5,21 @@ namespace Brightree\Patient;
 use Brightree\ApiMessageServices\LookupValue;
 
 class PatientAuditInfo {
-  public $CreatedBy;
+  public LookupValue $CreatedBy;
+
   public $CreatedDate;
+
   public $EmergencyContactConcurrencyUpdateTime;
+
   public $Pt_ConcurrencyUpdateDateTime;
+
   public $ResponsiblePartyConcurrencyUpdateTime;
 
   public function __construct() {
     $this->CreatedBy = new LookupValue();
   }
 
-  public function getCreatedBy() {
+  public function getCreatedBy($createdBy) {
     return $this->CreatedBy = $createdBy;
   }
 

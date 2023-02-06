@@ -4,10 +4,12 @@ namespace Brightree\ApiMessageServices;
 
 class PointOfDeliveryInfo {
   public $LastMessage;
-  public $LastMessageDateTime;
-  public $Status;
-  public $StatusDateTime;
 
+  public $LastMessageDateTime;
+
+  public $Status;
+
+  public $StatusDateTime;
 
   public function setLastMessage($LastMessage) {
     $this->LastMessage = $LastMessage;
@@ -29,4 +31,3 @@ class PointOfDeliveryInfo {
     return $this;
   }
 }
-

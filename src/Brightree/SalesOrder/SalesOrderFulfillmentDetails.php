@@ -6,10 +6,15 @@ use Brightree\ApiMessageServices\LookupValue;
 
 class SalesOrderFulfillmentDetails {
   public $AccountNumber;
+
   public $BrightreeID;
+
   public $FulfillmentVendor;
+
   public $ShipBy;
+
   public $Status;
+
   public $statusCode;
 
   public function __construct() {
@@ -18,7 +23,7 @@ class SalesOrderFulfillmentDetails {
   }
 
   public function getFulfillmentVendor(LookupValue $vendor) {
-     return $this->FulfillmentVendor = $vendor;
+    return $this->FulfillmentVendor = $vendor;
   }
 
   public function getShipBy(LookupValue $shipment) {
@@ -45,4 +50,3 @@ class SalesOrderFulfillmentDetails {
     return $this;
   }
 }
-

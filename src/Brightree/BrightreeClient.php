@@ -2,6 +2,7 @@
 
 namespace Brightree;
 
+use Brightree\ApiMessageServices\CustomFieldValue;
 use Brightree\Services\DoctorService;
 use Brightree\Services\InsuranceService;
 use Brightree\Services\PatientService;
@@ -14,7 +15,7 @@ use Brightree\Services\InventoryService;
 class BrightreeClient {
   private $params;
 
-  function __construct($params) {
+  public function __construct($params) {
     $this->params = [
       'login' => $params['username'],
       'password' => $params['password'],
@@ -23,44 +24,43 @@ class BrightreeClient {
       'cache_wsdl' => WSDL_CACHE_NONE,
       'stream_context' => stream_context_create(array(
         'ssl' => array(
-            'crypto_method' =>  STREAM_CRYPTO_METHOD_TLSv1_2_CLIENT,
+            'crypto_method' => STREAM_CRYPTO_METHOD_TLSv1_2_CLIENT,
             'verify_peer' => false,
             'verify_peer_name' => false,
             'allow_self_signed' => true,
-        )
-     ))
+        ))),
     ];
   }
 
-  public function DoctorService() {
+  public function doctorService(): DoctorService {
     return new DoctorService($this->params);
   }
 
-  public function InsuranceService() {
+  public function insuranceService(): InsuranceService {
     return new InsuranceService($this->params);
   }
 
-  public function PatientService() {
+  public function patientService(): PatientService {
     return new PatientService($this->params);
   }
 
-  public function ReferenceDataService() {
+  public function referenceDataService(): ReferenceDataService {
     return new ReferenceDataService($this->params);
   }
 
-  public function SalesOrderService() {
+  public function salesOrderService(): SalesOrderService {
     return new SalesOrderService($this->params);
   }
 
-  public function CustomFieldService() {
+  public function customFieldService(): CustomFieldService {
     return new CustomFieldService($this->params);
   }
 
-  public function DocumentManagementService() {
+  public function documentManagementService(): DocumentManagementService {
     return new DocumentManagementService($this->params);
   }
 
-  public function InventoryService() {
+  public function inventoryService(): InventoryService {
     return new InventoryService($this->params);
   }
 }

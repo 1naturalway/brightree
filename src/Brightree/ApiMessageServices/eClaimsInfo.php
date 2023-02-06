@@ -4,8 +4,11 @@ namespace Brightree\ApiMessageServices;
 
 class eClaimsInfo {
   public $AttachmentNumber;
+
   public $TransCode;
+
   public $TypeCode;
+
   public $eClaimsAttachment;
 
   public function setAttachmentNumber($AttachmentNumber) {

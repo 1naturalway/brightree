@@ -3,10 +3,14 @@
 namespace Brightree\ApiMessageServices;
 
 class ICDCodeInfo {
-  public $ICDCode;
-  public $Description;
+  public string $ICDCode;
+
+  public string $Description;
+
   public $Sequence = 1;
-  public $SeletedForUse;
+
+  public bool $SelectedForUse;
+
   public $DiagType;
 
   public function setICDCode($ICDCode) {
@@ -24,12 +28,12 @@ class ICDCodeInfo {
     return $this;
   }
 
-  public function setSeletedForUse($SeletedForUse) {
-    $this->SeletedForUse = $SeletedForUse;
+  public function setSelectedForUse($SelectedForUse) {
+    $this->SelectedForUse = $SelectedForUse;
     return $this;
   }
 
-  public function setDiagType($DiagType){
+  public function setDiagType($DiagType) {
     $this->DiagType = $DiagType;
     return $this;
   }

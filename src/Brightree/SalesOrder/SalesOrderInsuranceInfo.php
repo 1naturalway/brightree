@@ -7,17 +7,20 @@ use Brightree\ApiMessageServices\WorkersCompensation;
 
 class SalesOrderInsuranceInfo {
   public $CoverageVerified;
+
   public $InsuranceVerified;
+
   public $Payors;
+
   public $eClaimsInfo;
+
   public $workersCompensation;
 
   public function __construct() {
-    $this->Payors =  new Payors();
+    $this->Payors = new Payors();
     $this->eClaimsInfo = new eClaimsInfo();
     $this->workersCompensation = new workersCompensation();
   }
-
 
   public function getPayors(Payors $payors) {
     return $this->Payors = $payors;
@@ -32,7 +35,7 @@ class SalesOrderInsuranceInfo {
   }
 
   public function setCooverageVerified($CooverageVerified) {
-    $this->CooverageVerified = $CooverageVerified;
+    $this->CoverageVerified = $CooverageVerified;
     return $this;
   }
 

@@ -2,11 +2,9 @@
 
 namespace Brightree\Services;
 
-class PricingService {
+use Brightree\Services\BaseService;
 
-  use \Brightree\Traits\ApiTrait;
-  use \Brightree\Traits\CustomTrait;
-
+class PricingService extends BaseService {
   public function __construct($params) {
     $this->params = $params;
     $this->wsdl_path = "https://webservices.brightree.net/v0100-1908/InventoryService/PricingService.svc?singleWsdl";

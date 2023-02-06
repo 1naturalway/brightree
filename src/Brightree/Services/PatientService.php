@@ -3,64 +3,61 @@
 namespace Brightree\Services;
 
 use Brightree\Patient\Patient;
+use Brightree\Services\BaseService;
 
-class PatientService {
-
-  use \Brightree\Traits\ApiTrait;
-  use \Brightree\Traits\CustomTrait;
-
+class PatientService extends BaseService {
   public function __construct($params) {
     $this->params = $params;
     $this->wsdl_path = "https://webservices.brightree.net/v0100-2006/OrderEntryService/patientservice.svc?singleWsdl";
   }
 
-  public function PatientFetchbyBrightreeID($BrightreeID) {
-    return $this->ApiCall('PatientFetchbyBrightreeID', ['BrightreeID' => $BrightreeID]);
+  public function patientFetchbyBrightreeID($BrightreeID) {
+    return $this->apiCall('PatientFetchbyBrightreeID', ['BrightreeID' => $BrightreeID]);
   }
 
-  public function PatientCreate(Patient $Patient) {
-    return $this->ApiCall('PatientCreate', ['Patient' => $Patient]);
+  public function patientCreate(Patient $Patient) {
+    return $this->apiCall('PatientCreate', ['Patient' => $Patient]);
   }
 
-  public function PatientUpdate(Patient $Patient, $BrightreeID) {
-    return $this->ApiCall('PatientUpdate', [
+  public function patientUpdate(Patient $Patient, $BrightreeID) {
+    return $this->apiCall('PatientUpdate', [
       'Patient' => $Patient,
       'BrightreeID' => $BrightreeID
     ]);
   }
 
-  public function PatientPayorAdd($PatientKey, $PatientPayor) {
-    return $this->ApiCall('PatientPayorAdd', [
+  public function patientPayorAdd($PatientKey, $PatientPayor) {
+    return $this->apiCall('PatientPayorAdd', [
       'PatientKey' => $PatientKey,
       'PayorKey' => $PatientPayor->PayorKey,
       'PatientPayor' => $PatientPayor
     ]);
   }
 
-  public function PatientPayorUpdate($BrightreeID, $PatientPayor) {
-    return $this->ApiCall('PatientPayorUpdate', [
+  public function patientPayorUpdate($BrightreeID, $PatientPayor) {
+    return $this->apiCall('PatientPayorUpdate', [
       'BrightreeID' => $BrightreeID,
       'PatientPayor' => $PatientPayor
     ]);
   }
 
-  public function PatientPayorFetch($PatientKey, $PayorKey) {
-    return $this->ApiCall('PatientPayorFetch', [
+  public function patientPayorFetch($PatientKey, $PayorKey) {
+    return $this->apiCall('PatientPayorFetch', [
       'PatientKey' => $PatientKey,
       'PayorKey' => $PayorKey
     ]);
   }
 
-  public function PatientPayorFetchAll($PatientKey) {
-    return $this->ApiCall('PatientPayorFetchAll', ['PatientKey' => $PatientKey]);
+  public function patientPayorFetchAll($PatientKey) {
+    return $this->apiCall('PatientPayorFetchAll', ['PatientKey' => $PatientKey]);
   }
 
-  public function PatientPayorInfo($BrightreeID) {
-    $patient = $this->ApiCall('PatientFetchbyBrightreeID', ['BrightreeID' => $BrightreeID]);
+  public function patientPayorInfo($BrightreeID) {
+    $patient = $this->apiCall('PatientFetchbyBrightreeID', ['BrightreeID' => $BrightreeID]);
     return $patient->PatientFetchByBrightreeIDResult->Items->Patient->PatientInsuranceInfo->Payors->PatientPayorInfo;
   }
 
-  public function PatientSearch($PatientSearchRequest) {
-    return $this->ApiCall('PatientSearch', $PatientSearchRequest);
+  public function patientSearch($PatientSearchRequest) {
+    return $this->apiCall('PatientSearch', $PatientSearchRequest);
   }
 }

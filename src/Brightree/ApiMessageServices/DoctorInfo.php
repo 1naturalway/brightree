@@ -8,11 +8,17 @@ use Brightree\ApiMessageServices\LookupValue;
 
 class DoctorInfo {
   public $Doctor;
+
   public $Name;
+
   public $Address;
+
   public $Fax;
+
   public $NPI;
+
   public $Phone;
+
   public $UPIN;
 
   public function __construct() {
@@ -20,6 +26,7 @@ class DoctorInfo {
     $this->Name = new Name();
     $this->Doctor = new LookupValue();
   }
+
   public function getAddress(Address $address) {
     $this->Address = $address;
   }
@@ -36,7 +43,7 @@ class DoctorInfo {
   public function setFax($Fax) {
     $this->Fax = $Fax;
     return $this;
- }
+  }
 
   public function setNPI($NPI) {
     $this->NPI = $NPI;

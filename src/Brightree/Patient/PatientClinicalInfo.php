@@ -8,34 +8,49 @@ use Brightree\ApiMessageServices\DoctorInfo;
 use Brightree\ApiMessageServices\RenderingProvider;
 
 class PatientClinicalInfo {
+  public bool $AirborneTransmission;
+
+  public bool $ContactTransmission;
+
   public $DateOfDeath;
-  public $DiagnosisCodes;
-  public $FunctionalAbility;
-  public $Gender;
-  public $Height;
-  public $InfectiousCondition;
-  public $MarketingReferral;
-  public $MarketingRep;
-  public $OrderingDoctor;
-  public $PatientCondition;
-  public $Practitioner;
-  public $PrimaryDoctor;
-  public $RenderingProvider;
-  public $Weight;
+
+  public array $DiagnosisCodes;
+
+  public bool $DropletTransmission;
+
+  public LookupValue $FunctionalAbility;
+
+  public string $Gender;
+
+  public float $Height;
+
+  public bool $InfectiousCondition;
+
+  public Referral $MarketingReferral;
+
+  public LookupValue $MarketingRep;
+
+  public DoctorInfo $OrderingDoctor;
+
+  public PatientCondition $PatientCondition;
+
+  public LookupValue $Practitioner;
+
+  public DoctorInfo $PrimaryDoctor;
+
+  public RenderingProvider $RenderingProvider;
+
+  public float $Weight;
 
   public function __construct() {
     $this->DiagnosisCodes = [];
     $this->FunctionalAbility = new LookupValue();
-    $this->Practitioner = new LookupValue();
-    $this->MarketingRep = new LookupValue();
-
-
     $this->MarketingReferral = new Referral();
-
+    $this->MarketingRep = new LookupValue();
     $this->OrderingDoctor = new DoctorInfo();
-    $this->PrimaryDoctor = new DoctorInfo();
-
     $this->PatientCondition = new PatientCondition();
+    $this->Practitioner = new LookupValue();
+    $this->PrimaryDoctor = new DoctorInfo();
     $this->RenderingProvider = new RenderingProvider();
   }
 }

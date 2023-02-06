@@ -4,7 +4,9 @@ namespace Brightree\ApiMessageServices;
 
 class BrightShip {
   public $Carrier;
+
   public $ShippingMethod;
+
   public $status;
 
   public function setStatus($status) {

@@ -6,7 +6,6 @@ use Illuminate\Support\ServiceProvider;
 use Brightree\BrightreeClient;
 
 class BrightreeServiceProvider extends ServiceProvider {
-
   public function boot() {
     $config = __DIR__ . '/config/config.php';
     $this->mergeConfigFrom($config, 'brightree');
@@ -18,6 +17,7 @@ class BrightreeServiceProvider extends ServiceProvider {
       return new BrightreeClient(config('brightree'));
     });
   }
+
   public function provides() {
     return array('brightree');
   }

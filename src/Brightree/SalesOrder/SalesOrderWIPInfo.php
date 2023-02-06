@@ -4,15 +4,22 @@ namespace Brightree\SalesOrder;
 
 class SalesOrderWIPInfo {
   public $WIPAssignedToKey;
-  public $WIPAssignedToPerson;
-  public $WIPClosedDate;
-  public $WIPCompleted;
-  public $WIPCreateDate;
-  public $WIPDaysInState;
-  public $WIPNeedDate;
-  public $WIPStateKey;
-  public $WIPStateName;
 
+  public $WIPAssignedToPerson;
+
+  public $WIPClosedDate;
+
+  public $WIPCompleted;
+
+  public $WIPCreateDate;
+
+  public $WIPDaysInState;
+
+  public $WIPNeedDate;
+
+  public $WIPStateKey;
+
+  public $WIPStateName;
 
   public function setWIPAssignedToKey($WIPAssignedToKey) {
     $this->WIPAssignedToKey = $WIPAssignedToKey;

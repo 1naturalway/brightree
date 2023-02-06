@@ -6,15 +6,25 @@ use Brightree\CommonServices\Address;
 
 class Referral {
   public $Address;
+
   public $BrightreeID;
+
   public $Contact;
+
   public $ContactRemoved;
+
   public $FaxNumber;
+
   public $Group;
+
   public $PhoneNumber;
+
   public $ReferralType;
+
   public $ReferralTypeBrightreeID;
+
   public $ReferralTypeName;
+
   public $UPIN;
 
   public function __construct() {
@@ -36,8 +46,7 @@ class Referral {
     return $this->Contact = $contact;
   }
 
-  public function setContactRemoved($ContactRemoved)
-  {
+  public function setContactRemoved($ContactRemoved) {
     $this->ContactRemoved = $ContactRemoved;
     return $this;
   }

@@ -6,9 +6,13 @@ use Brightree\ApiMessageServices\LookupValue;
 
 class SalesOrderAuditInfo {
   public $ConfirmedBy;
+
   public $ConfirmedDate;
+
   public $CreatedBy;
+
   public $CreatedDate;
+
   public $SalesOrderType;
 
   public function getCreatedBy(LookupValue $createdBy) {
@@ -35,4 +39,3 @@ class SalesOrderAuditInfo {
     return $this;
   }
 }
-

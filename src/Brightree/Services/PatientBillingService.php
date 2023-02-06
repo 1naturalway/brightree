@@ -2,11 +2,9 @@
 
 namespace Brightree\Services;
 
-class PatientBillingService {
+use Brightree\Services\BaseService;
 
-  use \Brightree\Traits\ApiTrait;
-  use \Brightree\Traits\CustomTrait;
-
+class PatientBillingService extends BaseService {
   public function __construct($params) {
     $this->params = $params;
     $this->wsdl_path = "https://webservices.brightree.net/v0100-1909/InvoiceService/InvoiceService.svc?singleWsdl";

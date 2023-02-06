@@ -7,9 +7,13 @@ use Brightree\CommonServices\Name;
 
 class Contact {
   public $Name;
+
   public $Address;
+
   public $PhoneNumber;
+
   public $FaxNumber;
+
   public $EmailAddress;
 
   public function __construct() {

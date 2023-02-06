@@ -4,9 +4,13 @@ namespace Brightree\CommonServices;
 
 class Name {
   public $First;
+
   public $Last;
+
   public $Middle;
+
   public $Suffix;
+
   public $Title;
 
   public function setFirst($First) {

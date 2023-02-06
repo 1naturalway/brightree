@@ -4,7 +4,9 @@ namespace Brightree\ApiMessageServices;
 
 class RenderingProvider {
   public $Doctor;
+
   public $Facility;
+
   public $Type;
 
   public function setDoctor($Doctor) {

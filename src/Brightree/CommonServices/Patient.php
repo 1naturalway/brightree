@@ -4,22 +4,36 @@ namespace Brightree\CommonServices;
 
 class Patient {
   public $AccountGroup;
-  public $AccountNumber;
-  public $Address;
-  public $BrightreeID;
-  public $ContactInfo;
-  public $DOB;
-  public $FunctionalAbility;
-  public $Gender;
-  public $HIPAASignatureOnFile;
-  public $MarketingRep;
-  public $Name;
-  public $PatientID;
-  public $Practitioner;
-  public $PtHeight;
-  public $PtWeight;
-  public $SSN;
 
+  public $AccountNumber;
+
+  public $Address;
+
+  public $BrightreeID;
+
+  public $ContactInfo;
+
+  public $DOB;
+
+  public $FunctionalAbility;
+
+  public $Gender;
+
+  public $HIPAASignatureOnFile;
+
+  public $MarketingRep;
+
+  public $Name;
+
+  public $PatientID;
+
+  public $Practitioner;
+
+  public $PtHeight;
+
+  public $PtWeight;
+
+  public $SSN;
 
   public function __construct() {
     $this->Address = new Address();
@@ -49,8 +63,7 @@ class Patient {
     $this->Name = $name;
   }
 
-  public function setBrightreeID($BrightreeID)
-  {
+  public function setBrightreeID($BrightreeID) {
     $this->BrightreeID = $BrightreeID;
     return $this;
   }

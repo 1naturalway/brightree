@@ -3,12 +3,17 @@
 namespace Brightree\CommonServices;
 
 class ContactInfo {
-  public $PhoneNumber;
-  public $FaxNumber;
-  public $FaxAttention;
-  public $MobilePhoneNumber;
   public $EmailAddress;
+
   public $ExcludeFaxService;
+
+  public $FaxAttention;
+
+  public $FaxNumber;
+
+  public $MobilePhoneNumber;
+
+  public $PhoneNumber;
 
   public function setPhoneNumber($PhoneNumber) {
     $this->PhoneNumber = $PhoneNumber;
@@ -36,7 +41,7 @@ class ContactInfo {
   }
 
   public function setExcludeFaxService($ExcludeFaxService) {
-    $this->ExcludeFaxServices = $ExcludeFaxService;
+    $this->ExcludeFaxService = $ExcludeFaxService;
     return $this;
   }
 }

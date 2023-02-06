@@ -8,17 +8,29 @@ use Brightree\CommonServices\Address;
 
 class PatientInfo {
   public $BrightreeID;
+
   public $Name;
+
   public $Address;
+
   public $ContactInfo;
+
   public $MarketingRep;
+
   public $Practitioner;
+
   public $Gender;
+
   public $PatientID;
+
   public $PtHeight;
+
   public $PtWeight;
+
   public $SSN;
+
   public $FunctionalAbility;
+
   public $DOB;
 
   public function __construct() {

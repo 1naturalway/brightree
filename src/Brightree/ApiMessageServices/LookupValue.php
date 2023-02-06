@@ -4,6 +4,7 @@ namespace Brightree\ApiMessageServices;
 
 class LookupValue {
   public $ID;
+
   public $Value;
 
   public function setID($ID) {

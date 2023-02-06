@@ -6,22 +6,32 @@ use Brightree\CommonServices\payorPolicyInfo;
 
 class SalesOrderPayorInfo {
   public $PayPercent;
+
   public $payorLevel;
+
   public $payorPolicyInfo;
+
   public $Box10d;
+
   public $Box19;
+
   public $Box24Ia;
+
   public $Box24Ja;
+
   public $Box24Jb;
+
   public $IncludeBox24Jb;
+
   public $IncludeOnSO;
+
   public $PayPercentEqualToZero;
+
   public $WaitForPreviousPayForBilling;
 
   public function __contruct() {
     $this->payorPolicyInfo = new payorPolicyInfo();
   }
-
 
   public function getPayorPolicyInfo(payorPolicyInfo $Info) {
     return $this->payorPolicyInfo = $Info;

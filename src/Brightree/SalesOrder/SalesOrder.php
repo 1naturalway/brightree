@@ -7,21 +7,37 @@ use Brightree\ApiMessageServices\PointOfDeliveryInfo;
 
 class SalesOrder {
   public $BrightShip;
+
   public $BrightreeID;
+
   public $DeliveryInfo;
+
   public $ExternalID;
+
   public $MyFormsWorkflowStatus;
+
   public $PointOfDeliveryInfo;
+
   public $SalesOrderAudioInfo;
+
   public $CreatedDate;
+
   public $SalesOrderType;
+
   public $SalesOrderAutoConfirmInfo;
+
   public $SalesOrderClinicalInfo;
+
   public $SalesOrderGeneralInfo;
+
   public $SalesOrderInsuranceInfo;
+
   public $SalesOrderItems;
+
   public $SalesOrderMessages;
+
   public $SalesOrderWIPInfo;
+
   public $ShippingTrackingInfos;
 
   public function __construct() {
@@ -42,6 +58,7 @@ class SalesOrder {
   public function getBrightShip(BrightShip $brightship) {
     $this->BrightShip = $brightship;
   }
+
   public function setDeliveryInfo(DeliveryInfo $info) {
     $this->DeliveryInfo = $info;
   }
@@ -77,7 +94,6 @@ class SalesOrder {
   public function getSalesOrderWIPInfo(SalesOrderWIPInfo $salesOrderWIPInfo) {
     $this->SalesOrderWIPInfo = $salesOrderWIPInfo;
   }
-
 
   public function setBrightreeID($BrightreeID) {
     $this->BrightreeID = $BrightreeID;

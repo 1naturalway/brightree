@@ -2,16 +2,25 @@
 
 namespace Brightree\CommonServices;
 
-class payorPolicyInfo {
+class PayorPolicyInfo {
   public $BrightreeID;
+
   public $EffectiveDate;
+
   public $EffectiveEndDate;
+
   public $Fax;
+
   public $GroupNumber;
+
   public $Name;
+
   public $PatientPayorKey;
+
   public $Phone;
+
   public $PolicyNumber;
+
   public $Verified;
 
   public function getName(Name $name) {

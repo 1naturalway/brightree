@@ -2,11 +2,12 @@
 
 namespace Brightree\Traits;
 
-trait CustomTrait {
-    use \Brightree\Traits\ApiTrait;
+use Brightree\Traits\ApiTrait;
 
-    public function Custom($service, $object)
-    {
-        return $this->ApiCall($service, $object);
-    }
+trait CustomTrait {
+  use ApiTrait;
+
+  public function custom($service, $object) {
+    return $this->apiCall($service, $object);
+  }
 }

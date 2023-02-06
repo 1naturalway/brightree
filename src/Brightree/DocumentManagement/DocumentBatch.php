@@ -6,9 +6,13 @@ use Brightree\ApiMessageServices\LookupValue;
 
 class DocumentBatch {
   public $BatchDescription;
+
   public $BatchName;
+
   public $BatchOwner;
+
   public $BrightreeID;
+
   public $Closed;
 
   public function __construct() {

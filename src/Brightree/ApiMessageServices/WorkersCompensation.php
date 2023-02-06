@@ -4,9 +4,13 @@ namespace Brightree\ApiMessageServices;
 
 class WorkersCompensation {
   public $ConditionEmploy;
+
   public $ConditionAuto;
+
   public $ConditionOther;
+
   public $AutoAccidentSate;
+
   public $OnsetDate;
 
   public function setConditionEmploy($ConditionEmploy) {

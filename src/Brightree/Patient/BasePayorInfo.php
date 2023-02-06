@@ -6,7 +6,9 @@ use Brightree\CommonServices\payorPolicyInfo;
 
 class BasePayorInfo {
   public $PayorLevel;
+
   public $payorPolicyInfo;
+
   public $PayPercent;
 
   public function __construct() {
@@ -19,7 +21,7 @@ class BasePayorInfo {
   }
 
   public function getPayorPolicyInfo(payorPolicyInfo $payorPolicyInfo) {
-    return $this->payorPolicyInfo;
+    return $this->payorPolicyInfo = $payorPolicyInfo;
   }
 
   public function setPayPercent($PayPercent) {

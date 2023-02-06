@@ -2,17 +2,15 @@
 
 namespace Brightree\Services;
 
-class CustomFieldService {
+use Brightree\Services\BaseService;
 
-  use \Brightree\Traits\ApiTrait;
-  use \Brightree\Traits\CustomTrait;
-
+class CustomFieldService extends BaseService {
   public function __construct($params) {
     $this->params = $params;
     $this->wsdl_path = "https://webservices.brightree.net/v0100-1610/CustomFieldService/CustomFieldService.svc?singleWsdl";
   }
 
-  public function CustomFieldValueSaveMultiple($category,$brightreeID,$fieldValues) {
-    return $this->ApiCall('CustomFieldValueSaveMultiple', ['category' => $category, 'brightreeID' => $brightreeID, 'fieldValues' => $fieldValues]);
+  public function customFieldValueSaveMultiple($category, $brightreeID, $fieldValues) {
+    return $this->apiCall('CustomFieldValueSaveMultiple', ['category' => $category, 'brightreeID' => $brightreeID, 'fieldValues' => $fieldValues]);
   }
 }

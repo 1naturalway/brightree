@@ -6,7 +6,6 @@ class SalesOrderItems {
   public $SalesOrderItemInfo;
 
   public function __construct() {
-    $this->SalesOrderItemInfo = new SalesOrderItemInfo;
+    $this->SalesOrderItemInfo = new SalesOrderItemInfo();
   }
-
 }

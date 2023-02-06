@@ -2,61 +2,59 @@
 
 namespace Brightree\Services;
 
-class SalesOrderService {
+use Brightree\Services\BaseService;
 
-  use \Brightree\Traits\ApiTrait;
-  use \Brightree\Traits\CustomTrait;
-
+class SalesOrderService extends BaseService {
   public function __construct($params) {
     $this->params = $params;
     $this->wsdl_path = "https://webservices.brightree.net/v0100-2005/OrderEntryService/SalesOrderService.svc?singleWsdl";
   }
 
-  public function SalesOrderFetchByBrightreeID($brightreeID) {
-    return $this->ApiCall('SalesOrderFetchByBrightreeID', ['BrightreeID' => $brightreeID]);
+  public function salesOrderFetchByBrightreeID($brightreeID) {
+    return $this->apiCall('SalesOrderFetchByBrightreeID', ['BrightreeID' => $brightreeID]);
   }
 
-  public function SalesOrderUpdateInsurance($brightreeID, $SalesOrderInsuranceInfo) {
-    return $this->ApiCall('SalesOrderUpdateInsurance', ['BrightreeID' => $brightreeID, 'SalesOrderInsuranceInfo' => $SalesOrderInsuranceInfo]);
+  public function salesOrderUpdateInsurance($brightreeID, $SalesOrderInsuranceInfo) {
+    return $this->apiCall('SalesOrderUpdateInsurance', ['BrightreeID' => $brightreeID, 'SalesOrderInsuranceInfo' => $SalesOrderInsuranceInfo]);
   }
 
-  public function SalesOrderUpdate($brightreeID, $SalesOrder) {
-    return $this->ApiCall('SalesOrderUpdate', ['BrightreeID' => $brightreeID, 'SalesOrder' => $SalesOrder]);
+  public function salesOrderUpdate($brightreeID, $SalesOrder) {
+    return $this->apiCall('SalesOrderUpdate', ['BrightreeID' => $brightreeID, 'SalesOrder' => $SalesOrder]);
   }
 
-  public function SalesOrderCreate($SalesOrder) {
-    return $this->ApiCall('SalesOrderCreate', ['SalesOrder' => $SalesOrder]);
+  public function salesOrderCreate($SalesOrder) {
+    return $this->apiCall('SalesOrderCreate', ['SalesOrder' => $SalesOrder]);
   }
 
-  public function SalesOrderConfirm($BrightreeID) {
-    return $this->ApiCall('SalesOrderConfirm', ['BrightreeID' => $BrightreeID]);
+  public function salesOrderConfirm($BrightreeID) {
+    return $this->apiCall('SalesOrderConfirm', ['BrightreeID' => $BrightreeID]);
   }
 
-  public function SalesOrderQuickAddItem($BrightreeID, $SOItemQuickAdd) {
-    return $this->ApiCall('SalesOrderQuickAddItem', [
+  public function salesOrderQuickAddItem($BrightreeID, $SOItemQuickAdd) {
+    return $this->apiCall('SalesOrderQuickAddItem', [
       'BrightreeID' => $BrightreeID,
       'SalesOrderItemInfo' => $SOItemQuickAdd
     ]);
   }
 
-  public function SalesOrderUpdateItemPayor($BrightreeID, $BrightreeDetailID, $SalesOrderItemInfo) {
-    return $this->ApiCall('SalesOrderUpdateItemPayor', [
+  public function salesOrderUpdateItemPayor($BrightreeID, $BrightreeDetailID, $SalesOrderItemInfo) {
+    return $this->apiCall('SalesOrderUpdateItemPayor', [
       'BrightreeID' => $BrightreeID,
       'BrightreeDetailID' => $BrightreeDetailID,
       'SalesOrderItemInfo' => $SalesOrderItemInfo
     ]);
   }
 
-  public function SalesOrderUpdateItem($BrightreeID, $BrightreeDetailID, $SalesOrderItemInfo) {
-    return $this->ApiCall('SalesOrderUpdateItem', [
+  public function salesOrderUpdateItem($BrightreeID, $BrightreeDetailID, $SalesOrderItemInfo) {
+    return $this->apiCall('SalesOrderUpdateItem', [
       'BrightreeID' => $BrightreeID,
       'BrightreeDetailID' => $BrightreeDetailID,
       'SalesOrderItemInfo' => $SalesOrderItemInfo
     ]);
   }
 
-  public function SalesOrderUpdateWIPState($BrightreeID, $NewWIPStateID) {
-    return $this->ApiCall('SalesOrderUpdateWIPState', [
+  public function salesOrderUpdateWIPState($BrightreeID, $NewWIPStateID) {
+    return $this->apiCall('SalesOrderUpdateWIPState', [
       'BrightreeID' => $BrightreeID,
       'NewWIPStateID' => $NewWIPStateID
     ]);

@@ -10,35 +10,65 @@ use Brightree\CommonServices\EmergencyContact;
 use Brightree\CommonServices\ResponsiblePartyContact;
 
 class PatientGeneralInfo {
-  public $AccountGroup;
-  public $AccountNumber;
-  public $AccountOnHold;
-  public $BillingAddress;
-  public $BillingContactInfo;
+  public LookupValue $AccountGroup;
+
+  public string $AccountNumber;
+
+  public bool $AccountOnHold;
+
+  public Address $BillingAddress;
+
+  public ContactInfo $BillingContactInfo;
+
   public $BirthDate;
-  public $Branch;
-  public $CustomerType;
+
+  public LookupValue $Branch;
+
+  public string $CustomerType;
+
   public $DateofAdmission;
-  public $DeliveryAddress;
-  public $DeliveryNote;
-  public $DeliveryPhone;
-  public $DiscountPercent;
-  public $EmergencyContact;
-  public $Facility;
-  public $HIPAASignatureOnFile;
-  public $HoldBillingStatement;
-  public $Name;
-  public $PlaceOfService;
-  public $PtID;
-  public $SSN;
-  public $ResponsiblePartyContact;
-  public $RestrictedAccess;
-  public $SecurityGroup;
-  public $TaxZone;
-  public $User1;
-  public $User2;
-  public $User3;
-  public $User4;
+
+  public $DateofDischarge;
+
+  public Address $DeliveryAddress;
+
+  public string $DeliveryNote;
+
+  public string $DeliveryPhone;
+
+  public float $DiscountPercent;
+
+  public EmergencyContact $EmergencyContact;
+
+  public LookupValue $Facility;
+
+  public bool $HIPAASignatureOnFile;
+
+  public bool $HoldBillingStatement;
+
+  public Name $Name;
+
+  public LookupValue $PlaceOfService;
+
+  public string $PtID;
+
+  public ResponsiblePartyContact $ResponsiblePartyContact;
+
+  public bool $RestrictedAccess;
+
+  public string $SSN;
+
+  public LookupValue $SecurityGroup;
+
+  public LookupValue $TaxZone;
+
+  public string $User1;
+
+  public string $User2;
+
+  public string $User3;
+
+  public string $User4;
 
   public function __construct() {
     $this->AccountGroup = new LookupValue();
@@ -52,6 +82,7 @@ class PatientGeneralInfo {
     $this->PlaceOfService = new LookupValue();
     $this->ResponsiblePartyContact = new ResponsiblePartyContact();
     $this->SecurityGroup = new LookupValue();
+    $this->TaxZone = new LookupValue();
   }
 
   public function getAccountGroup(LookupValue $accountNumber) {
@@ -174,13 +205,7 @@ class PatientGeneralInfo {
     return $this;
   }
 
-  /**
-   * Set the value of RestrictedAccess
-   *
-   * @return  self
-   */
-  public function setRestrictedAccess($RestrictedAccess)
-  {
+  public function setRestrictedAccess($RestrictedAccess) {
     $this->RestrictedAccess = $RestrictedAccess;
 
     return $this;

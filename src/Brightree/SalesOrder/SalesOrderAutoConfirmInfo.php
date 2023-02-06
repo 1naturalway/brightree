@@ -4,6 +4,7 @@ namespace Brightree\SalesOrder;
 
 class SalesOrderAutoConfirmInfo {
   public $AutoConfirm;
+
   public $AutoConfirmInitialDate;
 
   public function setAutoConfirm($AutoConfirm) {
@@ -16,4 +17,3 @@ class SalesOrderAutoConfirmInfo {
     return $this;
   }
 }
-

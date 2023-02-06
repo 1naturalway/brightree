@@ -8,23 +8,34 @@ use Brightree\ApiMessageServices\LookupValue;
 
 class DeliveryInfo {
   public $Address;
+
   public $ContactInfo;
+
   public $DeliveryNote;
+
   public $ActualDeliveryDateTime;
+
   public $DeliveryTechnician;
+
   public $DropShipStatus;
+
   public $Facility;
+
   public $OrderNote;
+
   public $SalesOrderFulfillmentDetails;
+
   public $ScheduledDeliveryDateTime;
+
   public $SignatureRequired;
+
   public $TaxZone;
 
   public function __construct() {
     $this->Address = new Address();
     $this->ContactInfo = new ContactInfo();
     $this->Facility = new LookupValue();
-    $this->SalesOrderFulFillmentDetails = new SalesOrderFulfillmentDetails;
+    $this->SalesOrderFulfillmentDetails = new SalesOrderFulfillmentDetails();
     $this->TaxZone = new LookupValue();
   }
 

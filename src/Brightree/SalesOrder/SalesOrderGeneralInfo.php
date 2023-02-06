@@ -6,29 +6,53 @@ use Brightree\ApiMessageServices\LookupValue;
 
 class SalesOrderGeneralInfo {
   public $Branch;
+
   public $ClaimNote;
+
   public $ClaimNoteTypeKey;
+
   public $DateofAdmission;
+
   public $DiscountDischarge;
+
   public $DiscountPercent;
+
   public $ExcludeEligibilityCheck;
+
   public $InventoryLocation;
+
   public $ManualHold;
+
   public $ManualHoldReason;
+
   public $PlaceOfService;
+
   public $PONumber;
+
   public $PrintDate;
+
   public $Printed;
+
   public $SalesOrderClassification;
+
   public $Status;
+
   public $StopDate;
+
   public $Reference;
+
   public $TemplateStatus;
+
   public $User1;
+
   public $User2;
+
   public $User3;
+
   public $User4;
+
   public $WIPAssignedTo;
+
   public $WIPState;
 
   public function __construct() {
@@ -119,7 +143,6 @@ class SalesOrderGeneralInfo {
     return $this;
   }
 
-
   public function setReference($Reference) {
     $this->Reference = $Reference;
     return $this;
@@ -147,8 +170,7 @@ class SalesOrderGeneralInfo {
     return $this;
   }
 
-  public function setUser4($User4)
-  {
+  public function setUser4($User4) {
     $this->User4 = $User4;
 
     return $this;

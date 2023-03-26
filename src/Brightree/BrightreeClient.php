@@ -22,6 +22,7 @@ class BrightreeClient {
       'trace' => 1,
       'exceptions' => true,
       'cache_wsdl' => WSDL_CACHE_NONE,
+      'keep_alive' => false,
       'stream_context' => stream_context_create(array(
         'ssl' => array(
             'crypto_method' => STREAM_CRYPTO_METHOD_TLSv1_2_CLIENT,

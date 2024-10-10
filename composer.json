@@ -3,26 +3,18 @@
   "description": "Brightree API Wrapper for PHP",
   "license": "GPL-3.0+",
   "require": {
-    "php": "^8.0.2"
+    "php": "^8.3"
   },
   "require-dev": {
-    "phpunit/phpunit": "^9.5.10",
+    "phpunit/phpunit": "^11.0",
     "mockery/mockery": "^1.4.4",
     "squizlabs/php_codesniffer": "^3.7",
-    "nesbot/carbon": "^2.66"
+    "nesbot/carbon": "^3.8"
   },
   "authors": [
     {
       "name": "Andrew Donald Johnson",
       "email": "ajohnson6494@gmail.com"
-    },
-    {
-      "name": "Matthew Kulina",
-      "email": "matthew.kulina@1naturalway.com"
-    },
-    {
-      "name": "Bryce Sharrits",
-      "email": "bryce.sharrits@1naturalway.com"
     }
   ],
   "autoload": {

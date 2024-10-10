@@ -2,15 +2,16 @@
 
 namespace Brightree;
 
-use Brightree\ApiMessageServices\CustomFieldValue;
 use Brightree\Services\DoctorService;
-use Brightree\Services\InsuranceService;
 use Brightree\Services\PatientService;
-use Brightree\Services\ReferenceDataService;
+use Brightree\Services\InsuranceService;
+use Brightree\Services\InventoryService;
 use Brightree\Services\SalesOrderService;
 use Brightree\Services\CustomFieldService;
+use Brightree\Services\ReferenceDataService;
+use Brightree\Services\PatientBillingService;
 use Brightree\Services\DocumentManagementService;
-use Brightree\Services\InventoryService;
+use Brightree\ApiMessageServices\CustomFieldValue;
 
 class BrightreeClient {
   private $params;
@@ -63,5 +64,9 @@ class BrightreeClient {
 
   public function inventoryService(): InventoryService {
     return new InventoryService($this->params);
+  }
+
+  public function patientBillingService(): PatientBillingService {
+    return new PatientBillingService($this->params);
   }
 }

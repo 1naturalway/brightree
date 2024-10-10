@@ -8,7 +8,7 @@ use Brightree\Services\BaseService;
 class PatientService extends BaseService {
   public function __construct($params) {
     $this->params = $params;
-    $this->wsdl_path = "https://webservices.brightree.net/v0100-2006/OrderEntryService/patientservice.svc?singleWsdl";
+    $this->wsdl_path = "https://webservices.brightree.net/v0100-2409/OrderEntryService/patientservice.svc?singleWsdl";
   }
 
   public function patientFetchbyBrightreeID($BrightreeID) {

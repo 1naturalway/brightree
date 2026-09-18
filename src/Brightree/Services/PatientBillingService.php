@@ -6,9 +6,9 @@ use Brightree\Services\BaseService;
 use Brightree\CommonServices\Invoice;
 
 class PatientBillingService extends BaseService {
-  public function __construct($params) {
+  public function __construct(array $params) {
     $this->params = $params;
-    $this->wsdl_path = "https://webservices.brightree.net/v0100-2409/InvoiceService/InvoiceService.svc?singleWsdl";
+    $this->wsdl_path = "https://webservices.brightree.net/v0100-2602/InvoiceService/InvoiceService.svc?singleWsdl";
   }
 
   public function invoiceFetchByInvoiceID($InvoiceNumber) {

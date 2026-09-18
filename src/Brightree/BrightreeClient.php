@@ -11,12 +11,11 @@ use Brightree\Services\CustomFieldService;
 use Brightree\Services\ReferenceDataService;
 use Brightree\Services\PatientBillingService;
 use Brightree\Services\DocumentManagementService;
-use Brightree\ApiMessageServices\CustomFieldValue;
 
 class BrightreeClient {
-  private $params;
+  private array $params;
 
-  public function __construct($params) {
+  public function __construct(array $params) {
     $this->params = [
       'login' => $params['username'],
       'password' => $params['password'],

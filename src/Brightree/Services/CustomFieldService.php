@@ -5,9 +5,9 @@ namespace Brightree\Services;
 use Brightree\Services\BaseService;
 
 class CustomFieldService extends BaseService {
-  public function __construct($params) {
+  public function __construct(array $params) {
     $this->params = $params;
-    $this->wsdl_path = "https://webservices.brightree.net/v0100-1610/CustomFieldService/CustomFieldService.svc?singleWsdl";
+    $this->wsdl_path = "https://webservices.brightree.net/v0100-2602/CustomFieldService/CustomFieldService.svc?singleWsdl";
   }
 
   public function customFieldValueSaveMultiple($category, $brightreeID, $fieldValues) {

@@ -9,11 +9,11 @@ class BaseService {
   use ApiTrait;
   use CustomTrait;
 
-  public $params;
+  public array $params;
 
-  public $wsdl_path;
+  public string $wsdl_path;
 
-  public function __construct($params) {
+  public function __construct(array $params) {
     $this->params = $params;
   }
 }

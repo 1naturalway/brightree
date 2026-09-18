@@ -5,9 +5,9 @@ namespace Brightree\Services;
 use Brightree\Services\BaseService;
 
 class InventoryService extends BaseService {
-  public function __construct($params) {
+  public function __construct(array $params) {
     $this->params = $params;
-    $this->wsdl_path = "https://webservices.brightree.net/v0100-2309/InventoryService/InventoryService.svc?singleWsdl";
+    $this->wsdl_path = "https://webservices.brightree.net/v0100-2606/InventoryService/InventoryService.svc?singleWsdl";
   }
 
   public function itemFetchByItemID($ItemID) {

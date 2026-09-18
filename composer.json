@@ -3,7 +3,7 @@
   "description": "Brightree API Wrapper for PHP",
   "license": "GPL-3.0-or-later",
   "require": {
-    "php": "^8.3"
+    "php": "^8.4"
   },
   "require-dev": {
     "ext-soap": "*",

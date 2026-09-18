@@ -53,6 +53,23 @@ class SalesOrderService extends BaseService {
     ]);
   }
 
+  /**
+   * Attaches lot numbers to a sales order item.
+   *
+   * SOItemQuickAdd carries no lot fields, so lot numbers are set in this follow up call
+   * using the detail key SalesOrderQuickAddItem returns. The call replaces the item's lot
+   * numbers outright, so it is safe to repeat.
+   *
+   * @param \Brightree\SalesOrder\LotNumberInfo[] $LotNumbers
+   */
+  public function salesOrderItemUpdateLotNumbers(int $BrightreeID, int $BrightreeDetailID, array $LotNumbers) {
+    return $this->apiCall('SalesOrderItemUpdateLotNumbers', [
+      'BrightreeID' => $BrightreeID,
+      'BrightreeDetailID' => $BrightreeDetailID,
+      'LotNumbers' => $LotNumbers
+    ]);
+  }
+
   public function salesOrderUpdateWIPState($BrightreeID, $NewWIPStateID) {
     return $this->apiCall('SalesOrderUpdateWIPState', [
       'BrightreeID' => $BrightreeID,

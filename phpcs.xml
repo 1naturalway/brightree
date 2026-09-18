@@ -24,12 +24,12 @@
         <exclude-pattern>database/migrations</exclude-pattern>
       </exclude>
     </rule>
-    <rule ref="PSR12">
-      <rule ref="PSR12.ControlStructures.ControlStructureSpacing">
-        <properties>
-            <property name="indent" value="2" />
-        </properties>
-      </rule>
+    <rule ref="PSR12"/>
+
+    <rule ref="PSR12.ControlStructures.ControlStructureSpacing">
+      <properties>
+        <property name="indent" value="2" />
+      </properties>
     </rule>
 
     <rule ref="Generic.Functions.OpeningFunctionBraceKernighanRitchie" />
@@ -42,6 +42,9 @@
     <rule ref="Squiz.WhiteSpace">
       <exclude name="Squiz.WhiteSpace.FunctionClosingBraceSpace" />
     </rule>
+
+    <!-- Replaces Squiz.WhiteSpace.LanguageConstructSpacing, which PHPCS 4.0 removed. -->
+    <rule ref="Generic.WhiteSpace.LanguageConstructSpacing" />
 
     <rule ref= "Generic.Files.LineLength">
         <properties>

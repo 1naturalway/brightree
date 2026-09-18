@@ -52,7 +52,7 @@ jobs:
           coverage: none
 
       - name: Cache Composer packages
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: vendor
           key: composer-${{ runner.os }}-php8.3-${{ hashFiles('composer.json') }}

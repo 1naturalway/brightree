@@ -2,29 +2,29 @@
 
 namespace Brightree\Patient;
 
-use Brightree\CommonServices\payorPolicyInfo;
+use Brightree\CommonServices\PayorPolicyInfo;
 
 class BasePayorInfo {
-  public $PayorLevel;
+  public ?string $payorLevel = null;
 
-  public $payorPolicyInfo;
+  public PayorPolicyInfo $payorPolicyInfo;
 
-  public $PayPercent;
+  public ?string $PayPercent = null;
 
   public function __construct() {
-    $this->payorPolicyInfo = new payorPolicyInfo();
+    $this->payorPolicyInfo = new PayorPolicyInfo();
   }
 
-  public function setPayorLevel($PayorLevel) {
-    $this->PayorLevel = $PayorLevel;
+  public function setPayorLevel(?string $payorLevel): self {
+    $this->payorLevel = $payorLevel;
     return $this;
   }
 
-  public function getPayorPolicyInfo(payorPolicyInfo $payorPolicyInfo) {
+  public function getPayorPolicyInfo(PayorPolicyInfo $payorPolicyInfo): PayorPolicyInfo {
     return $this->payorPolicyInfo = $payorPolicyInfo;
   }
 
-  public function setPayPercent($PayPercent) {
+  public function setPayPercent(?string $PayPercent): self {
     $this->PayPercent = $PayPercent;
     return $this;
   }

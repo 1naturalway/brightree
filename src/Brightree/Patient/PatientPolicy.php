@@ -5,35 +5,65 @@ namespace Brightree\Patient;
 use Brightree\ApiMessageServices\LookupValue;
 
 class PatientPolicy {
-  public $StartDate;
+  public ?string $StartDate = null;
 
-  public $EndDate;
+  public ?string $EndDate = null;
 
-  public $PayPercent;
+  public ?float $PayPercent = null;
 
-  public $Deductible;
+  public ?string $Deductible = null;
 
-  public $PolicyNumber;
+  public ?string $PolicyNumber = null;
 
-  public $GroupNumber;
+  public ?string $GroupNumber = null;
 
-  public $User1;
+  public ?string $User1 = null;
 
-  public $User2;
+  public ?string $User2 = null;
 
-  public $User3;
+  public ?string $User3 = null;
 
-  public $User4;
+  public ?string $User4 = null;
 
-  public $Relationship;
+  public ?string $Relationship = null;
 
-  public $PayorId;
+  public ?string $PayorId = null;
 
-  public $SecondaryTypeCode;
+  public LookupValue $SecondaryTypeCode;
 
-  public $ClaimCode;
+  public ?string $ClaimCode = null;
 
-  public $TypeCode;
+  public ?string $TypeCode = null;
+
+  public ?string $AdditionalPatientID = null;
+
+  public ?string $CarrierID = null;
+
+  public ?string $EligibilityClarificationCode = null;
+
+  public ?string $EmployerID = null;
+
+  public ?string $GroupName = null;
+
+  public ?string $HomePlan = null;
+
+  public ?bool $IsPayPercentZero = null;
+
+  public ?string $NCPDPGroupNumber = null;
+
+  public ?string $NCPDPPolicyNumber = null;
+
+  public ?string $PCN = null;
+
+  public ?int $PersonCode = null;
+
+  public ?string $PlanNumber = null;
+
+  public ?string $PropertyandCasualtyAgencyClaimNumber = null;
+
+  public ?string $TPLCode = null;
+
+  public ?string $TPLName = null;
 
   public function __construct() {
     $this->SecondaryTypeCode = new LookupValue();

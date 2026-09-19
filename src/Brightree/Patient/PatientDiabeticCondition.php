@@ -3,17 +3,17 @@
 namespace Brightree\Patient;
 
 class PatientDiabeticCondition {
-  public $IsDiabetic;
+  public ?bool $IsDiabetic = null;
 
-  public $IsInsulinDependent;
+  public ?bool $IsInsulinDependent = null;
 
-  public $LastDoctorVisitDate;
+  public ?string $LastDoctorVisitDate = null;
 
-  public $PatientTestingFrequency;
+  public ?string $PatientTestingFrequency = null;
 
-  public $PatientTestingInterval;
+  public ?int $PatientTestingInterval = null;
 
-  public $PhysicianOrderedTestingFrequency;
+  public ?string $PhysicianOrderedTestingFrequency = null;
 
-  public $PhysicianOrderedTestingInterval;
+  public ?int $PhysicianOrderedTestingInterval = null;
 }

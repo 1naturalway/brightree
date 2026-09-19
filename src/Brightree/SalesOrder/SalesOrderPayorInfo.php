@@ -2,93 +2,93 @@
 
 namespace Brightree\SalesOrder;
 
-use Brightree\CommonServices\payorPolicyInfo;
+use Brightree\CommonServices\PayorPolicyInfo;
 
 class SalesOrderPayorInfo {
-  public $PayPercent;
+  public ?string $PayPercent = null;
 
-  public $payorLevel;
+  public ?string $payorLevel = null;
 
-  public $payorPolicyInfo;
+  public PayorPolicyInfo $payorPolicyInfo;
 
-  public $Box10d;
+  public ?string $Box10d = null;
 
-  public $Box19;
+  public ?string $Box19 = null;
 
-  public $Box24Ia;
+  public ?string $Box24Ia = null;
 
-  public $Box24Ja;
+  public ?string $Box24Ja = null;
 
-  public $Box24Jb;
+  public ?string $Box24Jb = null;
 
-  public $IncludeBox24Jb;
+  public ?bool $IncludeBox24Jb = null;
 
-  public $IncludeOnSO;
+  public ?bool $IncludeOnSO = null;
 
-  public $PayPercentEqualToZero;
+  public ?bool $PayPercentEqualToZero = null;
 
-  public $WaitForPreviousPayForBilling;
+  public ?bool $WaitForPreviousPayorForBilling = null;
 
-  public function __contruct() {
-    $this->payorPolicyInfo = new payorPolicyInfo();
+  public function __construct() {
+    $this->payorPolicyInfo = new PayorPolicyInfo();
   }
 
-  public function getPayorPolicyInfo(payorPolicyInfo $Info) {
+  public function getPayorPolicyInfo(PayorPolicyInfo $Info): PayorPolicyInfo {
     return $this->payorPolicyInfo = $Info;
   }
 
-  public function setPayPercent($PayPercent) {
+  public function setPayPercent(?string $PayPercent): self {
     $this->PayPercent = $PayPercent;
     return $this;
   }
 
-  public function setPayorLevel($payorLevel) {
+  public function setPayorLevel(?string $payorLevel): self {
     $this->payorLevel = $payorLevel;
     return $this;
   }
 
-  public function setBox10d($Box10d) {
+  public function setBox10d(?string $Box10d): self {
     $this->Box10d = $Box10d;
     return $this;
   }
 
-  public function setBox19($Box19) {
+  public function setBox19(?string $Box19): self {
     $this->Box19 = $Box19;
     return $this;
   }
 
-  public function setBox24Ia($Box24Ia) {
+  public function setBox24Ia(?string $Box24Ia): self {
     $this->Box24Ia = $Box24Ia;
     return $this;
   }
 
-  public function setBox24Ja($Box24Ja) {
+  public function setBox24Ja(?string $Box24Ja): self {
     $this->Box24Ja = $Box24Ja;
     return $this;
   }
 
-  public function setBox24Jb($Box24Jb) {
+  public function setBox24Jb(?string $Box24Jb): self {
     $this->Box24Jb = $Box24Jb;
     return $this;
   }
 
-  public function setIncludeBox24Jb($IncludeBox24Jb) {
+  public function setIncludeBox24Jb(?bool $IncludeBox24Jb): self {
     $this->IncludeBox24Jb = $IncludeBox24Jb;
     return $this;
   }
 
-  public function setIncludeOnSO($IncludeOnSO) {
+  public function setIncludeOnSO(?bool $IncludeOnSO): self {
     $this->IncludeOnSO = $IncludeOnSO;
     return $this;
   }
 
-  public function setPayPercentEqualToZero($PayPercentEqualToZero) {
+  public function setPayPercentEqualToZero(?bool $PayPercentEqualToZero): self {
     $this->PayPercentEqualToZero = $PayPercentEqualToZero;
     return $this;
   }
 
-  public function setWaitForPreviousPayForBilling($WaitForPreviousPayForBilling) {
-    $this->WaitForPreviousPayForBilling = $WaitForPreviousPayForBilling;
+  public function setWaitForPreviousPayorForBilling(?bool $WaitForPreviousPayorForBilling): self {
+    $this->WaitForPreviousPayorForBilling = $WaitForPreviousPayorForBilling;
     return $this;
   }
 }

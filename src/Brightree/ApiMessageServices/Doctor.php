@@ -25,13 +25,17 @@ class Doctor {
 
   public GoScriptsSettings $GoScriptsSettings;
 
+  public bool $Inactive;
+
   public MarketingRep $MarketingRep;
 
   public MedicalInfo $MedicalInfo;
 
   public Name $Name;
 
-  public UserDefinedData $UserDefinedData;
+  public string $PreferredMethodOfContact;
+
+  public UserDefinedData $UserDefindedData;
 
   public function __construct() {
     $this->Address = new Address();
@@ -43,6 +47,6 @@ class Doctor {
     $this->MarketingRep = new MarketingRep();
     $this->MedicalInfo = new MedicalInfo();
     $this->Name = new Name();
-    $this->UserDefinedData = new UserDefinedData();
+    $this->UserDefindedData = new UserDefinedData();
   }
 }

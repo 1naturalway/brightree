@@ -3,19 +3,21 @@
 namespace Brightree\CommonServices;
 
 class EmergencyContact {
-  public $Address;
+  public Address $Address;
 
-  public $EmailAddress;
+  public ?string $EmailAddress = null;
 
-  public $FaxNumber;
+  public ?string $FaxNumber = null;
 
-  public $MobilePhone;
+  public ?string $MobilePhone = null;
 
-  public $Name;
+  public Name $Name;
 
-  public $PhoneNumber;
+  public ?string $PhoneNumber = null;
 
-  public $ContactType;
+  public ?string $ContactType = null;
+
+  public ?string $EmergencyContactType = null;
 
   public function __construct() {
     $this->Address = new Address();

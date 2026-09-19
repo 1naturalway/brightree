@@ -3,13 +3,13 @@
 namespace Brightree\SalesOrder;
 
 class SalesOrderItemPayorInfo {
-  public $PayorKey;
+  public ?int $PayorKey = null;
 
-  public $PayorUsage;
+  public ?string $PayorUsage = null;
 
-  public $PayorName;
+  public ?string $PayorName = null;
 
-  public $PayorLevel;
+  public ?string $PayorLevel = null;
 
-  public $SalesOrderDetailKey;
+  public ?bool $BillForDenial = null;
 }

@@ -20,15 +20,15 @@ class PatientGeneralInfo {
 
   public ContactInfo $BillingContactInfo;
 
-  public $BirthDate;
+  public ?string $BirthDate = null;
 
   public LookupValue $Branch;
 
   public string $CustomerType;
 
-  public $DateofAdmission;
+  public ?string $DateOfAdmission = null;
 
-  public $DateofDischarge;
+  public ?string $DateOfDischarge = null;
 
   public Address $DeliveryAddress;
 
@@ -70,6 +70,8 @@ class PatientGeneralInfo {
 
   public string $User4;
 
+  public ?bool $PatientHubRegistered = null;
+
   public function __construct() {
     $this->AccountGroup = new LookupValue();
     $this->BillingAddress = new Address();
@@ -85,129 +87,134 @@ class PatientGeneralInfo {
     $this->TaxZone = new LookupValue();
   }
 
-  public function getAccountGroup(LookupValue $accountNumber) {
+  public function getAccountGroup(LookupValue $accountNumber): LookupValue {
     return $this->AccountGroup = $accountNumber;
   }
 
-  public function setAccountNumber($AccountNumber) {
+  public function setAccountNumber(string $AccountNumber): self {
     $this->AccountNumber = $AccountNumber;
     return $this;
   }
 
-  public function setAccountOnHold($AccountOnHold) {
+  public function setAccountOnHold(bool $AccountOnHold): self {
     $this->AccountOnHold = $AccountOnHold;
     return $this;
   }
 
-  public function getBillingAddress(Address $billing) {
+  public function getBillingAddress(Address $billing): Address {
     return $this->BillingAddress = $billing;
   }
 
-  public function getBillingContactInfo(ContactInfo $billingContactInfo) {
+  public function getBillingContactInfo(ContactInfo $billingContactInfo): ContactInfo {
     return $this->BillingContactInfo = $billingContactInfo;
   }
 
-  public function setBirthDate($BirthDate) {
+  public function setBirthDate(?string $BirthDate): self {
     $this->BirthDate = $BirthDate;
     return $this;
   }
 
-  public function getBranch(LookupValue $branch) {
+  public function getBranch(LookupValue $branch): LookupValue {
     return $this->Branch = $branch;
   }
 
-  public function setCustomerType($CustomerType) {
+  public function setCustomerType(string $CustomerType): self {
     $this->CustomerType = $CustomerType;
     return $this;
   }
 
-  public function setDateofAdmission($DateofAdmission) {
-    $this->DateofAdmission = $DateofAdmission;
+  public function setDateOfAdmission(?string $DateOfAdmission): self {
+    $this->DateOfAdmission = $DateOfAdmission;
     return $this;
   }
 
-  public function getDeliveryAddress(Address $deliveryAddress) {
+  public function getDeliveryAddress(Address $deliveryAddress): Address {
     return $this->DeliveryAddress = $deliveryAddress;
   }
 
-  public function setDeliveryPhone($DeliveryPhone) {
+  public function setDeliveryPhone(string $DeliveryPhone): self {
     $this->DeliveryPhone = $DeliveryPhone;
     return $this;
   }
 
-  public function setDiscountPercent($DiscountPercent) {
+  public function setDiscountPercent(float $DiscountPercent): self {
     $this->DiscountPercent = $DiscountPercent;
     return $this;
   }
 
-  public function getEmergencyContact() {
+  public function getEmergencyContact(): EmergencyContact {
     return $this->EmergencyContact;
   }
 
-  public function getFacility(LookupValue $facility) {
+  public function getFacility(LookupValue $facility): LookupValue {
     return $this->Facility = $facility;
   }
 
-  public function setHIPAASignatureOnFile($HIPAASignatureOnFile) {
+  public function setHIPAASignatureOnFile(bool $HIPAASignatureOnFile): self {
     $this->HIPAASignatureOnFile = $HIPAASignatureOnFile;
     return $this;
   }
 
-  public function setHoldBillingStatement($HoldBillingStatement) {
+  public function setHoldBillingStatement(bool $HoldBillingStatement): self {
     $this->HoldBillingStatement = $HoldBillingStatement;
     return $this;
   }
 
-  public function setName($Name) {
+  public function setName(Name $Name): self {
     $this->Name = $Name;
     return $this;
   }
 
-  public function getPlaceOfService(LookupValue $pos) {
+  public function getPlaceOfService(LookupValue $pos): LookupValue {
     return $this->PlaceOfService = $pos;
   }
 
-  public function setPtID($PtID) {
+  public function setPtID(string $PtID): self {
     $this->PtID = $PtID;
     return $this;
   }
 
-  public function setSSN($SSN) {
+  public function setSSN(string $SSN): self {
     $this->SSN = $SSN;
     return $this;
   }
 
-  public function getResponsiblePartyContact() {
+  public function getResponsiblePartyContact(): ResponsiblePartyContact {
     return $this->ResponsiblePartyContact;
   }
 
-  public function getTaxZone(LookupValue $taxZone) {
+  public function getTaxZone(LookupValue $taxZone): LookupValue {
     return $this->TaxZone = $taxZone;
   }
 
-  public function setUser1($User1) {
+  public function setUser1(string $User1): self {
     $this->User1 = $User1;
     return $this;
   }
 
-  public function setUser2($User2) {
+  public function setUser2(string $User2): self {
     $this->User2 = $User2;
     return $this;
   }
 
-  public function setUser3($User3) {
+  public function setUser3(string $User3): self {
     $this->User3 = $User3;
     return $this;
   }
 
-  public function setUser4($User4) {
+  public function setUser4(string $User4): self {
     $this->User4 = $User4;
     return $this;
   }
 
-  public function setRestrictedAccess($RestrictedAccess) {
+  public function setRestrictedAccess(bool $RestrictedAccess): self {
     $this->RestrictedAccess = $RestrictedAccess;
 
+    return $this;
+  }
+
+  public function setPatientHubRegistered(?bool $PatientHubRegistered): self {
+    $this->PatientHubRegistered = $PatientHubRegistered;
     return $this;
   }
 }

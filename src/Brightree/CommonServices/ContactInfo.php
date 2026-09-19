@@ -3,44 +3,44 @@
 namespace Brightree\CommonServices;
 
 class ContactInfo {
-  public $EmailAddress;
+  public ?string $EmailAddress = null;
 
-  public $ExcludeFaxService;
+  public ?bool $ExcludeFaxService = null;
 
-  public $FaxAttention;
+  public ?string $FaxAttention = null;
 
-  public $FaxNumber;
+  public ?string $FaxNumber = null;
 
-  public $MobilePhoneNumber;
+  public ?string $MobilePhoneNumber = null;
 
-  public $PhoneNumber;
+  public ?string $PhoneNumber = null;
 
-  public function setPhoneNumber($PhoneNumber) {
+  public function setPhoneNumber(?string $PhoneNumber): self {
     $this->PhoneNumber = $PhoneNumber;
     return $this;
   }
 
-  public function setFaxNumber($FaxNumber) {
+  public function setFaxNumber(?string $FaxNumber): self {
     $this->FaxNumber = $FaxNumber;
     return $this;
   }
 
-  public function setFaxAttention($FaxAttention) {
+  public function setFaxAttention(?string $FaxAttention): self {
     $this->FaxAttention = $FaxAttention;
     return $this;
   }
 
-  public function setMobilePhoneNumber($MobilePhoneNumber) {
+  public function setMobilePhoneNumber(?string $MobilePhoneNumber): self {
     $this->MobilePhoneNumber = $MobilePhoneNumber;
     return $this;
   }
 
-  public function setEmailAddress($EmailAddress) {
+  public function setEmailAddress(?string $EmailAddress): self {
     $this->EmailAddress = $EmailAddress;
     return $this;
   }
 
-  public function setExcludeFaxService($ExcludeFaxService) {
+  public function setExcludeFaxService(?bool $ExcludeFaxService): self {
     $this->ExcludeFaxService = $ExcludeFaxService;
     return $this;
   }

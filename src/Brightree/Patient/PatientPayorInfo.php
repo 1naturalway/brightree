@@ -5,21 +5,22 @@ namespace Brightree\Patient;
 use Brightree\CommonServices\Address;
 
 class PatientPayorInfo extends BasePayorInfo {
-  public $Address;
+  public Address $Address;
 
-  public $BrightreeID;
+  public ?int $BrightreeID = null;
 
-  public $Deductible;
+  public ?string $Deductible = null;
 
-  public $Employeer;
+  public ?string $Employer = null;
 
-  public $EmployerContact;
+  public ?string $EmployerContact = null;
 
-  public $PolicyContact;
+  public ?string $PolicyContact = null;
 
-  public $PolicyHolder;
+  public ?string $PolicyHolder = null;
 
   public function __construct() {
+    parent::__construct();
     $this->Address = new Address();
   }
 }

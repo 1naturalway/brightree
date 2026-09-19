@@ -3,17 +3,17 @@
 namespace Brightree\ApiMessageServices;
 
 class ItemLocSerialNumberInfo {
-  public $CommittedQty;
+  public ?int $CommittedQty = null;
 
-  public $OnHandQty;
+  public ?int $OnHandQty = null;
 
-  public $OnOrderQty;
+  public ?int $OnOrderQty = null;
 
-  public $OnRentQty;
+  public ?int $OnRentQty = null;
 
-  public $ReceiptDate;
+  public ?string $ReceiptDate = null;
 
-  public $SerialNumber;
+  public ?string $SerialNumber = null;
 
-  public $SoldAdjustedQty;
+  public ?int $SoldAdjustedQty = null;
 }

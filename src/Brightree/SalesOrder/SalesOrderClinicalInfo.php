@@ -7,25 +7,26 @@ use Brightree\ApiMessageServices\DiagnosisCodes;
 use Brightree\ApiMessageServices\PatientInfo;
 use Brightree\ApiMessageServices\RenderingProvider;
 use Brightree\ApiMessageServices\LookupValue;
+use Brightree\ApiMessageServices\Referral;
 
 class SalesOrderClinicalInfo {
-  public $DiagnosisCodes;
+  public DiagnosisCodes $DiagnosisCodes;
 
-  public $EPSDTCertificationCodeIndicator;
+  public ?string $EPSDTCertificationCodeIndicator = null;
 
-  public $EPSDTConditionCode;
+  public LookupValue $EPSDTConditionCode;
 
-  public $MarketingReferral;
+  public ?Referral $MarketingReferral = null;
 
-  public $OrderingDoctor;
+  public DoctorInfo $OrderingDoctor;
 
-  public $Patient;
+  public PatientInfo $Patient;
 
-  public $RenderingProvider;
+  public RenderingProvider $RenderingProvider;
 
-  public $SOHeight;
+  public ?float $SOHeight = null;
 
-  public $SOWeight;
+  public ?float $SOWeight = null;
 
   public function __construct() {
     $this->DiagnosisCodes = new DiagnosisCodes();
@@ -35,43 +36,43 @@ class SalesOrderClinicalInfo {
     $this->RenderingProvider = new RenderingProvider();
   }
 
-  public function setDiagnosisCodes(DiagnosisCodes $diagnosisCodes) {
+  public function setDiagnosisCodes(DiagnosisCodes $diagnosisCodes): void {
     $this->DiagnosisCodes = $diagnosisCodes;
   }
 
-  public function setOrderingDoctor(DoctorInfo $doctorInfo) {
+  public function setOrderingDoctor(DoctorInfo $doctorInfo): void {
     $this->OrderingDoctor = $doctorInfo;
   }
 
-  public function setPatientInfo(PatientInfo $patientInfo) {
+  public function setPatient(PatientInfo $patientInfo): void {
     $this->Patient = $patientInfo;
   }
 
-  public function setRenderingProvider(RenderingProvider $renderingProvider) {
+  public function setRenderingProvider(RenderingProvider $renderingProvider): void {
     $this->RenderingProvider = $renderingProvider;
   }
 
-  public function setEPSDTCertificationCodeIndicator($EPSDTCertificationCodeIndicator) {
+  public function setEPSDTCertificationCodeIndicator(?string $EPSDTCertificationCodeIndicator): self {
     $this->EPSDTCertificationCodeIndicator = $EPSDTCertificationCodeIndicator;
     return $this;
   }
 
-  public function setEPSDTConditionCode($EPSDTConditionCode) {
+  public function setEPSDTConditionCode(LookupValue $EPSDTConditionCode): self {
     $this->EPSDTConditionCode = $EPSDTConditionCode;
     return $this;
   }
 
-  public function setMarketingReferral($MarketingReferral) {
+  public function setMarketingReferral(?Referral $MarketingReferral): self {
     $this->MarketingReferral = $MarketingReferral;
     return $this;
   }
 
-  public function setSOHeight($SOHeight) {
+  public function setSOHeight(?float $SOHeight): self {
     $this->SOHeight = $SOHeight;
     return $this;
   }
 
-  public function setSOWeight($SOWeight) {
+  public function setSOWeight(?float $SOWeight): self {
     $this->SOWeight = $SOWeight;
     return $this;
   }

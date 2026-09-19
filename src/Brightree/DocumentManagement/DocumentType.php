@@ -5,56 +5,56 @@ namespace Brightree\DocumentManagement;
 use Brightree\ApiMessageServices\LookupValue;
 
 class DocumentType {
-  public $DocumentTypeBrightreeID;
+  public ?int $BrightreeID = null;
 
-  public $Description;
+  public ?string $Description = null;
 
-  public $DocumentCategory;
+  public LookupValue $DocumentCategory;
 
-  public $DocumentReviewMode;
+  public ?string $DocumentReviewMode = null;
 
-  public $DocumentRulesEnabled;
+  public ?bool $Enabled = null;
 
-  public $Enabled;
+  public ?string $ImageNowDocumentName = null;
 
-  public $Name;
+  public ?string $Name = null;
 
   public function __construct() {
     $this->DocumentCategory = new LookupValue();
   }
 
-  public function setDocumentTypeBrightreeID($DocumentTypeBrightreeID) {
-    $this->DocumentTypeBrightreeID = $DocumentTypeBrightreeID;
+  public function setBrightreeID(?int $BrightreeID): self {
+    $this->BrightreeID = $BrightreeID;
     return $this;
   }
 
-  public function setDescription($Description) {
+  public function setDescription(?string $Description): self {
     $this->Description = $Description;
 
     return $this;
   }
 
-  public function setDocumentCategory($DocumentCategory) {
+  public function setDocumentCategory(LookupValue $DocumentCategory): self {
     $this->DocumentCategory = $DocumentCategory;
     return $this;
   }
 
-  public function setDocumentReviewMode($DocumentReviewMode) {
+  public function setDocumentReviewMode(?string $DocumentReviewMode): self {
     $this->DocumentReviewMode = $DocumentReviewMode;
     return $this;
   }
 
-  public function setDocumentRulesEnabled($DocumentRulesEnabled) {
-    $this->DocumentRulesEnabled = $DocumentRulesEnabled;
-    return $this;
-  }
-
-  public function setEnabled($Enabled) {
+  public function setEnabled(?bool $Enabled): self {
     $this->Enabled = $Enabled;
     return $this;
   }
 
-  public function setName($Name) {
+  public function setImageNowDocumentName(?string $ImageNowDocumentName): self {
+    $this->ImageNowDocumentName = $ImageNowDocumentName;
+    return $this;
+  }
+
+  public function setName(?string $Name): self {
     $this->Name = $Name;
     return $this;
   }

@@ -11,15 +11,49 @@ class PatientBillingService extends BaseService {
     $this->wsdl_path = "https://webservices.brightree.net/v0100-2602/InvoiceService/InvoiceService.svc?singleWsdl";
   }
 
-  public function invoiceFetchByInvoiceID($InvoiceNumber) {
-    return $this->apiCall('InvoiceFetchByInvoiceID', ['InvoiceNumber' => $InvoiceNumber]);
+  public function invoiceFetchByInvoiceID(?string $InvoiceID): mixed {
+    return $this->apiCall('InvoiceFetchByInvoiceID', ['InvoiceID' => $InvoiceID]);
   }
 
-  public function invoiceFetchByBrightreeID($BrightreeID) {
+  public function invoiceFetchByBrightreeID(?int $BrightreeID): mixed {
     return $this->apiCall('InvoiceFetchByBrightreeID', ['BrightreeID' => $BrightreeID]);
   }
 
-  public function invoiceUpdate($BrightreeID, $PatientBrightreeId, Invoice $invoice) {
-    return $this->apiCall('InvoiceUpdate', ['BrightreeID' => $BrightreeID, 'PatientBrightreeId' => $PatientBrightreeId, 'Invoice' => $invoice]);
+  public function invoiceUpdate(?int $BrightreeID, ?int $PatientBrightreeId, Invoice $invoice): mixed {
+    return $this->apiCall('InvoiceUpdate', ['BrightreeId' => $BrightreeID, 'PatientBrightreeId' => $PatientBrightreeId, 'Invoice' => $invoice]);
+  }
+
+  public function invoiceCreatePrintActivity(?int $BrightreeID = null): mixed {
+    return $this->apiCall('InvoiceCreatePrintActivity', [
+      'BrightreeID' => $BrightreeID
+    ]);
+  }
+
+  public function invoiceItemUpdate(?int $BrightreeId = null, ?int $InvoiceBrightreeId = null, ?int $PatientBrightreeId = null, mixed $InvoiceItem = null): mixed {
+    return $this->apiCall('InvoiceItemUpdate', [
+      'BrightreeId' => $BrightreeId,
+      'InvoiceBrightreeId' => $InvoiceBrightreeId,
+      'PatientBrightreeId' => $PatientBrightreeId,
+      'InvoiceItem' => $InvoiceItem
+    ]);
+  }
+
+  public function openInvoiceAgedBalanceFetchByPatient(?int $PatientBrightreeID = null): mixed {
+    return $this->apiCall('OpenInvoiceAgedBalanceFetchByPatient', [
+      'PatientBrightreeID' => $PatientBrightreeID
+    ]);
+  }
+
+  public function openInvoiceBalanceFetchByPatient(?int $PatientBrightreeID = null): mixed {
+    return $this->apiCall('OpenInvoiceBalanceFetchByPatient', [
+      'PatientBrightreeID' => $PatientBrightreeID
+    ]);
+  }
+
+  public function resubmitInvoices(?array $InvoiceIDs = null, ?bool $ResubmitLineItemsWithBalanceOnly = null): mixed {
+    return $this->apiCall('ResubmitInvoices', [
+      'InvoiceIDs' => $InvoiceIDs,
+      'ResubmitLineItemsWithBalanceOnly' => $ResubmitLineItemsWithBalanceOnly
+    ]);
   }
 }

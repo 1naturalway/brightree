@@ -3,66 +3,66 @@
 namespace Brightree\CommonServices;
 
 class PayorPolicyInfo {
-  public $BrightreeID;
+  public ?int $BrightreeID = null;
 
-  public $EffectiveDate;
+  public ?string $EffectiveDate = null;
 
-  public $EffectiveEndDate;
+  public ?string $EffectiveEndDate = null;
 
-  public $Fax;
+  public ?string $Fax = null;
 
-  public $GroupNumber;
+  public ?string $GroupNumber = null;
 
-  public $Name;
+  public ?string $Name = null;
 
-  public $PatientPayorKey;
+  public ?string $PatientPayorKey = null;
 
-  public $Phone;
+  public ?string $Phone = null;
 
-  public $PolicyNumber;
+  public ?string $PolicyNumber = null;
 
-  public $Verified;
+  public ?bool $Verified = null;
 
-  public function getName(Name $name) {
+  public function getName(Name $name): ?string {
     return $this->Name = $name;
   }
 
-  public function setBrightreeID($BrightreeID) {
+  public function setBrightreeID(?int $BrightreeID): self {
     $this->BrightreeID = $BrightreeID;
     return $this;
   }
 
-  public function setEffectiveDate($EffectiveDate) {
+  public function setEffectiveDate(?string $EffectiveDate): self {
     $this->EffectiveDate = $EffectiveDate;
     return $this;
   }
 
-  public function setEffectiveEndDate($EffectiveEndDate) {
+  public function setEffectiveEndDate(?string $EffectiveEndDate): self {
     $this->EffectiveEndDate = $EffectiveEndDate;
     return $this;
   }
 
-  public function setFax($Fax) {
+  public function setFax(?string $Fax): self {
     $this->Fax = $Fax;
     return $this;
   }
 
-  public function setPatientPayorKey($PatientPayorKey) {
+  public function setPatientPayorKey(?string $PatientPayorKey): self {
     $this->PatientPayorKey = $PatientPayorKey;
     return $this;
   }
 
-  public function setPhone($Phone) {
+  public function setPhone(?string $Phone): self {
     $this->Phone = $Phone;
     return $this;
   }
 
-  public function setPolicyNumber($PolicyNumber) {
+  public function setPolicyNumber(?string $PolicyNumber): self {
     $this->PolicyNumber = $PolicyNumber;
     return $this;
   }
 
-  public function setVerified($Verified) {
+  public function setVerified(?bool $Verified): self {
     $this->Verified = $Verified;
     return $this;
   }

@@ -3,16 +3,16 @@
 namespace Brightree\ApiMessageServices;
 
 class LookupValue {
-  public $ID;
+  public ?int $ID = null;
 
-  public $Value;
+  public ?string $Value = null;
 
-  public function setID($ID) {
+  public function setID(?int $ID): self {
     $this->ID = $ID;
     return $this;
   }
 
-  public function setValue($Value) {
+  public function setValue(?string $Value): self {
     $this->Value = $Value;
     return $this;
   }

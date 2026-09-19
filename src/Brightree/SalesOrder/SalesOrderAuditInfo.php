@@ -5,36 +5,36 @@ namespace Brightree\SalesOrder;
 use Brightree\ApiMessageServices\LookupValue;
 
 class SalesOrderAuditInfo {
-  public $ConfirmedBy;
+  public ?LookupValue $ConfirmedBy = null;
 
-  public $ConfirmedDate;
+  public ?string $ConfirmedDate = null;
 
-  public $CreatedBy;
+  public ?LookupValue $CreatedBy = null;
 
-  public $CreatedDate;
+  public ?string $CreatedDate = null;
 
-  public $SalesOrderType;
+  public ?string $SalesOrderType = null;
 
-  public function getCreatedBy(LookupValue $createdBy) {
+  public function getCreatedBy(LookupValue $createdBy): ?LookupValue {
     return $this->CreatedBy = $createdBy;
   }
 
-  public function setConfirmedBy($ConfirmedBy) {
+  public function setConfirmedBy(?LookupValue $ConfirmedBy): self {
     $this->ConfirmedBy = $ConfirmedBy;
     return $this;
   }
 
-  public function setConfirmedDate($ConfirmedDate) {
+  public function setConfirmedDate(?string $ConfirmedDate): self {
     $this->ConfirmedDate = $ConfirmedDate;
     return $this;
   }
 
-  public function setCreatedDate($CreatedDate) {
+  public function setCreatedDate(?string $CreatedDate): self {
     $this->CreatedDate = $CreatedDate;
     return $this;
   }
 
-  public function setSalesOrderType($SalesOrderType) {
+  public function setSalesOrderType(?string $SalesOrderType): self {
     $this->SalesOrderType = $SalesOrderType;
     return $this;
   }

@@ -3,13 +3,13 @@
 namespace Brightree\ApiMessageServices;
 
 class SOItemQuickAdd {
-  public $PriceType;
+  public ?string $PriceType = null;
 
-  public $Qty;
+  public ?int $Qty = null;
 
-  public $ItemId;
+  public ?string $ItemId = null;
 
-  public $BarCode;
+  public ?string $BarCode = null;
 
-  public $locKey;
+  public ?int $locKey = null;
 }

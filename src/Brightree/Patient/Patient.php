@@ -22,13 +22,13 @@ class Patient {
     $this->PatientInsuranceInfo = new PatientInsuranceInfo();
   }
 
-  public function setBrightreeID($BrightreeID): self {
+  public function setBrightreeID(int $BrightreeID): self {
     $this->BrightreeID = $BrightreeID;
 
     return $this;
   }
 
-  public function setExternalID($ExternalID): self {
+  public function setExternalID(string $ExternalID): self {
     $this->ExternalID = $ExternalID;
 
     return $this;

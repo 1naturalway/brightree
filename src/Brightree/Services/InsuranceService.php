@@ -9,4 +9,226 @@ class InsuranceService extends BaseService {
     $this->params = $params;
     $this->wsdl_path = "https://webservices.brightree.net/v0100-2602/OrderEntryService/InsuranceService.svc?singleWsdl";
   }
+
+  public function branchOfficeInsuranceFetchByBranchBrightreeIDAndInsuranceBrightreeID(?int $BranchBrightreeID = null, ?int $InsuranceBrightreeID = null): mixed {
+    return $this->apiCall('BranchOfficeInsuranceFetchByBranchBrightreeIDAndInsuranceBrightreeID', [
+      'BranchBrightreeID' => $BranchBrightreeID,
+      'InsuranceBrightreeID' => $InsuranceBrightreeID
+    ]);
+  }
+
+  public function branchOfficeInsuranceUpdate(?int $BrightreeID = null, mixed $InputObj = null): mixed {
+    return $this->apiCall('BranchOfficeInsuranceUpdate', [
+      'BrightreeID' => $BrightreeID,
+      'InputObj' => $InputObj
+    ]);
+  }
+
+  public function commercialEligibilityPayerSearch(mixed $searchParams = null, ?array $sortParams = null, ?int $pageSize = null, ?int $page = null): mixed {
+    return $this->apiCall('CommercialEligibilityPayerSearch', [
+      'searchParams' => $searchParams,
+      'sortParams' => $sortParams,
+      'pageSize' => $pageSize,
+      'page' => $page
+    ]);
+  }
+
+  public function commercialPayerSearch(mixed $searchParams = null, ?array $sortParams = null, ?int $pageSize = null, ?int $page = null): mixed {
+    return $this->apiCall('CommercialPayerSearch', [
+      'searchParams' => $searchParams,
+      'sortParams' => $sortParams,
+      'pageSize' => $pageSize,
+      'page' => $page
+    ]);
+  }
+
+  public function fetchPmtSubTypeByPmtTypeBrightreeID(?int $PaymentTypeBrightreeID = null): mixed {
+    return $this->apiCall('FetchPmtSubTypeByPmtTypeBrightreeID', [
+      'PaymentTypeBrightreeID' => $PaymentTypeBrightreeID
+    ]);
+  }
+
+  public function insuranceCarrierCodeCreate(mixed $InsCarrierCode = null): mixed {
+    return $this->apiCall('InsuranceCarrierCodeCreate', [
+      'InsCarrierCode' => $InsCarrierCode
+    ]);
+  }
+
+  public function insuranceCarrierCodeDelete(?int $BrightreeID = null): mixed {
+    return $this->apiCall('InsuranceCarrierCodeDelete', [
+      'BrightreeID' => $BrightreeID
+    ]);
+  }
+
+  public function insuranceCarrierCodeUpdate(?int $InsCarrierCodeBrightreeID = null, mixed $InsCarrierCode = null): mixed {
+    return $this->apiCall('InsuranceCarrierCodeUpdate', [
+      'InsCarrierCodeBrightreeID' => $InsCarrierCodeBrightreeID,
+      'InsCarrierCode' => $InsCarrierCode
+    ]);
+  }
+
+  public function insuranceCreate(mixed $Insurance = null): mixed {
+    return $this->apiCall('InsuranceCreate', [
+      'Insurance' => $Insurance
+    ]);
+  }
+
+  public function insuranceFetchByBrightreeID(?string $BrightreeID = null): mixed {
+    return $this->apiCall('InsuranceFetchByBrightreeID', [
+      'BrightreeID' => $BrightreeID
+    ]);
+  }
+
+  public function insuranceFetchByExternalID(?string $ExternalID = null): mixed {
+    return $this->apiCall('InsuranceFetchByExternalID', [
+      'ExternalID' => $ExternalID
+    ]);
+  }
+
+  public function insuranceSearch(mixed $searchRequest = null, ?array $sortRequest = null, ?int $pageSize = null, ?int $page = null): mixed {
+    return $this->apiCall('InsuranceSearch', [
+      'searchRequest' => $searchRequest,
+      'sortRequest' => $sortRequest,
+      'pageSize' => $pageSize,
+      'page' => $page
+    ]);
+  }
+
+  public function insuranceSpanDateHoldInclusionCreate(mixed $InsSpanDateHoldInclusion = null): mixed {
+    return $this->apiCall('InsuranceSpanDateHoldInclusionCreate', [
+      'InsSpanDateHoldInclusion' => $InsSpanDateHoldInclusion
+    ]);
+  }
+
+  public function insuranceSpanDateHoldInclusionDelete(?int $BrightreeID = null): mixed {
+    return $this->apiCall('InsuranceSpanDateHoldInclusionDelete', [
+      'BrightreeID' => $BrightreeID
+    ]);
+  }
+
+  public function insuranceSpanDateOverrideCreate(mixed $inputObj = null): mixed {
+    return $this->apiCall('InsuranceSpanDateOverrideCreate', [
+      'inputObj' => $inputObj
+    ]);
+  }
+
+  public function insuranceSpanDateOverrideDelete(?int $BrightreeID = null): mixed {
+    return $this->apiCall('InsuranceSpanDateOverrideDelete', [
+      'BrightreeID' => $BrightreeID
+    ]);
+  }
+
+  public function insuranceSpanDateOverrideUpdate(?int $BrightreeID = null, mixed $inputObj = null): mixed {
+    return $this->apiCall('InsuranceSpanDateOverrideUpdate', [
+      'BrightreeID' => $BrightreeID,
+      'inputObj' => $inputObj
+    ]);
+  }
+
+  public function insuranceUpdate(?int $BrightreeID = null, mixed $Insurance = null): mixed {
+    return $this->apiCall('InsuranceUpdate', [
+      'BrightreeID' => $BrightreeID,
+      'Insurance' => $Insurance
+    ]);
+  }
+
+  public function insuranceValidationRuleSetCreate(?int $InsuranceBrightreeID = null, ?int $ValidationRuleSetBrightreeID = null): mixed {
+    return $this->apiCall('InsuranceValidationRuleSetCreate', [
+      'InsuranceBrightreeID' => $InsuranceBrightreeID,
+      'ValidationRuleSetBrightreeID' => $ValidationRuleSetBrightreeID
+    ]);
+  }
+
+  public function insuranceValidationRuleSetDelete(?int $InsuranceBrightreeID = null, ?int $ValidationRuleSetBrightreeID = null): mixed {
+    return $this->apiCall('InsuranceValidationRuleSetDelete', [
+      'InsuranceBrightreeID' => $InsuranceBrightreeID,
+      'ValidationRuleSetBrightreeID' => $ValidationRuleSetBrightreeID
+    ]);
+  }
+
+  public function itemGroupFetchByInsuranceBrightreeID(?int $InsuranceBrightreeID = null): mixed {
+    return $this->apiCall('ItemGroupFetchByInsuranceBrightreeID', [
+      'InsuranceBrightreeID' => $InsuranceBrightreeID
+    ]);
+  }
+
+  public function priceTableFetchByBrightreeID(?int $BrightreeID = null): mixed {
+    return $this->apiCall('PriceTableFetchByBrightreeID', [
+      'BrightreeID' => $BrightreeID
+    ]);
+  }
+
+  public function priceTableSearch(mixed $searchParams = null, ?array $sortParams = null, ?int $pageSize = null, ?int $page = null): mixed {
+    return $this->apiCall('PriceTableSearch', [
+      'searchParams' => $searchParams,
+      'sortParams' => $sortParams,
+      'pageSize' => $pageSize,
+      'page' => $page
+    ]);
+  }
+
+  public function priceTableUpdate(?int $BrightreeID = null, mixed $PriceTable = null): mixed {
+    return $this->apiCall('PriceTableUpdate', [
+      'BrightreeID' => $BrightreeID,
+      'PriceTable' => $PriceTable
+    ]);
+  }
+
+  public function spanDateSplit(mixed $SpanDateSplitObj = null): mixed {
+    return $this->apiCall('SpanDateSplit', [
+      'SpanDateSplitObj' => $SpanDateSplitObj
+    ]);
+  }
+
+  public function bundleBillingRuleSetFetchAll(): mixed {
+    return $this->apiCall('BundleBillingRuleSetFetchAll', []);
+  }
+
+  public function claimFormFetchAll(): mixed {
+    return $this->apiCall('ClaimFormFetchAll', []);
+  }
+
+  public function coverageLimitFetchAll(): mixed {
+    return $this->apiCall('CoverageLimitFetchAll', []);
+  }
+
+  public function customAppealFormFetchAll(): mixed {
+    return $this->apiCall('CustomAppealFormFetchAll', []);
+  }
+
+  public function insuranceCompanyFetchAll(): mixed {
+    return $this->apiCall('InsuranceCompanyFetchAll', []);
+  }
+
+  public function insuranceGroupFetchAll(): mixed {
+    return $this->apiCall('InsuranceGroupFetchAll', []);
+  }
+
+  public function insurancePlanTypeFetchAll(): mixed {
+    return $this->apiCall('InsurancePlanTypeFetchAll', []);
+  }
+
+  public function insurancePrintedFormsClaimFieldsFetch(): mixed {
+    return $this->apiCall('InsurancePrintedFormsClaimFieldsFetch', []);
+  }
+
+  public function insurancePrintedFormsPARFieldsFetch(): mixed {
+    return $this->apiCall('InsurancePrintedFormsPARFieldsFetch', []);
+  }
+
+  public function itemGroupFetchAll(): mixed {
+    return $this->apiCall('ItemGroupFetchAll', []);
+  }
+
+  public function pARFormFetchAll(): mixed {
+    return $this->apiCall('PARFormFetchAll', []);
+  }
+
+  public function ping(): mixed {
+    return $this->apiCall('Ping', []);
+  }
+
+  public function supplyAllowanceRuleSetFetchAll(): mixed {
+    return $this->apiCall('SupplyAllowanceRuleSetFetchAll', []);
+  }
 }

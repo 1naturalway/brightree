@@ -2,24 +2,26 @@
 
 namespace Brightree\SalesOrder;
 
+use Brightree\ApiMessageServices\LookupValue;
+
 class ShippingTrackingInfo {
-  public $Carrier;
+  public ?LookupValue $Carrier = null;
 
-  public $TrackingNumber;
+  public ?string $TrackingNumber = null;
 
-  public $TrackingShipDate;
+  public ?string $TrackingShipDate = null;
 
-  public function setCarrier($Carrier) {
+  public function setCarrier(?LookupValue $Carrier): self {
     $this->Carrier = $Carrier;
     return $this;
   }
 
-  public function setTrackingNumber($TrackingNumber) {
+  public function setTrackingNumber(?string $TrackingNumber): self {
     $this->TrackingNumber = $TrackingNumber;
     return $this;
   }
 
-  public function setTrackingShipDate($TrackingShipDate) {
+  public function setTrackingShipDate(?string $TrackingShipDate): self {
     $this->TrackingShipDate = $TrackingShipDate;
     return $this;
   }

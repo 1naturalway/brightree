@@ -6,15 +6,17 @@ use Brightree\ApiMessageServices\eClaimsInfo;
 use Brightree\ApiMessageServices\WorkersCompensation;
 
 class SalesOrderInsuranceInfo {
-  public $CoverageVerified;
+  public ?bool $CoverageVerified = null;
 
-  public $InsuranceVerified;
+  public ?bool $InsuranceVerified = null;
 
-  public $Payors;
+  public Payors $Payors;
 
-  public $eClaimsInfo;
+  public eClaimsInfo $eClaimsInfo;
 
-  public $workersCompensation;
+  public workersCompensation $workersCompensation;
+
+  public ?bool $SignatureGeneratedByProvider = null;
 
   public function __construct() {
     $this->Payors = new Payors();
@@ -22,25 +24,30 @@ class SalesOrderInsuranceInfo {
     $this->workersCompensation = new workersCompensation();
   }
 
-  public function getPayors(Payors $payors) {
+  public function getPayors(Payors $payors): Payors {
     return $this->Payors = $payors;
   }
 
-  public function getEClaimsInfo(eClaimsInfo $info) {
+  public function getEClaimsInfo(eClaimsInfo $info): eClaimsInfo {
     return $this->eClaimsInfo = $info;
   }
 
-  public function getWorkersCompensation(workersCompensation $workersComp) {
+  public function getWorkersCompensation(workersCompensation $workersComp): WorkersCompensation {
     return $this->workersCompensation = $workersComp;
   }
 
-  public function setCooverageVerified($CooverageVerified) {
-    $this->CoverageVerified = $CooverageVerified;
+  public function setCoverageVerified(?bool $CoverageVerified): self {
+    $this->CoverageVerified = $CoverageVerified;
     return $this;
   }
 
-  public function setInsuranceVerified($InsuranceVerified) {
+  public function setInsuranceVerified(?bool $InsuranceVerified): self {
     $this->InsuranceVerified = $InsuranceVerified;
+    return $this;
+  }
+
+  public function setSignatureGeneratedByProvider(?bool $SignatureGeneratedByProvider): self {
+    $this->SignatureGeneratedByProvider = $SignatureGeneratedByProvider;
     return $this;
   }
 }

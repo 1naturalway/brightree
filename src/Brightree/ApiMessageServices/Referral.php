@@ -5,27 +5,27 @@ namespace Brightree\ApiMessageServices;
 use Brightree\CommonServices\Address;
 
 class Referral {
-  public $Address;
+  public Address $Address;
 
-  public $BrightreeID;
+  public ?int $BrightreeID = null;
 
-  public $Contact;
+  public LookupValue $Contact;
 
-  public $ContactRemoved;
+  public ?bool $ContactRemoved = null;
 
-  public $FaxNumber;
+  public ?string $FaxNumber = null;
 
-  public $Group;
+  public LookupValue $Group;
 
-  public $PhoneNumber;
+  public ?string $PhoneNumber = null;
 
-  public $ReferralType;
+  public ?string $ReferralType = null;
 
-  public $ReferralTypeBrightreeID;
+  public ?int $ReferralTypeBrightreeID = null;
 
-  public $ReferralTypeName;
+  public ?string $ReferralTypeName = null;
 
-  public $UPIN;
+  public ?string $UPIN = null;
 
   public function __construct() {
     $this->Address = new Address();
@@ -33,54 +33,54 @@ class Referral {
     $this->Group = new LookupValue();
   }
 
-  public function getAddress(Address $address) {
+  public function getAddress(Address $address): Address {
     return $this->Address = $address;
   }
 
-  public function setBrightreeID($BrightreeID) {
+  public function setBrightreeID(?int $BrightreeID): self {
     $this->BrightreeID = $BrightreeID;
     return $this;
   }
 
-  public function getContact(LookupValue $contact) {
+  public function getContact(LookupValue $contact): LookupValue {
     return $this->Contact = $contact;
   }
 
-  public function setContactRemoved($ContactRemoved) {
+  public function setContactRemoved(?bool $ContactRemoved): self {
     $this->ContactRemoved = $ContactRemoved;
     return $this;
   }
 
-  public function setFaxNumber($FaxNumber) {
+  public function setFaxNumber(?string $FaxNumber): self {
     $this->FaxNumber = $FaxNumber;
     return $this;
   }
 
-  public function getGroup(LookupValue $group) {
+  public function getGroup(LookupValue $group): LookupValue {
     return $this->Group = $group;
   }
 
-  public function setPhoneNumber($PhoneNumber) {
+  public function setPhoneNumber(?string $PhoneNumber): self {
     $this->PhoneNumber = $PhoneNumber;
     return $this;
   }
 
-  public function setReferralType($ReferralType) {
+  public function setReferralType(?string $ReferralType): self {
     $this->ReferralType = $ReferralType;
     return $this;
   }
 
-  public function setReferralTypeBrightreeID($ReferralTypeBrightreeID) {
+  public function setReferralTypeBrightreeID(?int $ReferralTypeBrightreeID): self {
     $this->ReferralTypeBrightreeID = $ReferralTypeBrightreeID;
     return $this;
   }
 
-  public function setReferralTypeName($ReferralTypeName) {
+  public function setReferralTypeName(?string $ReferralTypeName): self {
     $this->ReferralTypeName = $ReferralTypeName;
     return $this;
   }
 
-  public function setUPIN($UPIN) {
+  public function setUPIN(?string $UPIN): self {
     $this->UPIN = $UPIN;
     return $this;
   }

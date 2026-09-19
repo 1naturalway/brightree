@@ -3,22 +3,29 @@
 namespace Brightree\CommonServices;
 
 class Invoice {
-  public $BrightreeID;
+  public ?int $BrightreeID = null;
 
-  public $ExternalId;
+  public ClinicalInfo $ClinicalInfo;
 
-  public $InvoiceGeneralInfo;
+  public ?string $ExternalID = null;
 
-  public $InvoicePatientInfo;
+  public InvoiceGeneralInfo $InvoiceGeneralInfo;
 
-  public $InvoicePolicyInfo;
+  public InvoicePatientInfo $InvoicePatientInfo;
 
-  public $InvoiceBalanceInfo;
+  public InvoicePolicyInfo $InvoicePolicyInfo;
 
-  public $InvoiceItems;
+  public InvoiceBalanceInfo $InvoiceBalanceInfo;
 
-  public $RelatedInvoice;
+  public ?array $InvoiceItems = null;
+
+  public ?array $RelatedInvoices = null;
 
   public function __construct() {
+    $this->ClinicalInfo = new ClinicalInfo();
+    $this->InvoiceGeneralInfo = new InvoiceGeneralInfo();
+    $this->InvoicePatientInfo = new InvoicePatientInfo();
+    $this->InvoicePolicyInfo = new InvoicePolicyInfo();
+    $this->InvoiceBalanceInfo = new InvoiceBalanceInfo();
   }
 }

@@ -5,48 +5,48 @@ namespace Brightree\SalesOrder;
 use Brightree\ApiMessageServices\LookupValue;
 
 class SalesOrderFulfillmentDetails {
-  public $AccountNumber;
+  public ?string $AccountNumber = null;
 
-  public $BrightreeID;
+  public ?int $BrightreeID = null;
 
-  public $FulfillmentVendor;
+  public LookupValue $FulfillmentVendor;
 
-  public $ShipBy;
+  public LookupValue $ShipBy;
 
-  public $Status;
+  public ?string $Status = null;
 
-  public $statusCode;
+  public ?string $StatusDate = null;
 
   public function __construct() {
     $this->FulfillmentVendor = new LookupValue();
     $this->ShipBy = new LookupValue();
   }
 
-  public function getFulfillmentVendor(LookupValue $vendor) {
+  public function getFulfillmentVendor(LookupValue $vendor): LookupValue {
     return $this->FulfillmentVendor = $vendor;
   }
 
-  public function getShipBy(LookupValue $shipment) {
+  public function getShipBy(LookupValue $shipment): LookupValue {
     return $this->ShipBy = $shipment;
   }
 
-  public function setAccountNumber($AccountNumber) {
+  public function setAccountNumber(?string $AccountNumber): self {
     $this->AccountNumber = $AccountNumber;
     return $this;
   }
 
-  public function setBrightreeID($BrightreeID) {
+  public function setBrightreeID(?int $BrightreeID): self {
     $this->BrightreeID = $BrightreeID;
     return $this;
   }
 
-  public function setStatus($Status) {
+  public function setStatus(?string $Status): self {
     $this->Status = $Status;
     return $this;
   }
 
-  public function setStatusCode($statusCode) {
-    $this->statusCode = $statusCode;
+  public function setStatusDate(?string $StatusDate): self {
+    $this->StatusDate = $StatusDate;
     return $this;
   }
 }

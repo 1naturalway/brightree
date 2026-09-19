@@ -3,51 +3,51 @@
 namespace Brightree\DocumentManagement;
 
 class DocumentBatchSearchRequest {
-  public $BatchDescription;
+  public ?string $BatchDescription = null;
 
-  public $BatchName;
+  public ?string $BatchName = null;
 
-  public $BatchOwnerBrightreeID;
+  public ?int $BatchOwnerBrightreeID = null;
 
-  public $BatchOwnerFullName;
+  public ?string $BatchOwnerFullName = null;
 
-  public $BrightreeID;
+  public ?int $BrightreeID = null;
 
-  public $Closed;
+  public ?bool $Closed = null;
 
-  public $CreatedDate;
+  public ?string $CreatedDate = null;
 
-  public function setBatchDescription($BatchDescription) {
+  public function setBatchDescription(?string $BatchDescription): self {
     $this->BatchDescription = $BatchDescription;
     return $this;
   }
 
-  public function setBatchName($BatchName) {
+  public function setBatchName(?string $BatchName): self {
     $this->BatchName = $BatchName;
     return $this;
   }
 
-  public function setBatchOwnerBrightreeID($BatchOwnerBrightreeID) {
+  public function setBatchOwnerBrightreeID(?int $BatchOwnerBrightreeID): self {
     $this->BatchOwnerBrightreeID = $BatchOwnerBrightreeID;
     return $this;
   }
 
-  public function setBatchOwnerFullName($BatchOwnerFullName) {
+  public function setBatchOwnerFullName(?string $BatchOwnerFullName): self {
     $this->BatchOwnerFullName = $BatchOwnerFullName;
     return $this;
   }
 
-  public function setBrightreeID($BrightreeID) {
+  public function setBrightreeID(?int $BrightreeID): self {
     $this->BrightreeID = $BrightreeID;
     return $this;
   }
 
-  public function setClosed($Closed) {
+  public function setClosed(?bool $Closed): self {
     $this->Closed = $Closed;
     return $this;
   }
 
-  public function setCreatedDate($CreatedDate) {
+  public function setCreatedDate(?string $CreatedDate): self {
     $this->CreatedDate = $CreatedDate;
     return $this;
   }

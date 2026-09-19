@@ -3,16 +3,16 @@
 namespace Brightree\SalesOrder;
 
 class SalesOrderAutoConfirmInfo {
-  public $AutoConfirm;
+  public ?bool $AutoConfirm = null;
 
-  public $AutoConfirmInitialDate;
+  public ?string $AutoConfirmInitialDate = null;
 
-  public function setAutoConfirm($AutoConfirm) {
+  public function setAutoConfirm(?bool $AutoConfirm): self {
     $this->AutoConfirm = $AutoConfirm;
     return $this;
   }
 
-  public function setAutoConfirmInitialDate($AutoConfirmInitialDate) {
+  public function setAutoConfirmInitialDate(?string $AutoConfirmInitialDate): self {
     $this->AutoConfirmInitialDate = $AutoConfirmInitialDate;
     return $this;
   }

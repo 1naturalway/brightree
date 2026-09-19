@@ -3,23 +3,23 @@
 namespace Brightree\ApiMessageServices;
 
 class RenderingProvider {
-  public $Doctor;
+  public ?LookupValue $Doctor = null;
 
-  public $Facility;
+  public ?LookupValue $Facility = null;
 
-  public $Type;
+  public ?string $Type = null;
 
-  public function setDoctor($Doctor) {
+  public function setDoctor(?LookupValue $Doctor): self {
     $this->Doctor = $Doctor;
     return $this;
   }
 
-  public function setFacility($Facility) {
+  public function setFacility(?LookupValue $Facility): self {
     $this->Facility = $Facility;
     return $this;
   }
 
-  public function setType($Type) {
+  public function setType(?string $Type): self {
     $this->Type = $Type;
     return $this;
   }

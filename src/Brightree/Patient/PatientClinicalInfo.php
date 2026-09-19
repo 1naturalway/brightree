@@ -12,11 +12,13 @@ class PatientClinicalInfo {
 
   public bool $ContactTransmission;
 
-  public $DateOfDeath;
+  public ?string $DateOfDeath = null;
 
   public array $DiagnosisCodes;
 
   public bool $DropletTransmission;
+
+  public ?string $EnableSubscribeDate = null;
 
   public LookupValue $FunctionalAbility;
 

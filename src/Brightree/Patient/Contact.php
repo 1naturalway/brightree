@@ -6,15 +6,17 @@ use Brightree\CommonServices\Address;
 use Brightree\CommonServices\Name;
 
 class Contact {
-  public $Name;
+  public Name $Name;
 
-  public $Address;
+  public Address $Address;
 
-  public $PhoneNumber;
+  public ?string $PhoneNumber = null;
 
-  public $FaxNumber;
+  public ?string $FaxNumber = null;
 
-  public $EmailAddress;
+  public ?string $EmailAddress = null;
+
+  public ?string $MobilePhone = null;
 
   public function __construct() {
     $this->Name = new Name();

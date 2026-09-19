@@ -3,23 +3,23 @@
 namespace Brightree\SalesOrder;
 
 class SalesOrderMessages {
-  public $BrightreeId;
+  public ?int $BrightreeID = null;
 
-  public $DetailMessages;
+  public ?array $DetailMessages = null;
 
-  public $HeaderMessages;
+  public ?array $HeaderMessages = null;
 
-  public function setBrightreeId($BrightreeId) {
-    $this->BrightreeId = $BrightreeId;
+  public function setBrightreeID(?int $BrightreeID): self {
+    $this->BrightreeID = $BrightreeID;
     return $this;
   }
 
-  public function setDetailMessages($DetailMessages) {
+  public function setDetailMessages(?array $DetailMessages): self {
     $this->DetailMessages = $DetailMessages;
     return $this;
   }
 
-  public function setHeaderMessages($HeaderMessages) {
+  public function setHeaderMessages(?array $HeaderMessages): self {
     $this->HeaderMessages = $HeaderMessages;
     return $this;
   }

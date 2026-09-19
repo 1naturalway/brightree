@@ -3,13 +3,27 @@
 namespace Brightree\Patient;
 
 class PatientInsured extends Contact {
-  public $BirthDate;
+  public ?string $BirthDate = null;
 
-  public $SSN;
+  public ?string $SSN = null;
 
-  public $Gender;
+  public ?string $Gender = null;
 
-  public $Employer;
+  public ?string $Employer = null;
 
-  public $EmployerContact;
+  public ?string $EmployerContact = null;
+
+  public ?string $EmployerAddress1 = null;
+
+  public ?string $EmployerAddress2 = null;
+
+  public ?string $EmployerCity = null;
+
+  public ?string $EmployerCountry = null;
+
+  public ?string $EmployerPostalCode = null;
+
+  public ?string $EmployerState = null;
+
+  public ?string $InsuredEmployerPhone = null;
 }

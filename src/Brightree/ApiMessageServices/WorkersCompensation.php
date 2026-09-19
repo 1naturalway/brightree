@@ -3,38 +3,38 @@
 namespace Brightree\ApiMessageServices;
 
 class WorkersCompensation {
-  public $ConditionEmploy;
+  public ?bool $ConditionEmploy = null;
 
-  public $ConditionAuto;
+  public ?bool $ConditionAuto = null;
 
-  public $ConditionOther;
+  public ?bool $ConditionOther = null;
 
-  public $AutoAccidentSate;
+  public ?string $AutoAccidentState = null;
 
-  public $OnsetDate;
+  public ?string $OnsetDate = null;
 
-  public function setConditionEmploy($ConditionEmploy) {
+  public function setConditionEmploy(?bool $ConditionEmploy): self {
     $this->ConditionEmploy = $ConditionEmploy;
 
     return $this;
   }
 
-  public function setConditionAuto($ConditionAuto) {
+  public function setConditionAuto(?bool $ConditionAuto): self {
     $this->ConditionAuto = $ConditionAuto;
     return $this;
   }
 
-  public function setConditionOther($ConditionOther) {
+  public function setConditionOther(?bool $ConditionOther): self {
     $this->ConditionOther = $ConditionOther;
     return $this;
   }
 
-  public function setAutoAccidentSate($AutoAccidentSate) {
-    $this->AutoAccidentSate = $AutoAccidentSate;
+  public function setAutoAccidentState(?string $AutoAccidentState): self {
+    $this->AutoAccidentState = $AutoAccidentState;
     return $this;
   }
 
-  public function setOnsetDate($OnsetDate) {
+  public function setOnsetDate(?string $OnsetDate): self {
     $this->OnsetDate = $OnsetDate;
     return $this;
   }

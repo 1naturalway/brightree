@@ -3,11 +3,11 @@
 namespace Brightree\ApiMessageServices;
 
 class CustomFieldValue {
-  public $CustomFieldCategory;
+  public ?string $CustomFieldCategory = null;
 
-  public $FieldStorageNumber;
+  public ?int $FieldStorageNumber = null;
 
-  public $ObjectDataKey;
+  public ?int $ObjectDataKey = null;
 
-  public $Value;
+  public ?string $Value = null;
 }

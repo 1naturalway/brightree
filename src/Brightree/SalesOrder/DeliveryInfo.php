@@ -7,29 +7,31 @@ use Brightree\CommonServices\ContactInfo;
 use Brightree\ApiMessageServices\LookupValue;
 
 class DeliveryInfo {
-  public $Address;
+  public Address $Address;
 
-  public $ContactInfo;
+  public ContactInfo $ContactInfo;
 
-  public $DeliveryNote;
+  public ?string $DeliveryNote = null;
 
-  public $ActualDeliveryDateTime;
+  public ?string $ActualDeliveryDateTime = null;
 
-  public $DeliveryTechnician;
+  public ?LookupValue $DeliveryTechnician = null;
 
-  public $DropShipStatus;
+  public ?LookupValue $DropShipStatus = null;
 
-  public $Facility;
+  public LookupValue $Facility;
 
-  public $OrderNote;
+  public ?string $OrderNote = null;
 
-  public $SalesOrderFulfillmentDetails;
+  public SalesOrderFulfillmentDetails $SalesOrderFulfillmentDetails;
 
-  public $ScheduledDeliveryDateTime;
+  public ?string $ScheduledDeliveryDateTime = null;
 
-  public $SignatureRequired;
+  public ?bool $SignatureRequired = null;
 
-  public $TaxZone;
+  public LookupValue $TaxZone;
+
+  public ?string $SetupMethod = null;
 
   public function __construct() {
     $this->Address = new Address();
@@ -39,64 +41,69 @@ class DeliveryInfo {
     $this->TaxZone = new LookupValue();
   }
 
-  public function setAddress(Address $address) {
+  public function setAddress(Address $address): void {
     $this->Address = $address;
   }
 
-  public function setContactInfo(ContactInfo $info) {
+  public function setContactInfo(ContactInfo $info): void {
     $this->ContactInfo = $info;
   }
 
-  public function getSalesOrderFulfillmentDetails(SalesOrderFulfillmentDetails $details) {
+  public function getSalesOrderFulfillmentDetails(SalesOrderFulfillmentDetails $details): void {
     $this->SalesOrderFulfillmentDetails = $details;
   }
 
-  public function getTaxZone(LookupValue $LookupValue) {
+  public function getTaxZone(LookupValue $LookupValue): LookupValue {
     return $this->TaxZone = $LookupValue;
   }
 
-  public function setDeliveryNote($DeliveryNote) {
+  public function setDeliveryNote(?string $DeliveryNote): self {
     $this->DeliveryNote = $DeliveryNote;
     return $this;
   }
 
-  public function setActualDeliveryDateTime($ActualDeliveryDateTime) {
+  public function setActualDeliveryDateTime(?string $ActualDeliveryDateTime): self {
     $this->ActualDeliveryDateTime = $ActualDeliveryDateTime;
     return $this;
   }
 
-  public function setDeliveryTechnician($DeliveryTechnician) {
+  public function setDeliveryTechnician(?LookupValue $DeliveryTechnician): self {
     $this->DeliveryTechnician = $DeliveryTechnician;
     return $this;
   }
 
-  public function setDropShipStatus($DropShipStatus) {
+  public function setDropShipStatus(?LookupValue $DropShipStatus): self {
     $this->DropShipStatus = $DropShipStatus;
     return $this;
   }
 
-  public function setFacility($Facility) {
+  public function setFacility(LookupValue $Facility): self {
     $this->Facility = $Facility;
     return $this;
   }
 
-  public function setOrderNote($OrderNote) {
+  public function setOrderNote(?string $OrderNote): self {
     $this->OrderNote = $OrderNote;
     return $this;
   }
 
-  public function setSalesOrderFulfillmentDetails($SalesOrderFulfillmentDetails) {
+  public function setSalesOrderFulfillmentDetails(SalesOrderFulfillmentDetails $SalesOrderFulfillmentDetails): self {
     $this->SalesOrderFulfillmentDetails = $SalesOrderFulfillmentDetails;
     return $this;
   }
 
-  public function setScheduledDeliveryDateTime($ScheduledDeliveryDateTime) {
+  public function setScheduledDeliveryDateTime(?string $ScheduledDeliveryDateTime): self {
     $this->ScheduledDeliveryDateTime = $ScheduledDeliveryDateTime;
     return $this;
   }
 
-  public function setSignatureRequired($SignatureRequired) {
+  public function setSignatureRequired(?bool $SignatureRequired): self {
     $this->SignatureRequired = $SignatureRequired;
+    return $this;
+  }
+
+  public function setSetupMethod(?string $SetupMethod): self {
+    $this->SetupMethod = $SetupMethod;
     return $this;
   }
 }

@@ -3,30 +3,30 @@
 namespace Brightree\ApiMessageServices;
 
 class eClaimsInfo {
-  public $AttachmentNumber;
+  public ?string $AttachmentNumber = null;
 
-  public $TransCode;
+  public ?string $TransCode = null;
 
-  public $TypeCode;
+  public ?string $TypeCode = null;
 
-  public $eClaimsAttachment;
+  public ?bool $eClaimsAttachment = null;
 
-  public function setAttachmentNumber($AttachmentNumber) {
+  public function setAttachmentNumber(?string $AttachmentNumber): self {
     $this->AttachmentNumber = $AttachmentNumber;
     return $this;
   }
 
-  public function setTransCode($TransCode) {
+  public function setTransCode(?string $TransCode): self {
     $this->TransCode = $TransCode;
     return $this;
   }
 
-  public function setTypeCode($TypeCode) {
+  public function setTypeCode(?string $TypeCode): self {
     $this->TypeCode = $TypeCode;
     return $this;
   }
 
-  public function setEClaimsAttachment($eClaimsAttachment) {
+  public function setEClaimsAttachment(?bool $eClaimsAttachment): self {
     $this->eClaimsAttachment = $eClaimsAttachment;
     return $this;
   }

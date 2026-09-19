@@ -4,47 +4,48 @@ namespace Brightree\SalesOrder;
 
 use Brightree\ApiMessageServices\BrightShip;
 use Brightree\ApiMessageServices\PointOfDeliveryInfo;
+use Brightree\ApiMessageServices\LookupValue;
 
 class SalesOrder {
-  public $BrightShip;
+  public BrightShip $BrightShip;
 
-  public $BrightreeID;
+  public ?int $BrightreeID = null;
 
-  public $DeliveryInfo;
+  public DeliveryInfo $DeliveryInfo;
 
-  public $ExternalID;
+  public ?string $ExternalID = null;
 
-  public $MyFormsWorkflowStatus;
+  public ?LookupValue $MyFormsWorkflowStatus = null;
 
-  public $PointOfDeliveryInfo;
+  public PointOfDeliveryInfo $PointOfDeliveryInfo;
 
-  public $SalesOrderAudioInfo;
+  public ?string $QMBStatus = null;
 
-  public $CreatedDate;
+  public SalesOrderAuditInfo $SalesOrderAuditInfo;
 
-  public $SalesOrderType;
+  public SalesOrderAutoConfirmInfo $SalesOrderAutoConfirmInfo;
 
-  public $SalesOrderAutoConfirmInfo;
+  public SalesOrderClinicalInfo $SalesOrderClinicalInfo;
 
-  public $SalesOrderClinicalInfo;
+  public SalesOrderGeneralInfo $SalesOrderGeneralInfo;
 
-  public $SalesOrderGeneralInfo;
+  public SalesOrderInsuranceInfo $SalesOrderInsuranceInfo;
 
-  public $SalesOrderInsuranceInfo;
+  public SalesOrderItems $SalesOrderItems;
 
-  public $SalesOrderItems;
+  public SalesOrderMessages $SalesOrderMessages;
 
-  public $SalesOrderMessages;
+  public SalesOrderPharmacyItems $SalesOrderPharmacyItems;
 
-  public $SalesOrderWIPInfo;
+  public SalesOrderWIPInfo $SalesOrderWIPInfo;
 
-  public $ShippingTrackingInfos;
+  public ShippingTrackingInfos $ShippingTrackingInfos;
 
   public function __construct() {
     $this->BrightShip = new BrightShip();
     $this->DeliveryInfo = new DeliveryInfo();
     $this->PointOfDeliveryInfo = new PointOfDeliveryInfo();
-    $this->SalesOrderAudioInfo = new SalesOrderAuditInfo();
+    $this->SalesOrderAuditInfo = new SalesOrderAuditInfo();
     $this->SalesOrderAutoConfirmInfo = new SalesOrderAutoConfirmInfo();
     $this->SalesOrderClinicalInfo = new SalesOrderClinicalInfo();
     $this->SalesOrderGeneralInfo = new SalesOrderGeneralInfo();
@@ -52,61 +53,67 @@ class SalesOrder {
     $this->SalesOrderMessages = new SalesOrderMessages();
     $this->SalesOrderWIPInfo = new SalesOrderWIPInfo();
     $this->SalesOrderItems = new SalesOrderItems();
-    $this->ShippingTrackingInfos = new ShippingTrackingInfo();
+    $this->SalesOrderPharmacyItems = new SalesOrderPharmacyItems();
+    $this->ShippingTrackingInfos = new ShippingTrackingInfos();
   }
 
-  public function getBrightShip(BrightShip $brightship) {
+  public function getBrightShip(BrightShip $brightship): void {
     $this->BrightShip = $brightship;
   }
 
-  public function setDeliveryInfo(DeliveryInfo $info) {
+  public function setDeliveryInfo(DeliveryInfo $info): void {
     $this->DeliveryInfo = $info;
   }
 
-  public function getPointOfDeliveryInfo(PointOfDeliveryInfo $pointOfDeliveryInfo) {
+  public function getPointOfDeliveryInfo(PointOfDeliveryInfo $pointOfDeliveryInfo): void {
     $this->PointOfDeliveryInfo = $pointOfDeliveryInfo;
   }
 
-  public function getSalesOrderAudioInfo(SalesOrderAuditInfo $salesOrderAudioInfo) {
-    $this->SalesOrderAudioInfo = $salesOrderAudioInfo;
+  public function getSalesOrderAuditInfo(SalesOrderAuditInfo $salesOrderAuditInfo): void {
+    $this->SalesOrderAuditInfo = $salesOrderAuditInfo;
   }
 
-  public function getSalesOrderAutoConfirmInfo(SalesOrderAutoConfirmInfo $salesOrderAutoConfirmInfo) {
+  public function getSalesOrderAutoConfirmInfo(SalesOrderAutoConfirmInfo $salesOrderAutoConfirmInfo): void {
     $this->SalesOrderAutoConfirmInfo = $salesOrderAutoConfirmInfo;
   }
 
-  public function getSalesOrderClinicalInfo(SalesOrderClinicalInfo $salesOrderClinicalInfo) {
+  public function getSalesOrderClinicalInfo(SalesOrderClinicalInfo $salesOrderClinicalInfo): void {
     $this->SalesOrderClinicalInfo = $salesOrderClinicalInfo;
   }
 
-  public function getSalesOrderGeneralInfo(SalesOrderGeneralInfo $salesOrderGeneralInfo) {
+  public function getSalesOrderGeneralInfo(SalesOrderGeneralInfo $salesOrderGeneralInfo): void {
     $this->SalesOrderGeneralInfo = $salesOrderGeneralInfo;
   }
 
-  public function getSalesOrderInsuranceInfo(SalesOrderInsuranceInfo $salesOrderInsuranceInfo) {
+  public function getSalesOrderInsuranceInfo(SalesOrderInsuranceInfo $salesOrderInsuranceInfo): void {
     $this->SalesOrderInsuranceInfo = $salesOrderInsuranceInfo;
   }
 
-  public function getSalesOrderMessages(SalesOrderMessages $salesOrderMessages) {
+  public function getSalesOrderMessages(SalesOrderMessages $salesOrderMessages): void {
     $this->SalesOrderMessages = $salesOrderMessages;
   }
 
-  public function getSalesOrderWIPInfo(SalesOrderWIPInfo $salesOrderWIPInfo) {
+  public function getSalesOrderWIPInfo(SalesOrderWIPInfo $salesOrderWIPInfo): void {
     $this->SalesOrderWIPInfo = $salesOrderWIPInfo;
   }
 
-  public function setBrightreeID($BrightreeID) {
+  public function setBrightreeID(?int $BrightreeID): self {
     $this->BrightreeID = $BrightreeID;
     return $this;
   }
 
-  public function setExternalID($ExternalID) {
+  public function setExternalID(?string $ExternalID): self {
     $this->ExternalID = $ExternalID;
     return $this;
   }
 
-  public function setPointOfDeliveryInfo($PointOfDeliveryInfo) {
+  public function setPointOfDeliveryInfo(PointOfDeliveryInfo $PointOfDeliveryInfo): self {
     $this->PointOfDeliveryInfo = $PointOfDeliveryInfo;
+    return $this;
+  }
+
+  public function setQMBStatus(?string $QMBStatus): self {
+    $this->QMBStatus = $QMBStatus;
     return $this;
   }
 }

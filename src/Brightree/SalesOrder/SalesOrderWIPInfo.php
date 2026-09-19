@@ -3,65 +3,65 @@
 namespace Brightree\SalesOrder;
 
 class SalesOrderWIPInfo {
-  public $WIPAssignedToKey;
+  public ?int $WIPAssignedToKey = null;
 
-  public $WIPAssignedToPerson;
+  public ?string $WIPAssignedToPerson = null;
 
-  public $WIPClosedDate;
+  public ?string $WIPClosedDate = null;
 
-  public $WIPCompleted;
+  public ?bool $WIPCompleted = null;
 
-  public $WIPCreateDate;
+  public ?string $WIPCreateDate = null;
 
-  public $WIPDaysInState;
+  public ?int $WIPDaysInState = null;
 
-  public $WIPNeedDate;
+  public ?string $WIPNeedDate = null;
 
-  public $WIPStateKey;
+  public ?int $WIPStateKey = null;
 
-  public $WIPStateName;
+  public ?string $WIPStateName = null;
 
-  public function setWIPAssignedToKey($WIPAssignedToKey) {
+  public function setWIPAssignedToKey(?int $WIPAssignedToKey): self {
     $this->WIPAssignedToKey = $WIPAssignedToKey;
     return $this;
   }
 
-  public function setWIPAssignedToPerson($WIPAssignedToPerson) {
+  public function setWIPAssignedToPerson(?string $WIPAssignedToPerson): self {
     $this->WIPAssignedToPerson = $WIPAssignedToPerson;
     return $this;
   }
 
-  public function setWIPClosedDate($WIPClosedDate) {
+  public function setWIPClosedDate(?string $WIPClosedDate): self {
     $this->WIPClosedDate = $WIPClosedDate;
     return $this;
   }
 
-  public function setWIPCompleted($WIPCompleted) {
+  public function setWIPCompleted(?bool $WIPCompleted): self {
     $this->WIPCompleted = $WIPCompleted;
     return $this;
   }
 
-  public function setWIPCreateDate($WIPCreateDate) {
+  public function setWIPCreateDate(?string $WIPCreateDate): self {
     $this->WIPCreateDate = $WIPCreateDate;
     return $this;
   }
 
-  public function setWIPDaysInState($WIPDaysInState) {
+  public function setWIPDaysInState(?int $WIPDaysInState): self {
     $this->WIPDaysInState = $WIPDaysInState;
     return $this;
   }
 
-  public function setWIPNeedDate($WIPNeedDate) {
+  public function setWIPNeedDate(?string $WIPNeedDate): self {
     $this->WIPNeedDate = $WIPNeedDate;
     return $this;
   }
 
-  public function setWIPStateKey($WIPStateKey) {
+  public function setWIPStateKey(?int $WIPStateKey): self {
     $this->WIPStateKey = $WIPStateKey;
     return $this;
   }
 
-  public function setWIPStateName($WIPStateName) {
+  public function setWIPStateName(?string $WIPStateName): self {
     $this->WIPStateName = $WIPStateName;
     return $this;
   }

@@ -3,11 +3,11 @@
 namespace Brightree\Patient;
 
 class EligibilityVerification {
-  public $EligibilityVerified;
+  public ?bool $EligibilityVerified = null;
 
-  public $VerifiedDate;
+  public ?string $VerifiedDate = null;
 
-  public $VerifiedMethod;
+  public ?string $VerifiedMethod = null;
 
-  public $VerifyUserID;
+  public ?int $VerifyUserID = null;
 }

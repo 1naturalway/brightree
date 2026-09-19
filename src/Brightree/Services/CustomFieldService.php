@@ -10,7 +10,21 @@ class CustomFieldService extends BaseService {
     $this->wsdl_path = "https://webservices.brightree.net/v0100-2602/CustomFieldService/CustomFieldService.svc?singleWsdl";
   }
 
-  public function customFieldValueSaveMultiple($category, $brightreeID, $fieldValues) {
+  public function customFieldValueSaveMultiple(?string $category, ?int $brightreeID, ?array $fieldValues): mixed {
     return $this->apiCall('CustomFieldValueSaveMultiple', ['category' => $category, 'brightreeID' => $brightreeID, 'fieldValues' => $fieldValues]);
+  }
+
+  public function customFieldFetchAllByCategory(?string $category = null, ?bool $includeInactive = null): mixed {
+    return $this->apiCall('CustomFieldFetchAllByCategory', [
+      'category' => $category,
+      'includeInactive' => $includeInactive
+    ]);
+  }
+
+  public function customFieldValueFetchAllByBrightreeID(?string $category = null, ?int $brightreeID = null): mixed {
+    return $this->apiCall('CustomFieldValueFetchAllByBrightreeID', [
+      'category' => $category,
+      'brightreeID' => $brightreeID
+    ]);
   }
 }

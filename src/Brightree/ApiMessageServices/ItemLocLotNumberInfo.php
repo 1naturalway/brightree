@@ -3,17 +3,17 @@
 namespace Brightree\ApiMessageServices;
 
 class ItemLocLotNumberInfo {
-  public $AvailableQty;
+  public ?int $AvailableQty = null;
 
-  public $CommittedQty;
+  public ?int $CommittedQty = null;
 
-  public $ExpiresDate;
+  public ?string $ExpiresDate = null;
 
-  public $LotNumber;
+  public ?string $LotNumber = null;
 
-  public $OnHandQty;
+  public ?int $OnHandQty = null;
 
-  public $OnOrderQty;
+  public ?int $OnOrderQty = null;
 
-  public $OnRentQty;
+  public ?int $OnRentQty = null;
 }

@@ -3,70 +3,70 @@
 namespace Brightree\CommonServices;
 
 class ResponsiblePartyContact {
-  public $Address;
+  public Address $Address;
 
-  public $EmailAddress;
+  public ?string $EmailAddress = null;
 
-  public $FaxNumber;
+  public ?string $FaxNumber = null;
 
-  public $MobilePhone;
+  public ?string $MobilePhone = null;
 
-  public $Name;
+  public Name $Name;
 
-  public $PhoneNumber;
+  public ?string $PhoneNumber = null;
 
-  public $ContactType;
+  public ?string $ContactType = null;
 
-  public $ResponsiblePartyType;
+  public ?string $ResponsiblePartyType = null;
 
   public function __construct() {
     $this->Address = new Address();
     $this->Name = new Name();
   }
 
-  public function setAddress($Address) {
+  public function setAddress(Address $Address): self {
     $this->Address = $Address;
 
     return $this;
   }
 
-  public function setEmailAddress($EmailAddress) {
+  public function setEmailAddress(?string $EmailAddress): self {
     $this->EmailAddress = $EmailAddress;
 
     return $this;
   }
 
-  public function setFaxNumber($FaxNumber) {
+  public function setFaxNumber(?string $FaxNumber): self {
     $this->FaxNumber = $FaxNumber;
 
     return $this;
   }
 
-  public function setMobilePhone($MobilePhone) {
+  public function setMobilePhone(?string $MobilePhone): self {
     $this->MobilePhone = $MobilePhone;
 
     return $this;
   }
 
-  public function setName($Name) {
+  public function setName(Name $Name): self {
     $this->Name = $Name;
 
     return $this;
   }
 
-  public function setPhoneNumber($PhoneNumber) {
+  public function setPhoneNumber(?string $PhoneNumber): self {
     $this->PhoneNumber = $PhoneNumber;
 
     return $this;
   }
 
-  public function setContactType($ContactType) {
+  public function setContactType(?string $ContactType): self {
     $this->ContactType = $ContactType;
 
     return $this;
   }
 
-  public function setResponsiblePartyType($ResponsiblePartyType) {
+  public function setResponsiblePartyType(?string $ResponsiblePartyType): self {
     $this->ResponsiblePartyType = $ResponsiblePartyType;
 
     return $this;

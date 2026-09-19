@@ -6,117 +6,179 @@ use Brightree\ApiMessageServices\LookupValue;
 use Brightree\ApiMessageServices\ICDCodeInfo;
 
 class SalesOrderItemInfo {
-  public $AcceptAssignment;
+  public ?bool $AcceptAssignment = null;
 
-  public $AddMod1;
+  public ?string $AddMod1 = null;
 
-  public $AddMod2;
+  public ?string $AddMod2 = null;
 
-  public $AddMod3;
+  public ?string $AddMod3 = null;
 
-  public $AddMod4;
+  public ?string $AddMod4 = null;
 
-  public $AllowAmt;
+  public ?float $AllowAmt = null;
 
-  public $BillQty;
+  public ?int $BillQty = null;
 
-  public $BrightreeDetailID;
+  public ?int $BrightreeDetailID = null;
 
-  public $CancelledQty;
+  public ?int $CancelledQty = null;
 
-  public $ChargeAmt;
+  public ?float $ChargeAmt = null;
 
-  public $ClaimNote;
+  public ?string $ClaimNote = null;
 
-  public $ClaimNoteType;
+  public ?int $ClaimNoteTypeKey = null;
 
-  public $DelCoPayAmt;
+  public LookupValue $DefaultManufacturer;
 
-  public $DelTaxAmt;
+  public ?float $DelCoPayAmt = null;
 
-  public $DiagnosisCodes;
+  public ?float $DelTaxAmt = null;
 
-  public $DOSToDt;
+  public ICDCodeInfo $DiagnosisCodes;
 
-  public $ExtAllowAmt;
+  public ?string $DOSToDt = null;
 
-  public $ExtChargeAmt;
+  public ?float $ExtAllowAmt = null;
 
-  public $ExternalID;
+  public ?float $ExtChargeAmt = null;
 
-  public $ItemDescription;
+  public ?string $ExternalID = null;
 
-  public $ItemGroup;
+  public LookupValue $InventoryLocation;
 
-  public $ItemID;
+  public ?string $ItemDescription = null;
 
-  public $ItemName;
+  public LookupValue $ItemGroup;
 
-  public $LotNumberInfo;
+  public ?string $ItemID = null;
 
-  public $LotNumbers;
+  public ?string $ItemName = null;
 
-  public $NextDOSDt;
+  public array $LotNumbers;
 
-  public $Modifer1;
+  public ?string $NextDOSDt = null;
 
-  public $Modifer2;
+  public ?string $Modifier1 = null;
 
-  public $Modifer3;
+  public ?string $Modifier2 = null;
 
-  public $Modifer4;
+  public ?string $Modifier3 = null;
 
-  public $NonTaxReason;
+  public ?string $Modifier4 = null;
 
-  public $Note;
+  public LookupValue $NonTaxReason;
 
-  public $Opt;
+  public ?string $Note = null;
 
-  public $OverrideTaxRate;
+  public ?int $Opt = null;
 
-  public $PayorInfo;
+  public ?float $OverrideTaxRate = null;
 
-  public $PickedUpQuantity;
+  public ItemPayors $Payors;
 
-  public $PriceOption;
+  public ?int $PickupAvailableQuantity = null;
 
-  public $ProcCode;
+  public ?LookupValue $PriceOption = null;
 
-  public $PurchaseOrderBrightreeID;
+  public ?string $ProcCode = null;
 
-  public $PurchaseOrderID;
+  public ?int $PurchaseOrderBrightreeID = null;
 
-  public $Quantity;
+  public ?int $PurchaseOrderID = null;
 
-  public $ReceivedQty;
+  public ?int $Qty = null;
 
-  public $ResponsibilityAmt;
+  public ?int $ReceivedQty = null;
 
-  public $SalesType;
+  public ?float $ResponsibilityAmt = null;
 
-  public $SerialNumberInfo;
+  public ?string $SaleType = null;
 
-  public $SerialNumbers;
+  public array $SerialNumbers;
 
-  public $ServiceDt;
+  public ?string $ServiceDt = null;
 
-  public $ShippedQuantity;
+  public ?int $ShippedQty = null;
 
-  public $SpecialPricing;
+  public ?bool $SpecialPricing = null;
 
-  public $Taxable;
+  public ?bool $Taxable = null;
 
-  public $TaxZone;
+  public LookupValue $StockingUOM;
+
+  public ?LookupValue $TaxZone = null;
+
+  public ?bool $ABN = null;
+
+  public ?float $ABNAllowAmt = null;
+
+  public ?float $ABNChargeAmt = null;
+
+  public ?string $ABNItemName = null;
+
+  public ?string $ABNModifier1 = null;
+
+  public ?string $ABNModifier2 = null;
+
+  public ?string $ABNReason = null;
+
+  public ?bool $ABNUpgrade = null;
+
+  public ?string $ABNUpgradeItemID = null;
+
+  public ?string $ABNUpgradeItemName = null;
+
+  public ?string $ABNUpgradeItemProcCode = null;
+
+  public ?bool $BasicItemSerialNumberCollection = null;
+
+  public ?float $CTPAllowAmt = null;
+
+  public ?float $CTPChargeAmt = null;
+
+  public ?string $CTPModifier1 = null;
+
+  public ?string $CTPModifier2 = null;
+
+  public ?string $CTPModifier3 = null;
+
+  public ?string $CTPModifier4 = null;
+
+  public ?int $CTPPeriod = null;
+
+  public ?string $ItemType = null;
+
+  public ?bool $Kit = null;
+
+  public ?bool $Lotted = null;
+
+  public ?string $ManfBarCode = null;
+
+  public ?string $ManfItemId = null;
+
+  public ?bool $ManualConvertToPurchase = null;
+
+  public ?string $NextBillingDate = null;
+
+  public ?int $NextBillingPeriod = null;
+
+  public ?bool $PARRequiredNotSpecified = null;
+
+  public ?string $PatientExhaustDate = null;
+
+  public ?string $PriceOverride = null;
 
   public function __construct() {
-    $this->ClaimNoteType = new LookupValue();
     $this->DiagnosisCodes = new ICDCodeInfo();
+    $this->DefaultManufacturer = new LookupValue();
+    $this->InventoryLocation = new LookupValue();
     $this->ItemGroup = new LookupValue();
-    $this->LotNumberInfo = array();
     $this->LotNumbers = array();
     $this->NonTaxReason = new LookupValue();
-    $this->PayorInfo = new SalesOrderItemPayorInfo();
-    $this->SerialNumberInfo = array();
+    $this->Payors = new ItemPayors();
     $this->SerialNumbers = array();
+    $this->StockingUOM = new LookupValue();
   }
 }

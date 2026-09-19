@@ -3,29 +3,29 @@
 namespace Brightree\Patient;
 
 class PatientPayor {
-  public $Box10d;
+  public ?string $Box10d = null;
 
-  public $Box19;
+  public ?string $Box19 = null;
 
-  public $BrightreeID;
+  public ?int $BrightreeID = null;
 
-  public $DoNotPrintSecondaryClaims;
+  public ?bool $DoNotPrintSecondaryClaims = null;
 
-  public $EligibilityInfo;
+  public EligibilityVerification $EligibilityInfo;
 
-  public $InsuranceCompanyName;
+  public ?string $InsuranceCompanyName = null;
 
-  public $Insured;
+  public PatientInsured $Insured;
 
-  public $PatientKey;
+  public ?int $PatientKey = null;
 
-  public $PayorKey;
+  public ?int $PayorKey = null;
 
-  public $Policy;
+  public PatientPolicy $Policy;
 
-  public $PolicyContact;
+  public ?string $PolicyContact = null;
 
-  public $payorLevel;
+  public ?string $payorLevel = null;
 
   public function __construct() {
     $this->EligibilityInfo = new EligibilityVerification();

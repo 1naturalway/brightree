@@ -3,23 +3,23 @@
 namespace Brightree\SalesOrder;
 
 class SalesOrderPayorSearchResponse {
-  public $SOPayorKey;
+  public ?int $SOPayorKey = null;
 
-  public $SOKey;
+  public ?int $SOKey = null;
 
-  public $PayorLevelKey;
+  public ?int $PayorLevelKey = null;
 
-  public $PolicyNumber;
+  public ?string $PolicyNumber = null;
 
-  public $PayorKey;
+  public ?int $PayorKey = null;
 
-  public $StartDateTime;
+  public ?string $StartDateTime = null;
 
-  public $EndDateTime;
+  public ?string $EndDateTime = null;
 
-  public $Verified;
+  public ?bool $Verified = null;
 
-  public $InsuranceCompanyName;
+  public ?string $InsuranceCompanyName = null;
 
-  public $InsuranceCompanyPhone;
+  public ?string $InsuranceCompanyPhone = null;
 }

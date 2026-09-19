@@ -3,23 +3,23 @@
 namespace Brightree\ApiMessageServices;
 
 class BrightShip {
-  public $Carrier;
+  public ?LookupValue $Carrier = null;
 
-  public $ShippingMethod;
+  public ?LookupValue $ShippingMethod = null;
 
-  public $status;
+  public ?LookupValue $Status = null;
 
-  public function setStatus($status) {
-    $this->status = $status;
+  public function setStatus(?LookupValue $Status): self {
+    $this->Status = $Status;
     return $this;
   }
 
-  public function setShippingMethod($ShippingMethod) {
+  public function setShippingMethod(?LookupValue $ShippingMethod): self {
     $this->ShippingMethod = $ShippingMethod;
     return $this;
   }
 
-  public function setCarrier($Carrier) {
+  public function setCarrier(?LookupValue $Carrier): self {
     $this->Carrier = $Carrier;
     return $this;
   }

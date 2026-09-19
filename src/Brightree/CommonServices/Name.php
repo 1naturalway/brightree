@@ -3,37 +3,37 @@
 namespace Brightree\CommonServices;
 
 class Name {
-  public $First;
+  public ?string $First = null;
 
-  public $Last;
+  public ?string $Last = null;
 
-  public $Middle;
+  public ?string $Middle = null;
 
-  public $Suffix;
+  public ?string $Suffix = null;
 
-  public $Title;
+  public ?string $Title = null;
 
-  public function setFirst($First) {
+  public function setFirst(?string $First): self {
     $this->First = $First;
     return $this;
   }
 
-  public function setLast($Last) {
+  public function setLast(?string $Last): self {
     $this->Last = $Last;
     return $this;
   }
 
-  public function setMiddle($Middle) {
+  public function setMiddle(?string $Middle): self {
     $this->Middle = $Middle;
     return $this;
   }
 
-  public function setSuffix($Suffix) {
+  public function setSuffix(?string $Suffix): self {
     $this->Suffix = $Suffix;
     return $this;
   }
 
-  public function setTitle($Title) {
+  public function setTitle(?string $Title): self {
     $this->Title = $Title;
     return $this;
   }

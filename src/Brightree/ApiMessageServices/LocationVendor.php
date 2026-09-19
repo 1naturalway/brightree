@@ -2,16 +2,18 @@
 
 namespace Brightree\ApiMessageServices;
 
+use Brightree\Patient\Contact;
+
 class LocationVendor {
-  public $BrightreeID;
+  public ?int $BrightreeID = null;
 
-  public $BulkAccountNumber;
+  public ?string $BulkAccountNumber = null;
 
-  public $DropShipAccountNumber;
+  public ?string $DropShipAccountNumber = null;
 
-  public $EDIContact;
+  public ?Contact $EDIContact = null;
 
-  public $Location;
+  public LookupValue $Location;
 
   public function __construct() {
     $this->Location = new LookupValue();

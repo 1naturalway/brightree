@@ -3,58 +3,58 @@
 namespace Brightree\CommonServices;
 
 class Address {
-  public $AddressLine1;
+  public ?string $AddressLine1 = null;
 
-  public $AddressLine2;
+  public ?string $AddressLine2 = null;
 
-  public $AddressLine3;
+  public ?string $AddressLine3 = null;
 
-  public $City;
+  public ?string $City = null;
 
-  public $PostalCode;
+  public ?string $PostalCode = null;
 
-  public $County;
+  public ?string $County = null;
 
-  public $Country;
+  public ?string $Country = null;
 
-  public $State;
+  public ?string $State = null;
 
-  public function setAddressLine1($AddressLine1) {
+  public function setAddressLine1(?string $AddressLine1): self {
     $this->AddressLine1 = $AddressLine1;
     return $this;
   }
 
-  public function setAddressLine2($AddressLine2) {
+  public function setAddressLine2(?string $AddressLine2): self {
     $this->AddressLine2 = $AddressLine2;
     return $this;
   }
 
-  public function setAddressLine3($AddressLine3) {
+  public function setAddressLine3(?string $AddressLine3): self {
     $this->AddressLine3 = $AddressLine3;
     return $this;
   }
 
-  public function setCity($City) {
+  public function setCity(?string $City): self {
     $this->City = $City;
     return $this;
   }
 
-  public function setPostalCode($PostalCode) {
+  public function setPostalCode(?string $PostalCode): self {
     $this->PostalCode = $PostalCode;
     return $this;
   }
 
-  public function setCounty($County) {
+  public function setCounty(?string $County): self {
     $this->County = $County;
     return $this;
   }
 
-  public function setCountry($Country) {
+  public function setCountry(?string $Country): self {
     $this->Country = $Country;
     return $this;
   }
 
-  public function setState($State) {
+  public function setState(?string $State): self {
     $this->State = $State;
     return $this;
   }

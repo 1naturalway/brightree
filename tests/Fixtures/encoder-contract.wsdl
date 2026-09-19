@@ -2,12 +2,22 @@
 <!--
   A generic document/literal wrapped contract, written by hand for this test
   suite. It contains nothing from Brightree: it exists so the promises
-  Brightree\Soap\RequestPruner makes can be checked against the real ext-soap
-  encoder without any proprietary WSDL on disk.
+  Brightree\Soap\RequestPruner and Brightree\Soap\ResponseHydrator make can be
+  checked against the real ext-soap encoder and decoder without any
+  proprietary WSDL on disk.
 
-  The shapes here are the ones the pruner has to get right: nillable and
-  non-nillable optional elements, a repeating element, an enumerated simple
-  type, base64Binary, and a WCF-style dictionary.
+  The shapes the pruner has to get right: nillable and non-nillable optional
+  elements, a repeating element, an enumerated simple type, base64Binary, and
+  a WCF-style dictionary.
+
+  The shapes the hydrator has to get right, on top of those: collections
+  nested inside collections (Thing > Items > Item > Tags > Tag), an xs:decimal,
+  which ext-soap decodes to a string while the DTOs declare float, and an
+  element the request DTO deliberately does not carry (Item/ServerNote), which
+  is how Brightree's response types are sometimes supersets of its request
+  types.
+
+  The matching request DTOs are in tests/Support/Dto.
 -->
 <wsdl:definitions name="EncoderContract"
                   targetNamespace="urn:brightree-tests"
@@ -47,6 +57,7 @@
           <xs:element minOccurs="0" name="Kind" type="tns:Kind"/>
           <xs:element minOccurs="0" name="Blob" type="xs:base64Binary"/>
           <xs:element minOccurs="0" name="Bag" type="tns:ArrayOfKeyValueOfintstring"/>
+          <xs:element minOccurs="0" name="StrictKind" type="tns:Kind"/>
         </xs:sequence>
       </xs:complexType>
 
@@ -66,6 +77,28 @@
         <xs:sequence>
           <xs:element minOccurs="0" name="Id" type="xs:int"/>
           <xs:element minOccurs="0" name="Label" nillable="true" type="xs:string"/>
+          <!-- xs:decimal decodes to a PHP string, so the hydrator has to coerce
+               it to the float the DTO declares, as it does for every Brightree
+               money field. -->
+          <xs:element minOccurs="0" name="Amount" type="xs:decimal"/>
+          <!-- Reaches four levels down: Thing > Items > Item > Tags > Tag. -->
+          <xs:element minOccurs="0" name="Tags" nillable="true" type="tns:ArrayOfTag"/>
+          <!-- Deliberately absent from the Item request DTO, so a response
+               type that is a superset of the request type can be tested. -->
+          <xs:element minOccurs="0" name="ServerNote" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="ArrayOfTag">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Tag" nillable="true" type="tns:Tag"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="Tag">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Weight" type="xs:decimal"/>
         </xs:sequence>
       </xs:complexType>
 

@@ -15,6 +15,7 @@ hand.
 - [Configuration](#configuration)
 - [Building requests](#building-requests)
 - [Reading responses](#reading-responses)
+- [Updating a fetched record](#updating-a-fetched-record)
 - [Error handling](#error-handling)
 - [Services](#services)
 - [Escape hatches](#escape-hatches)
@@ -242,6 +243,100 @@ $payors = $result->Items->Patient->PatientInsuranceInfo->Payors->PatientPayorInf
 $payors = $payors === null ? [] : (is_array($payors) ? $payors : [$payors]);
 ```
 
+To skip that guard entirely — and to get typed objects back — hydrate the
+response instead. See below.
+
+## Updating a fetched record
+
+The common Brightree workflow is fetch, change a couple of fields, send it
+back. The update has to carry the fields nobody touched, so building the
+request object from scratch is not an option. `ResponseHydrator` turns a
+response node into the request DTO the operation expects:
+
+```php
+use Brightree\SalesOrder\SalesOrder;
+use Brightree\Soap\ResponseHydrator;
+
+$service = $brightree->salesOrderService();
+
+$response = $service->salesOrderFetchByBrightreeID(555);
+$order = ResponseHydrator::hydrate(SalesOrder::class, $response->SalesOrderFetchByBrightreeIDResult->Items->SalesOrder);
+
+$item = $order->SalesOrderItems[0];
+$item->ProcCode = 'A4253';
+$item->ChargeAmt = 45.00;
+$item->AllowAmt = 12.50;
+$item->Qty = 3;
+
+$service->salesOrderUpdateItem(555, $item->BrightreeDetailID, $item);
+```
+
+Use `hydrateMany()` when the node you are handed is the collection rather than
+a single record:
+
+```php
+$orders = ResponseHydrator::hydrateMany(SalesOrder::class, $result->Items);
+```
+
+Everything is driven by the DTO's own declared property types, so there is no
+classmap to register and nothing to keep in step with the WSDLs.
+
+### Collections become plain lists
+
+A repeating element comes back inside a wrapper object keyed by the repeated
+element's name, and ext-soap collapses that to a single object rather than a
+one-element array whenever the element occurs once. Hydration flattens all of
+it, including the empty wrapper Brightree sends for an empty collection:
+
+```php
+// {"Payors": {"SalesOrderItemPayorInfo": [{...}, {...}]}}  ->  2 items
+// {"Payors": {"SalesOrderItemPayorInfo": {...}}}           ->  1 item
+// {"Payors": {}}                                           ->  0 items
+
+foreach ($item->Payors as $payor) {   // no is_array() guard needed
+    $payor->PayorKey;
+}
+```
+
+Nesting is followed all the way down, so `SalesOrder` &rarr; `SalesOrderItems`
+&rarr; `SalesOrderItemInfo` &rarr; `Payors` &rarr; `SalesOrderItemPayorInfo`
+arrives as typed objects at every level.
+
+Setting `'soap' => ['features' => SOAP_SINGLE_ELEMENT_ARRAYS]` makes ext-soap
+keep one-element collections as lists at the source. It changes the shape of
+every raw response, so it is off by default, and it does not remove the need
+for hydration — an *empty* collection still arrives as a wrapper with no
+children either way. Hydrated results are identical with it on or off.
+
+### A field the response omits keeps its default
+
+An absent property is left alone rather than set to null. That distinction is
+the whole point: a null would be sent back as `xsi:nil`, which tells a WCF
+endpoint to blank the field. A field the response returns *as* `xsi:nil` is
+treated the same way — it is already null server-side, so there is nothing to
+write back.
+
+The upshot is that a hydrated DTO sent straight back reproduces the record it
+came from, minus the nils. One caveat: the DTOs declare every `xs:decimal` as
+`float`, so `12.50` is re-encoded as `12.5`. The value is unchanged.
+
+### Anything that cannot be carried across is reported, not thrown
+
+Brightree's response types are sometimes supersets of its request types, and a
+service can gain an enum case between releases. Neither raises — an unrelated
+field drifting must not fail a call that never touched it. Pass a third
+argument to see what was dropped:
+
+```php
+$order = ResponseHydrator::hydrate(SalesOrder::class, $node, $skipped);
+
+// $skipped === ['SalesOrder.SalesOrderItems[0].ServerOnlyField']
+```
+
+`$skipped` is an empty array when the whole node came across cleanly. Only
+structural problems raise: a class that does not exist, or a graph nested more
+than 64 levels deep.
+
 ## Error handling
 
 Transport and encoding problems raise `SoapFault`. Business-level failures come
@@ -334,8 +429,9 @@ The suite is in two tiers:
 - **Tier B** needs Brightree's WSDLs and skips with an explanatory message
   without them. It holds the contract tests, which assert every wrapper's
   operation name, arguments and endpoint against the current schemas — that is
-  what catches drift after a Brightree release — plus DTO field coverage and
-  serialization regressions.
+  what catches drift after a Brightree release — plus DTO field coverage,
+  serialization regressions, and the fetch-edit-send round trip against
+  Brightree's own collection shapes.
 
 ```bash
 composer test                                        # Tier B skips

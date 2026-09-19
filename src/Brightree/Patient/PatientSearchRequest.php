@@ -19,6 +19,7 @@ class PatientSearchRequest {
 
   public ?string $CreateDateTimeStart = null;
 
+  /** @var \Brightree\Types\CustomFieldSearchParam[]|null */
   public ?array $CustomFieldSearchParams = null;
 
   public PatientCustomerType|string|null $CustomerType = null;

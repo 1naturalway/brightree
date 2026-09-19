@@ -5,8 +5,10 @@ namespace Brightree\SalesOrder;
 class SalesOrderMessages {
   public ?int $BrightreeID = null;
 
+  /** @var \Brightree\Types\SalesOrderValidationDetailMessage[]|null */
   public ?array $DetailMessages = null;
 
+  /** @var \Brightree\Types\SalesOrderValidationHeaderMessage[]|null */
   public ?array $HeaderMessages = null;
 
   public function setBrightreeID(?int $BrightreeID): self {

@@ -17,8 +17,10 @@ class Invoice {
 
   public InvoiceBalanceInfo $InvoiceBalanceInfo;
 
+  /** @var \Brightree\Types\InvoiceDetail[]|null */
   public ?array $InvoiceItems = null;
 
+  /** @var \Brightree\Types\RelatedInvoice[]|null */
   public ?array $RelatedInvoices = null;
 
   public function __construct() {

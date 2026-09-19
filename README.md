@@ -1,51 +1,104 @@
 # Brightree PHP SDK
 
-## Install
+[![CI](https://github.com/1naturalway/brightree/actions/workflows/ci.yml/badge.svg)](https://github.com/1naturalway/brightree/actions/workflows/ci.yml)
 
-Using the composer CLI:
+A PHP client for the [Brightree](https://brightree.com) SOAP API. It wraps all
+**357 operations** across Brightree's **12 web services** in typed methods, and
+ships typed request objects for every input the API accepts, so you write
+`$order->addSalesOrderItem($item)` instead of assembling `stdClass` graphs by
+hand.
 
-```
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Quick start](#quick-start)
+- [Laravel](#laravel)
+- [Configuration](#configuration)
+- [Building requests](#building-requests)
+- [Reading responses](#reading-responses)
+- [Error handling](#error-handling)
+- [Services](#services)
+- [Escape hatches](#escape-hatches)
+- [Development](#development)
+
+## Requirements
+
+- PHP 8.4 or 8.5
+- `ext-soap`
+- Brightree API credentials
+
+## Installation
+
+```bash
 composer require 1naturalway/brightree
 ```
 
-Or manually add it to your composer.json:
+## Quick start
 
-``` json
-{
-  "require": {
-    "1naturalway/brightree": "dev-master",
-  }
+```php
+use Brightree\BrightreeClient;
+
+$brightree = new BrightreeClient([
+    'username' => getenv('BRIGHTREE_USERNAME'),
+    'password' => getenv('BRIGHTREE_PASSWORD'),
+]);
+
+$response = $brightree->patientService()->patientFetchByBrightreeID(123456);
+```
+
+Creating a patient:
+
+```php
+use Brightree\Enums\Gender;
+use Brightree\Enums\PatientCustomerType;
+use Brightree\Patient\Patient;
+
+$patient = new Patient();
+$patient->PatientGeneralInfo->Name->First = 'Ada';
+$patient->PatientGeneralInfo->Name->Last = 'Lovelace';
+$patient->PatientGeneralInfo->BirthDate = '1815-12-10';
+$patient->PatientGeneralInfo->CustomerType = PatientCustomerType::Patient;
+$patient->PatientGeneralInfo->DeliveryAddress->AddressLine1 = '1 Analytical Way';
+$patient->PatientGeneralInfo->DeliveryAddress->City = 'Dayton';
+$patient->PatientGeneralInfo->DeliveryAddress->State = 'OH';
+$patient->PatientGeneralInfo->DeliveryAddress->PostalCode = '45402';
+$patient->PatientClinicalInfo->Gender = Gender::Female;
+
+$response = $brightree->patientService()->patientCreate($patient);
+
+if ($response->PatientCreateResult->Success) {
+    $patientKey = $response->PatientCreateResult->UpdatedDataKey;
 }
 ```
 
-## Laravel 5.1 Service Provider
+## Laravel
 
-In config/app.php, register the service provider
+Auto-discovery registers the service provider and the `Brightree` facade. To
+wire them up by hand instead, add to `config/app.php`:
 
+```php
+'providers' => [
+    Brightree\FrameworkSupport\Laravel\BrightreeServiceProvider::class,
+],
+
+'aliases' => [
+    'Brightree' => Brightree\FrameworkSupport\Laravel\BrightreeFacade::class,
+],
 ```
-Brightree\FrameworkSupport\Laravel\BrightreeServiceProvider::class,
-```
 
-Register the Facade (optional)
+Publish the config:
 
-```
-'Brightree' => Brightree\FrameworkSupport\Laravel\BrightreeFacade::class
-```
-
-Publish the config
-
-```
+```bash
 php artisan vendor:publish --provider="Brightree\FrameworkSupport\Laravel\BrightreeServiceProvider"
 ```
 
-Set your env variables
+Set your credentials in `.env`:
 
 ```
 BRIGHTREE_USERNAME=xxxxxxxx
 BRIGHTREE_PASSWORD=xxxxxxxx
 ```
 
-Access Brightree SDK from the Facade or Binding
+Then resolve the client from the container or the facade:
 
 ```php
 $service = Brightree::salesOrderService();
@@ -53,58 +106,256 @@ $service = Brightree::salesOrderService();
 $service = app('brightree')->salesOrderService();
 ```
 
-## Processing a Customer
+## Configuration
 
-1) Create Patient
-2) Add Insurance to Patient
-3) Create Sales Order
-4) Add Items to Sales Order
+`BrightreeClient` takes credentials plus two optional override arrays.
+
+```php
+$brightree = new BrightreeClient([
+    'username' => '...',
+    'password' => '...',
+
+    // Merged over BrightreeClient::DEFAULT_SSL_OPTIONS
+    'ssl' => [
+        'verify_peer' => true,
+        'verify_peer_name' => true,
+        'allow_self_signed' => false,
+    ],
+
+    // Merged over BrightreeClient::DEFAULT_SOAP_OPTIONS
+    'soap' => [
+        'connection_timeout' => 30,
+    ],
+]);
+```
+
+> [!IMPORTANT]
+> **TLS peer verification is off by default.** That is how this client has
+> always talked to Brightree, and turning it on by default would change the
+> behaviour of every existing installation. Enable it with the `ssl` options
+> above — in Laravel, set `BRIGHTREE_VERIFY_PEER=true`.
+
+WSDLs are cached to disk (`WSDL_CACHE_DISK`) and SoapClient instances are
+reused per endpoint, so a WSDL is fetched once rather than on every call. Pass
+`'soap' => ['cache_wsdl' => WSDL_CACHE_NONE]` while developing against a
+changing WSDL; `soap.wsdl_cache_ttl` in `php.ini` controls how long a cached
+copy lives.
+
+## Building requests
+
+### Nested objects are ready to use
+
+Request objects build their children up front, so you can assign straight
+through them without null checks:
 
 ```php
 $order = new Brightree\SalesOrder\SalesOrder();
-$order->SalesOrderClinicalInfo->Patient->AccountNumber = $accountNumber;
+$order->SalesOrderClinicalInfo->Patient->AccountNumber = 'ACCT-9';
+$order->DeliveryInfo->Address->City = 'Dayton';
+```
 
-$pump = new Brightree\SalesOrder\SalesOrderItemInfo();
+### Only what you set is sent
+
+Brightree's services are WCF endpoints, where an element carrying
+`xsi:nil="true"` means *"set this field to null"* — which is not the same as
+omitting it, which means *"leave this field alone"*. Untouched fields are
+stripped from the request rather than transmitted as explicit nulls, so an
+update cannot blank a field you never assigned.
+
+Falsy values you *did* set — `false`, `0`, `''` — are always sent.
+
+### Collections are plain arrays
+
+```php
+use Brightree\SalesOrder\SalesOrderItemInfo;
+
+$pump = new SalesOrderItemInfo();
 $pump->ItemID = 'PUMP-1';
 $pump->Qty = 1;
 
-$order->addSalesOrderItem($pump);
+$kit = new SalesOrderItemInfo();
+$kit->ItemID = 'KIT-2';
+$kit->Qty = 2;
 
-$response = Brightree::salesOrderService()->salesOrderCreate($order);
+$order->addSalesOrderItem($pump)->addSalesOrderItem($kit);
+
+// equivalently
+$order->SalesOrderItems = [$pump, $kit];
 ```
 
-Only the fields you set are sent. The DTOs build their nested objects up front
-so you can assign straight through them, and anything left untouched is
-stripped from the request rather than transmitted as an explicit null — which
-Brightree would read as "clear this field". Set `$service->prune = false` on a
-call that really does need to blank something server-side.
+### Enums
 
-## WSDLs
+Every restricted string in the schema has a backed enum under
+`Brightree\Enums`. Properties accept either a case or a raw string, so
+existing string code keeps working:
 
-Brightree's WSDL files are their proprietary material and are **not** part of
-this repository. The library talks to the live endpoints, so you do not need
-them for normal use.
+```php
+use Brightree\Enums\PayorLevel;
 
-You do need a local copy to regenerate the types in `src/Brightree/Types` and
-`src/Brightree/Enums`, or to run the test suite's contract tests. Put it in a
-`Brightree Services` directory at the project root, or point
-`BRIGHTREE_WSDL_DIR` at wherever you keep it:
-
+$payor->payorLevel = PayorLevel::Primary;
+$payor->payorLevel = 'Primary';           // also fine
 ```
+
+### Request types
+
+Operations that take a structured argument have a class for it under
+`Brightree\Types`, named after the schema type. Each service method documents
+the one it expects:
+
+```php
+use Brightree\Enums\SortOrder;
+use Brightree\Types\ItemSearchRequest;
+use Brightree\Types\ItemSortParameter;
+
+$request = new ItemSearchRequest();
+$request->ItemID = 'PUMP-1';
+
+$sort = new ItemSortParameter();
+$sort->SortOrder = SortOrder::Ascending;
+
+$response = $brightree->inventoryService()->itemSearch($request, [$sort], 25, 1);
+```
+
+A handful of type names are declared differently by different services. Those
+live in a per-service sub-namespace — `Brightree\Types\Inventory\...`,
+`Brightree\Types\ReferenceData\...` — and are not interchangeable.
+
+## Reading responses
+
+Responses come back as `stdClass`, not as the request classes. Every operation
+wraps its payload in a `{OperationName}Result` property:
+
+```php
+$response = $brightree->patientService()->patientCreate($patient);
+
+$result = $response->PatientCreateResult;
+$result->Success;          // bool
+$result->UpdatedDataKey;   // the new record's Brightree ID
+$result->Messages;         // validation and process messages
+```
+
+Brightree omits a collection entirely when it is empty and collapses it to a
+single object when it holds one item, so guard before iterating:
+
+```php
+$payors = $result->Items->Patient->PatientInsuranceInfo->Payors->PatientPayorInfo ?? null;
+$payors = $payors === null ? [] : (is_array($payors) ? $payors : [$payors]);
+```
+
+## Error handling
+
+Transport and encoding problems raise `SoapFault`. Business-level failures come
+back on the response with `Success => false` and detail in `Messages`:
+
+```php
+try {
+    $response = $brightree->salesOrderService()->salesOrderCreate($order);
+} catch (SoapFault $e) {
+    // network, auth, or malformed request
+}
+
+if (!$response->SalesOrderCreateResult->Success) {
+    // rejected by Brightree; inspect ->Messages
+}
+```
+
+## Services
+
+| Accessor | Operations |
+| --- | --- |
+| `customFieldService()` | 3 |
+| `doctorService()` | 17 |
+| `documentManagementService()` | 11 |
+| `insuranceService()` | 38 |
+| `inventoryService()` | 40 |
+| `patientBillingService()` | 8 |
+| `patientService()` | 52 |
+| `pickupExchangeService()` | 21 |
+| `pricingService()` | 12 |
+| `referenceDataService()` | 69 |
+| `salesOrderService()` | 73 |
+| `securityService()` | 13 |
+
+## Escape hatches
+
+### Calling an unwrapped operation
+
+`BaseService` can talk to any endpoint directly:
+
+```php
+use Brightree\Services\BaseService;
+
+$service = new BaseService($brightree->params());
+$service->wsdl_path = 'https://webservices.brightree.net/v0100-2602/CustomFieldService/CustomFieldService.svc?singleWsdl';
+
+$response = $service->custom('CustomFieldFetchAllByCategory', [
+    'category' => 'Patient',
+    'includeInactive' => false,
+]);
+```
+
+### Sending an explicit null
+
+To deliberately blank a field server-side, turn pruning off for that call. Be
+aware this applies to the whole payload, so every unset field on it is sent as
+an explicit null too:
+
+```php
+$service = $brightree->patientService();
+$service->prune = false;
+$service->patientUpdate($brightreeId, $patient);
+```
+
+## Development
+
+```bash
+composer install
+composer test           # PHPUnit
+vendor/bin/phpcs        # PSR-12, 2-space indent
+```
+
+### WSDLs
+
+Brightree's WSDL files are **their proprietary material and are not part of
+this repository**. You do not need them for normal use — the client talks to
+the live endpoints.
+
+You do need a local copy to run the contract tests or regenerate the types.
+Put it in a `Brightree Services` directory at the project root, or point
+`BRIGHTREE_WSDL_DIR` at wherever you keep it.
+
+### Tests
+
+The suite is in two tiers:
+
+- **Tier A** runs on any checkout. It covers request pruning, client caching
+  and the encoder's behaviour, using a small generic fixture WSDL written for
+  this repository.
+- **Tier B** needs Brightree's WSDLs and skips with an explanatory message
+  without them. It holds the contract tests, which assert every wrapper's
+  operation name, arguments and endpoint against the current schemas — that is
+  what catches drift after a Brightree release — plus DTO field coverage and
+  serialization regressions.
+
+```bash
+composer test                                        # Tier B skips
+BRIGHTREE_WSDL_DIR=~/brightree-wsdls composer test   # everything runs
+```
+
+### Regenerating types
+
+`src/Brightree/Types` and `src/Brightree/Enums` are generated from the WSDLs
+and committed, so this only needs running when Brightree ships a new service
+version:
+
+```bash
 BRIGHTREE_WSDL_DIR=~/brightree-wsdls php tools/generate-types.php
 ```
 
-The generated output is committed, so this only needs running when Brightree
-ships a new service version.
+The generator reuses a hand-written class only when it matches the schema
+field-for-field, and reports anything it declined to reuse. Run the contract
+tests afterwards to confirm the wrappers still line up.
 
-## Tests
+## License
 
-```
-composer test
-```
-
-Tests that need the WSDLs skip with an explanatory message when they are
-absent, so the suite passes on a plain checkout. Supply the WSDLs as above to
-run the contract tests, which check every wrapper's operation name, arguments
-and endpoint against the current schemas — that is what catches drift after a
-Brightree release.
+GPL-3.0-or-later

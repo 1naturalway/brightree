@@ -38,6 +38,40 @@ jobs:
           find . -path ./vendor -prune -o -name '*.php' -print0 \
             | xargs -0 -r -n1 -P4 php -l
 
+  tests:
+    name: Tests (PHP ${{ matrix.php }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['8.4', '8.5']
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up PHP ${{ matrix.php }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: soap
+          coverage: none
+
+      - name: Cache Composer packages
+        uses: actions/cache@v6
+        with:
+          path: vendor
+          key: composer-${{ runner.os }}-php${{ matrix.php }}-${{ hashFiles('composer.json') }}
+          restore-keys: composer-${{ runner.os }}-php${{ matrix.php }}-
+
+      # composer.lock is intentionally gitignored for a library, so resolve fresh.
+      - name: Install dependencies
+        run: composer update --prefer-dist --no-progress --no-interaction
+
+      # Brightree's WSDLs are proprietary and are not in this repository, so the
+      # contract and regression tier skips itself here and the rest runs in full.
+      # Point BRIGHTREE_WSDL_DIR at a licensed copy to exercise it.
+      - name: Run PHPUnit
+        run: vendor/bin/phpunit --display-all-issues
+
   code-style:
     name: Code style (phpcs)
     runs-on: ubuntu-latest

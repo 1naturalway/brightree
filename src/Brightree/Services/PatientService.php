@@ -3,40 +3,76 @@
 namespace Brightree\Services;
 
 use Brightree\Patient\Patient;
+use Brightree\Patient\PatientPayor;
 use Brightree\Patient\PatientSearchRequest;
 use Brightree\Patient\PatientSortParameter;
 use Brightree\Services\BaseService;
-use Brightree\Patient\PatientPayor;
+use Brightree\Types\FacilityResidentInfo;
+use Brightree\Types\FinancialNote;
+use Brightree\Types\FinancialNoteSearchRequest;
+use Brightree\Types\FinancialNoteSortParameter;
+use Brightree\Types\JustificationNote;
+use Brightree\Types\JustificationNoteSearchRequest;
+use Brightree\Types\JustificationNoteSortParameter;
+use Brightree\Types\PatientNote;
+use Brightree\Types\PatientNoteCommentCreateRequest;
+use Brightree\Types\PatientNoteCommentUpdateRequest;
+use Brightree\Types\PatientNoteSearchRequest;
+use Brightree\Types\PatientNoteSortParameter;
+use Brightree\Types\PatientOptInStatus;
+use Brightree\Types\PatientPhoneNumberSearchRequest;
+use Brightree\Types\PatientPhoneSearchSortParameter;
+use Brightree\Types\PractitionerNote;
+use Brightree\Types\PractitionerNoteSearchRequest;
+use Brightree\Types\PractitionerNoteSortParameter;
+use Brightree\Types\ProgressNote;
+use Brightree\Types\ProgressNoteSearchRequest;
+use Brightree\Types\ProgressNoteSortParameter;
+use Brightree\Types\PtAdditionalContact;
 
 class PatientService extends BaseService {
   public function __construct(array $params) {
     $this->params = $params;
-    $this->wsdl_path = "https://webservices.brightree.net/v0100-2602/OrderEntryService/patientservice.svc?singleWsdl";
+    $this->wsdl_path = "https://webservices.brightree.net/v0100-2602/OrderEntryService/PatientService.svc?singleWsdl";
   }
 
-  public function patientFetchbyBrightreeID(?int $BrightreeID): mixed {
+  public function patientFetchByBrightreeID(?int $BrightreeID): mixed {
     return $this->apiCall('PatientFetchByBrightreeID', ['BrightreeID' => $BrightreeID]);
   }
 
+  /**
+   * @param Patient $Patient
+   */
   public function patientCreate(Patient $Patient): mixed {
     return $this->apiCall('PatientCreate', ['Patient' => $Patient]);
   }
 
-  public function patientUpdate(Patient $Patient, ?int $BrightreeID): mixed {
+  /**
+   * @param Patient $Patient
+   */
+  public function patientUpdate(?int $BrightreeID, ?Patient $Patient): mixed {
     return $this->apiCall('PatientUpdate', [
-      'Patient' => $Patient,
-      'BrightreeID' => $BrightreeID
+      'BrightreeID' => $BrightreeID,
+      'Patient' => $Patient
     ]);
   }
 
+  /**
+   * PayorKey is a separate operation parameter that Brightree also expects to
+   * be set inside PatientPayor, so it is read back off the object rather than
+   * asked for twice.
+   */
   public function patientPayorAdd(?int $PatientKey, ?PatientPayor $PatientPayor): mixed {
     return $this->apiCall('PatientPayorAdd', [
       'PatientKey' => $PatientKey,
-      'PayorKey' => $PatientPayor->PayorKey,
+      'PayorKey' => $PatientPayor?->PayorKey,
       'PatientPayor' => $PatientPayor
     ]);
   }
 
+  /**
+   * @param PatientPayor|null $PatientPayor
+   */
   public function patientPayorUpdate(?int $BrightreeID, ?PatientPayor $PatientPayor): mixed {
     return $this->apiCall('PatientPayorUpdate', [
       'BrightreeID' => $BrightreeID,
@@ -55,9 +91,27 @@ class PatientService extends BaseService {
     return $this->apiCall('PatientPayorFetchAll', ['PatientKey' => $PatientKey]);
   }
 
-  public function patientPayorInfo(?int $BrightreeID): mixed {
-    $patient = $this->apiCall('PatientFetchByBrightreeID', ['BrightreeID' => $BrightreeID]);
-    return $patient->PatientFetchByBrightreeIDResult->Items->Patient->PatientInsuranceInfo->Payors->PatientPayorInfo;
+  /**
+   * Convenience wrapper around patientFetchByBrightreeID() that returns just
+   * the patient's payors.
+   *
+   * Always returns a list: Brightree omits Payors for a patient who has none
+   * and collapses it to a single object when there is exactly one, so the raw
+   * response shape is not safe to index into.
+   *
+   * @return object[]
+   */
+  public function patientPayorInfo(?int $BrightreeID): array {
+    $response = $this->patientFetchByBrightreeID($BrightreeID);
+
+    $payors = $response->PatientFetchByBrightreeIDResult->Items->Patient
+      ->PatientInsuranceInfo->Payors->PatientPayorInfo ?? null;
+
+    if ($payors === null) {
+      return [];
+    }
+
+    return is_array($payors) ? $payors : [$payors];
   }
 
   /**
@@ -77,6 +131,9 @@ class PatientService extends BaseService {
     ]);
   }
 
+  /**
+   * @param PtAdditionalContact|null $AdditionalPatientContact
+   */
   public function additionalPatientContactCreate(mixed $AdditionalPatientContact = null): mixed {
     return $this->apiCall('AdditionalPatientContactCreate', [
       'AdditionalPatientContact' => $AdditionalPatientContact
@@ -95,6 +152,9 @@ class PatientService extends BaseService {
     ]);
   }
 
+  /**
+   * @param PtAdditionalContact|null $AdditionalPatientContact
+   */
   public function additionalPatientContactUpdate(?int $BrightreePatientContactKey = null, mixed $AdditionalPatientContact = null): mixed {
     return $this->apiCall('AdditionalPatientContactUpdate', [
       'BrightreePatientContactKey' => $BrightreePatientContactKey,
@@ -102,6 +162,9 @@ class PatientService extends BaseService {
     ]);
   }
 
+  /**
+   * @param FacilityResidentInfo|null $FacilityResidentInfo
+   */
   public function facilityResidentCreate(?int $facilityMasterKey = null, mixed $FacilityResidentInfo = null): mixed {
     return $this->apiCall('FacilityResidentCreate', [
       'facilityMasterKey' => $facilityMasterKey,
@@ -116,6 +179,9 @@ class PatientService extends BaseService {
     ]);
   }
 
+  /**
+   * @param FinancialNote|null $financialNote
+   */
   public function financialNoteCreate(mixed $financialNote = null): mixed {
     return $this->apiCall('FinancialNoteCreate', [
       'financialNote' => $financialNote
@@ -128,6 +194,10 @@ class PatientService extends BaseService {
     ]);
   }
 
+  /**
+   * @param FinancialNoteSearchRequest|null $searchRequest
+   * @param FinancialNoteSortParameter[]|null $sortRequest
+   */
   public function financialNoteSearch(mixed $searchRequest = null, ?array $sortRequest = null, ?int $pageSize = null, ?int $page = null): mixed {
     return $this->apiCall('FinancialNoteSearch', [
       'searchRequest' => $searchRequest,
@@ -137,6 +207,9 @@ class PatientService extends BaseService {
     ]);
   }
 
+  /**
+   * @param FinancialNote|null $financialNote
+   */
   public function financialNoteUpdate(?int $brightreeID = null, mixed $financialNote = null): mixed {
     return $this->apiCall('FinancialNoteUpdate', [
       'brightreeID' => $brightreeID,
@@ -144,6 +217,9 @@ class PatientService extends BaseService {
     ]);
   }
 
+  /**
+   * @param JustificationNote|null $justificationNote
+   */
   public function justificationNoteCreate(mixed $justificationNote = null): mixed {
     return $this->apiCall('JustificationNoteCreate', [
       'justificationNote' => $justificationNote
@@ -156,6 +232,10 @@ class PatientService extends BaseService {
     ]);
   }
 
+  /**
+   * @param JustificationNoteSearchRequest|null $searchRequest
+   * @param JustificationNoteSortParameter[]|null $sortRequest
+   */
   public function justificationNoteSearch(mixed $searchRequest = null, ?array $sortRequest = null, ?int $pageSize = null, ?int $page = null): mixed {
     return $this->apiCall('JustificationNoteSearch', [
       'searchRequest' => $searchRequest,
@@ -165,6 +245,9 @@ class PatientService extends BaseService {
     ]);
   }
 
+  /**
+   * @param JustificationNote|null $justificationNote
+   */
   public function justificationNoteUpdate(?int $brightreeID = null, mixed $justificationNote = null): mixed {
     return $this->apiCall('JustificationNoteUpdate', [
       'brightreeID' => $brightreeID,
@@ -191,12 +274,18 @@ class PatientService extends BaseService {
     ]);
   }
 
+  /**
+   * @param PatientNoteCommentCreateRequest|null $patientNoteCommentCreateRequest
+   */
   public function patientNoteCommentCreate(mixed $patientNoteCommentCreateRequest = null): mixed {
     return $this->apiCall('PatientNoteCommentCreate', [
       'patientNoteCommentCreateRequest' => $patientNoteCommentCreateRequest
     ]);
   }
 
+  /**
+   * @param PatientNoteCommentUpdateRequest|null $patientNoteCommentCreateRequest
+   */
   public function patientNoteCommentUpdate(mixed $patientNoteCommentCreateRequest = null): mixed {
     return $this->apiCall('PatientNoteCommentUpdate', [
       'patientNoteCommentCreateRequest' => $patientNoteCommentCreateRequest
@@ -209,6 +298,9 @@ class PatientService extends BaseService {
     ]);
   }
 
+  /**
+   * @param PatientNote|null $patientNote
+   */
   public function patientNoteCreate(mixed $patientNote = null): mixed {
     return $this->apiCall('PatientNoteCreate', [
       'patientNote' => $patientNote
@@ -234,6 +326,10 @@ class PatientService extends BaseService {
     ]);
   }
 
+  /**
+   * @param PatientNoteSearchRequest|null $searchRequest
+   * @param PatientNoteSortParameter[]|null $sortRequest
+   */
   public function patientNoteSearch(mixed $searchRequest = null, ?array $sortRequest = null, ?int $pageSize = null, ?int $page = null): mixed {
     return $this->apiCall('PatientNoteSearch', [
       'searchRequest' => $searchRequest,
@@ -243,6 +339,9 @@ class PatientService extends BaseService {
     ]);
   }
 
+  /**
+   * @param PatientNote|null $patientNote
+   */
   public function patientNoteUpdate(?int $brightreeID = null, mixed $patientNote = null): mixed {
     return $this->apiCall('PatientNoteUpdate', [
       'brightreeID' => $brightreeID,
@@ -256,6 +355,10 @@ class PatientService extends BaseService {
     ]);
   }
 
+  /**
+   * @param PatientPhoneNumberSearchRequest|null $searchRequest
+   * @param PatientPhoneSearchSortParameter[]|null $sortRequest
+   */
   public function patientPhoneNumberSearch(mixed $searchRequest = null, ?array $sortRequest = null, ?int $pageSize = null, ?int $page = null): mixed {
     return $this->apiCall('PatientPhoneNumberSearch', [
       'searchRequest' => $searchRequest,
@@ -309,6 +412,9 @@ class PatientService extends BaseService {
     ]);
   }
 
+  /**
+   * @param PractitionerNote|null $progressNote
+   */
   public function practitionerNoteCreate(mixed $progressNote = null): mixed {
     return $this->apiCall('PractitionerNoteCreate', [
       'progressNote' => $progressNote
@@ -321,6 +427,10 @@ class PatientService extends BaseService {
     ]);
   }
 
+  /**
+   * @param PractitionerNoteSearchRequest|null $searchRequest
+   * @param PractitionerNoteSortParameter[]|null $sortRequest
+   */
   public function practitionerNoteSearch(mixed $searchRequest = null, ?array $sortRequest = null, ?int $pageSize = null, ?int $page = null): mixed {
     return $this->apiCall('PractitionerNoteSearch', [
       'searchRequest' => $searchRequest,
@@ -330,6 +440,9 @@ class PatientService extends BaseService {
     ]);
   }
 
+  /**
+   * @param PractitionerNote|null $progressNote
+   */
   public function practitionerNoteUpdate(?int $brightreeID = null, mixed $progressNote = null): mixed {
     return $this->apiCall('PractitionerNoteUpdate', [
       'brightreeID' => $brightreeID,
@@ -337,6 +450,9 @@ class PatientService extends BaseService {
     ]);
   }
 
+  /**
+   * @param ProgressNote|null $progressNote
+   */
   public function progressNoteCreate(mixed $progressNote = null): mixed {
     return $this->apiCall('ProgressNoteCreate', [
       'progressNote' => $progressNote
@@ -349,6 +465,10 @@ class PatientService extends BaseService {
     ]);
   }
 
+  /**
+   * @param ProgressNoteSearchRequest|null $searchRequest
+   * @param ProgressNoteSortParameter[]|null $sortRequest
+   */
   public function progressNoteSearch(mixed $searchRequest = null, ?array $sortRequest = null, ?int $pageSize = null, ?int $page = null): mixed {
     return $this->apiCall('ProgressNoteSearch', [
       'searchRequest' => $searchRequest,
@@ -358,6 +478,9 @@ class PatientService extends BaseService {
     ]);
   }
 
+  /**
+   * @param ProgressNote|null $progressNote
+   */
   public function progressNoteUpdate(?int $brightreeID = null, mixed $progressNote = null): mixed {
     return $this->apiCall('ProgressNoteUpdate', [
       'brightreeID' => $brightreeID,
@@ -365,6 +488,9 @@ class PatientService extends BaseService {
     ]);
   }
 
+  /**
+   * @param PatientOptInStatus|null $patientOptInStatus
+   */
   public function updatePatientOptInStatus(mixed $patientOptInStatus = null): mixed {
     return $this->apiCall('UpdatePatientOptInStatus', [
       'patientOptInStatus' => $patientOptInStatus

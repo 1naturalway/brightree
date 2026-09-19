@@ -2,31 +2,34 @@
 
 namespace Brightree\Patient;
 
+use Brightree\ApiMessageServices\DoctorInfo;
+use Brightree\ApiMessageServices\ICDCodeInfo;
 use Brightree\ApiMessageServices\LookupValue;
 use Brightree\ApiMessageServices\Referral;
-use Brightree\ApiMessageServices\DoctorInfo;
 use Brightree\ApiMessageServices\RenderingProvider;
+use Brightree\Enums\Gender;
 
 class PatientClinicalInfo {
-  public bool $AirborneTransmission;
+  public ?bool $AirborneTransmission = null;
 
-  public bool $ContactTransmission;
+  public ?bool $ContactTransmission = null;
 
   public ?string $DateOfDeath = null;
 
-  public array $DiagnosisCodes;
+  /** @var ICDCodeInfo[] */
+  public array $DiagnosisCodes = [];
 
-  public bool $DropletTransmission;
+  public ?bool $DropletTransmission = null;
 
   public ?string $EnableSubscribeDate = null;
 
   public LookupValue $FunctionalAbility;
 
-  public string $Gender;
+  public Gender|string|null $Gender = null;
 
-  public float $Height;
+  public ?float $Height = null;
 
-  public bool $InfectiousCondition;
+  public ?bool $InfectiousCondition = null;
 
   public Referral $MarketingReferral;
 
@@ -42,10 +45,9 @@ class PatientClinicalInfo {
 
   public RenderingProvider $RenderingProvider;
 
-  public float $Weight;
+  public ?float $Weight = null;
 
   public function __construct() {
-    $this->DiagnosisCodes = [];
     $this->FunctionalAbility = new LookupValue();
     $this->MarketingReferral = new Referral();
     $this->MarketingRep = new LookupValue();

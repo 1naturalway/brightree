@@ -3,6 +3,16 @@
 namespace Brightree\Services;
 
 use Brightree\Services\BaseService;
+use Brightree\Types\ExchangeItem;
+use Brightree\Types\PickupExchange;
+use Brightree\Types\PickupExchangeConfirmCreditInvoiceReasons;
+use Brightree\Types\PickupExchangeItem;
+use Brightree\Types\PickupExchangePayorSearchRequest;
+use Brightree\Types\PickupExchangePayorSortParameter;
+use Brightree\Types\PickupExchangeSearchRequest;
+use Brightree\Types\PickupExchangeSearchSortParameter;
+use Brightree\Types\PuExDeliveryException;
+use Brightree\Types\PuExDtlDeliveryException;
 
 class PickupExchangeService extends BaseService {
   public function __construct(array $params) {
@@ -16,6 +26,9 @@ class PickupExchangeService extends BaseService {
     ]);
   }
 
+  /**
+   * @param PuExDeliveryException[]|null $PuExDeliveryException
+   */
   public function pickupExchangeAddDeliveryException(?int $BrightreeID = null, ?array $PuExDeliveryException = null): mixed {
     return $this->apiCall('PickupExchangeAddDeliveryException', [
       'BrightreeID' => $BrightreeID,
@@ -38,6 +51,9 @@ class PickupExchangeService extends BaseService {
     ]);
   }
 
+  /**
+   * @param PickupExchangeConfirmCreditInvoiceReasons|null $creditInvoiceReasons
+   */
   public function pickupExchangeConfirm(?int $BrightreeID = null, mixed $creditInvoiceReasons = null): mixed {
     return $this->apiCall('PickupExchangeConfirm', [
       'BrightreeID' => $BrightreeID,
@@ -45,6 +61,9 @@ class PickupExchangeService extends BaseService {
     ]);
   }
 
+  /**
+   * @param PickupExchange|null $PickupExchange
+   */
   public function pickupExchangeCreate(?int $PatientBrightreeID = null, mixed $PickupExchange = null): mixed {
     return $this->apiCall('PickupExchangeCreate', [
       'PatientBrightreeID' => $PatientBrightreeID,
@@ -70,6 +89,9 @@ class PickupExchangeService extends BaseService {
     ]);
   }
 
+  /**
+   * @param PuExDtlDeliveryException[]|null $PuExItemDeliveryException
+   */
   public function pickupExchangeItemAddDeliveryException(?int $BrightreeID = null, ?array $PuExItemDeliveryException = null): mixed {
     return $this->apiCall('PickupExchangeItemAddDeliveryException', [
       'BrightreeID' => $BrightreeID,
@@ -77,6 +99,9 @@ class PickupExchangeService extends BaseService {
     ]);
   }
 
+  /**
+   * @param ExchangeItem|null $Identifier
+   */
   public function pickupExchangeItemSpecifyExchangeItem(?int $BrightreeID = null, ?int $BrightreeDetailID = null, ?string $ItemId = null, mixed $Identifier = null): mixed {
     return $this->apiCall('PickupExchangeItemSpecifyExchangeItem', [
       'BrightreeID' => $BrightreeID,
@@ -92,6 +117,10 @@ class PickupExchangeService extends BaseService {
     ]);
   }
 
+  /**
+   * @param PickupExchangePayorSearchRequest|null $searchParams
+   * @param PickupExchangePayorSortParameter[]|null $sortParams
+   */
   public function pickupExchangePayorSearch(mixed $searchParams = null, ?array $sortParams = null, ?int $pageSize = null, ?int $page = null): mixed {
     return $this->apiCall('PickupExchangePayorSearch', [
       'searchParams' => $searchParams,
@@ -108,6 +137,10 @@ class PickupExchangeService extends BaseService {
     ]);
   }
 
+  /**
+   * @param PickupExchangeSearchRequest|null $searchParams
+   * @param PickupExchangeSearchSortParameter[]|null $sortParams
+   */
   public function pickupExchangeSearch(mixed $searchParams = null, ?array $sortParams = null, ?int $pageSize = null, ?int $page = null): mixed {
     return $this->apiCall('PickupExchangeSearch', [
       'searchParams' => $searchParams,
@@ -124,6 +157,9 @@ class PickupExchangeService extends BaseService {
     ]);
   }
 
+  /**
+   * @param PickupExchange|null $PickupExchange
+   */
   public function pickupExchangeUpdate(?int $BrightreeID = null, mixed $PickupExchange = null): mixed {
     return $this->apiCall('PickupExchangeUpdate', [
       'BrightreeID' => $BrightreeID,
@@ -131,6 +167,9 @@ class PickupExchangeService extends BaseService {
     ]);
   }
 
+  /**
+   * @param PickupExchangeItem|null $PickUpExchangeItem
+   */
   public function pickupExchangeUpdateItem(?int $BrightreeID = null, ?int $BrightreeDetailID = null, mixed $PickUpExchangeItem = null): mixed {
     return $this->apiCall('PickupExchangeUpdateItem', [
       'BrightreeID' => $BrightreeID,

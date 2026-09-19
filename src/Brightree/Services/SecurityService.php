@@ -3,6 +3,12 @@
 namespace Brightree\Services;
 
 use Brightree\Services\BaseService;
+use Brightree\Types\User;
+use Brightree\Types\UserGroup;
+use Brightree\Types\UserGroupBDMPermissions;
+use Brightree\Types\UserGroupPermissions;
+use Brightree\Types\UserSearchRequest;
+use Brightree\Types\UserSortParameter;
 
 class SecurityService extends BaseService {
   public function __construct(array $params) {
@@ -10,6 +16,9 @@ class SecurityService extends BaseService {
     $this->wsdl_path = "https://webservices.brightree.net/v0100-2602/SecurityService/UserSecurityService.svc?singleWsdl";
   }
 
+  /**
+   * @param User|null $User
+   */
   public function userCreate(mixed $User = null): mixed {
     return $this->apiCall('UserCreate', [
       'User' => $User
@@ -28,6 +37,9 @@ class SecurityService extends BaseService {
     ]);
   }
 
+  /**
+   * @param UserGroupBDMPermissions|null $userGroupBDMPermissions
+   */
   public function userGroupBDMPermissionsUpdate(?int $UserGroupBrightreeID = null, mixed $userGroupBDMPermissions = null): mixed {
     return $this->apiCall('UserGroupBDMPermissionsUpdate', [
       'UserGroupBrightreeID' => $UserGroupBrightreeID,
@@ -35,6 +47,9 @@ class SecurityService extends BaseService {
     ]);
   }
 
+  /**
+   * @param UserGroup|null $userGroup
+   */
   public function userGroupCreate(mixed $userGroup = null): mixed {
     return $this->apiCall('UserGroupCreate', [
       'userGroup' => $userGroup
@@ -53,6 +68,9 @@ class SecurityService extends BaseService {
     ]);
   }
 
+  /**
+   * @param UserGroupPermissions|null $userGroupPermissions
+   */
   public function userGroupPermissionsUpdate(?int $UserGroupBrightreeID = null, mixed $userGroupPermissions = null): mixed {
     return $this->apiCall('UserGroupPermissionsUpdate', [
       'UserGroupBrightreeID' => $UserGroupBrightreeID,
@@ -60,6 +78,9 @@ class SecurityService extends BaseService {
     ]);
   }
 
+  /**
+   * @param UserGroup|null $userGroup
+   */
   public function userGroupUpdate(?int $BrightreeID = null, mixed $userGroup = null): mixed {
     return $this->apiCall('UserGroupUpdate', [
       'BrightreeID' => $BrightreeID,
@@ -67,6 +88,10 @@ class SecurityService extends BaseService {
     ]);
   }
 
+  /**
+   * @param UserSearchRequest|null $searchRequest
+   * @param UserSortParameter[]|null $sortRequest
+   */
   public function userSearch(mixed $searchRequest = null, ?array $sortRequest = null, ?int $pageSize = null, ?int $page = null): mixed {
     return $this->apiCall('UserSearch', [
       'searchRequest' => $searchRequest,
@@ -76,6 +101,9 @@ class SecurityService extends BaseService {
     ]);
   }
 
+  /**
+   * @param User|null $User
+   */
   public function userUpdate(?int $BrightreeID = null, mixed $User = null): mixed {
     return $this->apiCall('UserUpdate', [
       'BrightreeID' => $BrightreeID,

@@ -9,6 +9,11 @@ class DocumentBatch {
 
   public ?string $BatchName = null;
 
+  /**
+   * Typed as SecUser in the WSDL, which extends LookupValue and adds nothing,
+   * so LookupValue serialises identically. Brightree\Types\SecUser is the
+   * generated stand-in if you prefer the schema's name.
+   */
   public LookupValue $BatchOwner;
 
   public ?int $BatchTypeKey = null;

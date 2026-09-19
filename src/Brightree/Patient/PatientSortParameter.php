@@ -2,17 +2,20 @@
 
 namespace Brightree\Patient;
 
+use Brightree\Enums\PatientSortFields;
+use Brightree\Enums\SortOrder;
+
 class PatientSortParameter {
-  public ?string $SortField = null;
+  public PatientSortFields|string|null $SortField = null;
 
-  public ?string $SortOrder = null;
+  public SortOrder|string|null $SortOrder = null;
 
-  public function setSortField(?string $SortField): self {
+  public function setSortField(PatientSortFields|string|null $SortField): self {
     $this->SortField = $SortField;
     return $this;
   }
 
-  public function setSortOrder(?string $SortOrder): self {
+  public function setSortOrder(SortOrder|string|null $SortOrder): self {
     $this->SortOrder = $SortOrder;
     return $this;
   }

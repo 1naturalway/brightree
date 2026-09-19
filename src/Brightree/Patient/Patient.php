@@ -3,9 +3,9 @@
 namespace Brightree\Patient;
 
 class Patient {
-  public int $BrightreeID;
+  public ?int $BrightreeID = null;
 
-  public string $ExternalID;
+  public ?string $ExternalID = null;
 
   public PatientAuditInfo $PatientAuditInfo;
 

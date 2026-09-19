@@ -2,13 +2,38 @@
 
 namespace Brightree\Services;
 
-use Brightree\Services\BaseService;
+use Brightree\ApiMessageServices\SOItemQuickAdd;
 use Brightree\SalesOrder\SalesOrder;
 use Brightree\SalesOrder\SalesOrderInsuranceInfo;
 use Brightree\SalesOrder\SalesOrderItemInfo;
-use Brightree\ApiMessageServices\SOItemQuickAdd;
 use Brightree\SalesOrder\SalesOrderPayorSearchRequest;
 use Brightree\SalesOrder\ShippingTrackingInfo;
+use Brightree\Services\BaseService;
+use Brightree\SalesOrder\SerialNumberInfo;
+use Brightree\Types\SODeliveryException;
+use Brightree\Types\SODtlDeliveryException;
+use Brightree\Types\SOItemQuickAddWithPAR;
+use Brightree\Types\SalesOrderDropShipOptions;
+use Brightree\Types\SalesOrderItemNextBilling;
+use Brightree\Types\SalesOrderPayorSortParameter;
+use Brightree\Types\SalesOrderSearchRequest;
+use Brightree\Types\SalesOrderSortParameter;
+use Brightree\Types\SalesOrderTemplate;
+use Brightree\Types\SalesOrderTemplateItemFrequency;
+use Brightree\Types\SalesOrderTemplateItemInfo;
+use Brightree\Types\SalesOrderTemplateItemPayorInfo;
+use Brightree\Types\SalesOrderTemplateSchedule;
+use Brightree\Types\SalesOrderTemplateScheduleLogSearchRequest;
+use Brightree\Types\SalesOrderTemplateScheduleLogSearchSortParameter;
+use Brightree\Types\SalesOrderTemplateScheduleSearchRequest;
+use Brightree\Types\SalesOrderTemplateScheduleSearchSortParameter;
+use Brightree\Types\SalesOrderTemplateSearchRequest;
+use Brightree\Types\SalesOrderTemplateSortParameter;
+use Brightree\Types\SalesOrderVoidSearchRequest;
+use Brightree\Types\SalesOrderVoidSortParameter;
+use Brightree\Types\SalesOrderWIPStatusUpdateRequest;
+use Brightree\Types\SalesOrderWIPStatusUpdateSortParameter;
+use Brightree\Types\StopReasonDtls;
 
 class SalesOrderService extends BaseService {
   public function __construct(array $params) {
@@ -20,14 +45,23 @@ class SalesOrderService extends BaseService {
     return $this->apiCall('SalesOrderFetchByBrightreeID', ['BrightreeID' => $brightreeID]);
   }
 
+  /**
+   * @param SalesOrderInsuranceInfo|null $SalesOrderInsuranceInfo
+   */
   public function salesOrderUpdateInsurance(?int $brightreeID, ?SalesOrderInsuranceInfo $SalesOrderInsuranceInfo): mixed {
     return $this->apiCall('SalesOrderUpdateInsurance', ['BrightreeID' => $brightreeID, 'SalesOrderInsuranceInfo' => $SalesOrderInsuranceInfo]);
   }
 
+  /**
+   * @param SalesOrder|null $SalesOrder
+   */
   public function salesOrderUpdate(?int $brightreeID, ?SalesOrder $SalesOrder): mixed {
     return $this->apiCall('SalesOrderUpdate', ['BrightreeID' => $brightreeID, 'SalesOrder' => $SalesOrder]);
   }
 
+  /**
+   * @param SalesOrder|null $SalesOrder
+   */
   public function salesOrderCreate(?SalesOrder $SalesOrder): mixed {
     return $this->apiCall('SalesOrderCreate', ['SalesOrder' => $SalesOrder]);
   }
@@ -36,6 +70,9 @@ class SalesOrderService extends BaseService {
     return $this->apiCall('SalesOrderConfirm', ['BrightreeID' => $BrightreeID]);
   }
 
+  /**
+   * @param SOItemQuickAdd|null $SOItemQuickAdd
+   */
   public function salesOrderQuickAddItem(?int $BrightreeID, ?SOItemQuickAdd $SOItemQuickAdd): mixed {
     return $this->apiCall('SalesOrderQuickAddItem', [
       'BrightreeID' => $BrightreeID,
@@ -60,6 +97,9 @@ class SalesOrderService extends BaseService {
     ]);
   }
 
+  /**
+   * @param SalesOrderItemInfo|null $SalesOrderItemInfo
+   */
   public function salesOrderUpdateItem(?int $BrightreeID, ?int $BrightreeDetailID, ?SalesOrderItemInfo $SalesOrderItemInfo): mixed {
     return $this->apiCall('SalesOrderUpdateItem', [
       'BrightreeID' => $BrightreeID,
@@ -113,6 +153,9 @@ class SalesOrderService extends BaseService {
     ]);
   }
 
+  /**
+   * @param SODeliveryException[]|null $SalesOrderDeliveryException
+   */
   public function salesOrderAddDeliveryException(?int $BrightreeID = null, ?array $SalesOrderDeliveryException = null): mixed {
     return $this->apiCall('SalesOrderAddDeliveryException', [
       'BrightreeID' => $BrightreeID,
@@ -166,6 +209,9 @@ class SalesOrderService extends BaseService {
     ]);
   }
 
+  /**
+   * @param SODtlDeliveryException[]|null $SalesOrderDeliveryException
+   */
   public function salesOrderItemAddDeliveryException(?int $BrightreeID = null, ?array $SalesOrderDeliveryException = null): mixed {
     return $this->apiCall('SalesOrderItemAddDeliveryException', [
       'BrightreeID' => $BrightreeID,
@@ -196,6 +242,9 @@ class SalesOrderService extends BaseService {
     ]);
   }
 
+  /**
+   * @param SerialNumberInfo[]|null $SerialNumbers
+   */
   public function salesOrderItemUpdateSerialNumbers(?int $BrightreeID = null, ?int $BrightreeDetailID = null, ?array $SerialNumbers = null): mixed {
     return $this->apiCall('SalesOrderItemUpdateSerialNumbers', [
       'BrightreeID' => $BrightreeID,
@@ -225,6 +274,10 @@ class SalesOrderService extends BaseService {
     ]);
   }
 
+  /**
+   * @param SalesOrderPayorSearchRequest|null $searchParams
+   * @param SalesOrderPayorSortParameter[]|null $sortParams
+   */
   public function salesOrderPayorSearch(?SalesOrderPayorSearchRequest $searchParams = null, ?array $sortParams = null, ?int $pageSize = null, ?int $page = null): mixed {
     return $this->apiCall('SalesOrderPayorSearch', [
       'searchParams' => $searchParams,
@@ -234,6 +287,9 @@ class SalesOrderService extends BaseService {
     ]);
   }
 
+  /**
+   * @param SOItemQuickAdd|null $SalesOrderItemInfo
+   */
   public function salesOrderQuickAddItemWithItemsDataReturn(?int $BrightreeID = null, ?SOItemQuickAdd $SalesOrderItemInfo = null): mixed {
     return $this->apiCall('SalesOrderQuickAddItemWithItemsDataReturn', [
       'BrightreeID' => $BrightreeID,
@@ -241,6 +297,9 @@ class SalesOrderService extends BaseService {
     ]);
   }
 
+  /**
+   * @param SOItemQuickAddWithPAR|null $SalesOrderItemInfo
+   */
   public function salesOrderQuickAddItemWithLinkedPAR(?int $BrightreeID = null, mixed $SalesOrderItemInfo = null): mixed {
     return $this->apiCall('SalesOrderQuickAddItemWithLinkedPAR', [
       'BrightreeID' => $BrightreeID,
@@ -261,6 +320,10 @@ class SalesOrderService extends BaseService {
     ]);
   }
 
+  /**
+   * @param SalesOrderSearchRequest|null $SearchParams
+   * @param SalesOrderSortParameter[]|null $SortParams
+   */
   public function salesOrderSearch(mixed $SearchParams = null, ?array $SortParams = null, ?int $pageSize = null, ?int $page = null): mixed {
     return $this->apiCall('SalesOrderSearch', [
       'SearchParams' => $SearchParams,
@@ -276,6 +339,9 @@ class SalesOrderService extends BaseService {
     ]);
   }
 
+  /**
+   * @param SalesOrderDropShipOptions|null $SalesOrderDropShipOptions
+   */
   public function salesOrderSubmitDropShip(?int $BrightreeID = null, ?array $BrightreeDetailIDs = null, ?int $VendorBrightreeID = null, ?bool $OverridePriceWarnings = null, mixed $SalesOrderDropShipOptions = null): mixed {
     return $this->apiCall('SalesOrderSubmitDropShip', [
       'BrightreeID' => $BrightreeID,
@@ -286,6 +352,9 @@ class SalesOrderService extends BaseService {
     ]);
   }
 
+  /**
+   * @param SalesOrderTemplate|null $SalesOrderTemplate
+   */
   public function salesOrderTemplateCreate(mixed $SalesOrderTemplate = null): mixed {
     return $this->apiCall('SalesOrderTemplateCreate', [
       'SalesOrderTemplate' => $SalesOrderTemplate
@@ -322,6 +391,9 @@ class SalesOrderService extends BaseService {
     ]);
   }
 
+  /**
+   * @param SalesOrderTemplateItemFrequency|null $SalesOrderItemInfo
+   */
   public function salesOrderTemplateItemFrequencyUpdate(?int $BrightreeID = null, ?int $BrightreeDetailID = null, mixed $SalesOrderItemInfo = null): mixed {
     return $this->apiCall('SalesOrderTemplateItemFrequencyUpdate', [
       'BrightreeID' => $BrightreeID,
@@ -345,6 +417,9 @@ class SalesOrderService extends BaseService {
     ]);
   }
 
+  /**
+   * @param SOItemQuickAdd|null $SalesOrderItemInfo
+   */
   public function salesOrderTemplateQuickAddItem(?int $BrightreeID = null, ?SOItemQuickAdd $SalesOrderItemInfo = null): mixed {
     return $this->apiCall('SalesOrderTemplateQuickAddItem', [
       'BrightreeID' => $BrightreeID,
@@ -365,6 +440,10 @@ class SalesOrderService extends BaseService {
     ]);
   }
 
+  /**
+   * @param SalesOrderTemplateScheduleLogSearchRequest|null $searchRequest
+   * @param SalesOrderTemplateScheduleLogSearchSortParameter[]|null $sortRequest
+   */
   public function salesOrderTemplateScheduleLogSearch(mixed $searchRequest = null, ?array $sortRequest = null, ?int $pageSize = null, ?int $page = null): mixed {
     return $this->apiCall('SalesOrderTemplateScheduleLogSearch', [
       'searchRequest' => $searchRequest,
@@ -374,6 +453,10 @@ class SalesOrderService extends BaseService {
     ]);
   }
 
+  /**
+   * @param SalesOrderTemplateScheduleSearchRequest|null $searchRequest
+   * @param SalesOrderTemplateScheduleSearchSortParameter[]|null $sortRequest
+   */
   public function salesOrderTemplateScheduleSearch(mixed $searchRequest = null, ?array $sortRequest = null, ?int $pageSize = null, ?int $page = null): mixed {
     return $this->apiCall('SalesOrderTemplateScheduleSearch', [
       'searchRequest' => $searchRequest,
@@ -383,6 +466,9 @@ class SalesOrderService extends BaseService {
     ]);
   }
 
+  /**
+   * @param SalesOrderTemplateSchedule|null $schedule
+   */
   public function salesOrderTemplateScheduleUpdate(?int $soTemplateKey = null, mixed $schedule = null): mixed {
     return $this->apiCall('SalesOrderTemplateScheduleUpdate', [
       'soTemplateKey' => $soTemplateKey,
@@ -390,6 +476,10 @@ class SalesOrderService extends BaseService {
     ]);
   }
 
+  /**
+   * @param SalesOrderTemplateSearchRequest|null $SearchParams
+   * @param SalesOrderTemplateSortParameter[]|null $SortParams
+   */
   public function salesOrderTemplateSearch(mixed $SearchParams = null, ?array $SortParams = null, ?int $pageSize = null, ?int $page = null): mixed {
     return $this->apiCall('SalesOrderTemplateSearch', [
       'SearchParams' => $SearchParams,
@@ -399,6 +489,9 @@ class SalesOrderService extends BaseService {
     ]);
   }
 
+  /**
+   * @param SalesOrderTemplate|null $SalesOrderTemplate
+   */
   public function salesOrderTemplateUpdate(?int $BrightreeID = null, mixed $SalesOrderTemplate = null): mixed {
     return $this->apiCall('SalesOrderTemplateUpdate', [
       'BrightreeID' => $BrightreeID,
@@ -406,6 +499,9 @@ class SalesOrderService extends BaseService {
     ]);
   }
 
+  /**
+   * @param SalesOrderInsuranceInfo|null $SalesOrderInsuranceInfo
+   */
   public function salesOrderTemplateUpdateInsurance(?int $BrightreeID = null, ?SalesOrderInsuranceInfo $SalesOrderInsuranceInfo = null): mixed {
     return $this->apiCall('SalesOrderTemplateUpdateInsurance', [
       'BrightreeID' => $BrightreeID,
@@ -413,6 +509,9 @@ class SalesOrderService extends BaseService {
     ]);
   }
 
+  /**
+   * @param SalesOrderTemplateItemInfo|null $SalesOrderItemInfo
+   */
   public function salesOrderTemplateUpdateItem(?int $BrightreeID = null, ?int $BrightreeDetailID = null, mixed $SalesOrderItemInfo = null): mixed {
     return $this->apiCall('SalesOrderTemplateUpdateItem', [
       'BrightreeID' => $BrightreeID,
@@ -421,6 +520,9 @@ class SalesOrderService extends BaseService {
     ]);
   }
 
+  /**
+   * @param SalesOrderTemplateItemPayorInfo[]|null $SalesOrderTemplateItemInfo
+   */
   public function salesOrderTemplateUpdateItemPayor(?int $BrightreeTemplateID = null, ?int $BrightreeTemplateDetailID = null, ?array $SalesOrderTemplateItemInfo = null): mixed {
     return $this->apiCall('SalesOrderTemplateUpdateItemPayor', [
       'BrightreeTemplateID' => $BrightreeTemplateID,
@@ -443,6 +545,9 @@ class SalesOrderService extends BaseService {
     ]);
   }
 
+  /**
+   * @param SalesOrderItemInfo|null $SalesOrderItemInfo
+   */
   public function salesOrderUpdateItemGeneric(?int $BrightreeID = null, ?int $BrightreeDetailID = null, ?SalesOrderItemInfo $SalesOrderItemInfo = null): mixed {
     return $this->apiCall('SalesOrderUpdateItemGeneric', [
       'BrightreeID' => $BrightreeID,
@@ -451,6 +556,9 @@ class SalesOrderService extends BaseService {
     ]);
   }
 
+  /**
+   * @param SalesOrderItemNextBilling|null $SOItemNextBilling
+   */
   public function salesOrderUpdateItemNextBilling(?int $BrightreeID = null, ?int $BrightreeDetailID = null, mixed $SOItemNextBilling = null): mixed {
     return $this->apiCall('SalesOrderUpdateItemNextBilling', [
       'BrightreeID' => $BrightreeID,
@@ -472,6 +580,9 @@ class SalesOrderService extends BaseService {
     ]);
   }
 
+  /**
+   * @param ShippingTrackingInfo|null $SalesOrderTrackingInfo
+   */
   public function salesOrderUpdateTracking(?int $soKey = null, ?ShippingTrackingInfo $SalesOrderTrackingInfo = null): mixed {
     return $this->apiCall('SalesOrderUpdateTracking', [
       'soKey' => $soKey,
@@ -486,6 +597,10 @@ class SalesOrderService extends BaseService {
     ]);
   }
 
+  /**
+   * @param SalesOrderVoidSearchRequest|null $searchParams
+   * @param SalesOrderVoidSortParameter[]|null $sortParams
+   */
   public function salesOrderVoidSearch(mixed $searchParams = null, ?array $sortParams = null, ?int $pageSize = null, ?int $page = null): mixed {
     return $this->apiCall('SalesOrderVoidSearch', [
       'searchParams' => $searchParams,
@@ -495,6 +610,10 @@ class SalesOrderService extends BaseService {
     ]);
   }
 
+  /**
+   * @param SalesOrderWIPStatusUpdateRequest|null $searchParams
+   * @param SalesOrderWIPStatusUpdateSortParameter[]|null $sortParams
+   */
   public function searchWIPStatusWithUpdate(?int $CurrentWIPStateID = null, ?int $NewWIPStateID = null, mixed $searchParams = null, ?array $sortParams = null, ?int $batchLimit = null): mixed {
     return $this->apiCall('SearchWIPStatusWithUpdate', [
       'CurrentWIPStateID' => $CurrentWIPStateID,
@@ -517,6 +636,9 @@ class SalesOrderService extends BaseService {
     ]);
   }
 
+  /**
+   * @param StopReasonDtls|null $StopReasonInput
+   */
   public function stopReasonSalesOrderTemplateUpdate(?int $BrightreeID = null, mixed $StopReasonInput = null): mixed {
     return $this->apiCall('StopReasonSalesOrderTemplateUpdate', [
       'BrightreeID' => $BrightreeID,
@@ -524,6 +646,9 @@ class SalesOrderService extends BaseService {
     ]);
   }
 
+  /**
+   * @param StopReasonDtls|null $StopReasonInput
+   */
   public function stopReasonSalesOrderUpdate(?int $BrightreeID = null, mixed $StopReasonInput = null): mixed {
     return $this->apiCall('StopReasonSalesOrderUpdate', [
       'BrightreeID' => $BrightreeID,

@@ -3,7 +3,7 @@
 namespace Brightree\ApiMessageServices;
 
 class GoScriptsSettings {
-  public bool $EnrolledWithGoScripts;
+  public ?bool $EnrolledWithGoScripts = null;
 
-  public string $GoScriptsID;
+  public ?string $GoScriptsID = null;
 }

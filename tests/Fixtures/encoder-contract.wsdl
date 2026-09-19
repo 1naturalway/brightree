@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  A generic document/literal wrapped contract, written by hand for this test
+  suite. It contains nothing from Brightree: it exists so the promises
+  Brightree\Soap\RequestPruner makes can be checked against the real ext-soap
+  encoder without any proprietary WSDL on disk.
+
+  The shapes here are the ones the pruner has to get right: nillable and
+  non-nillable optional elements, a repeating element, an enumerated simple
+  type, base64Binary, and a WCF-style dictionary.
+-->
+<wsdl:definitions name="EncoderContract"
+                  targetNamespace="urn:brightree-tests"
+                  xmlns:tns="urn:brightree-tests"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+
+  <wsdl:types>
+    <xs:schema targetNamespace="urn:brightree-tests"
+               elementFormDefault="qualified"
+               xmlns:tns="urn:brightree-tests">
+
+      <xs:element name="Echo">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="thing" nillable="true" type="tns:Thing"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="EchoResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="EchoResult" nillable="true" type="tns:Thing"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:complexType name="Thing">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="Count" nillable="false" type="xs:int"/>
+          <xs:element minOccurs="0" name="Flag" nillable="true" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="Child" nillable="true" type="tns:Child"/>
+          <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfItem"/>
+          <xs:element minOccurs="0" name="Kind" type="tns:Kind"/>
+          <xs:element minOccurs="0" name="Blob" type="xs:base64Binary"/>
+          <xs:element minOccurs="0" name="Bag" type="tns:ArrayOfKeyValueOfintstring"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="Child">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Inner" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="ArrayOfItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Item" nillable="true" type="tns:Item"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="Item">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Id" type="xs:int"/>
+          <xs:element minOccurs="0" name="Label" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:simpleType name="Kind">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Alpha"/>
+          <xs:enumeration value="Beta"/>
+        </xs:restriction>
+      </xs:simpleType>
+
+      <xs:complexType name="ArrayOfKeyValueOfintstring">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfintstring">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="1" name="Key" type="xs:int"/>
+                <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+
+    </xs:schema>
+  </wsdl:types>
+
+  <wsdl:message name="IEncoderContract_Echo_InputMessage">
+    <wsdl:part name="parameters" element="tns:Echo"/>
+  </wsdl:message>
+
+  <wsdl:message name="IEncoderContract_Echo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EchoResponse"/>
+  </wsdl:message>
+
+  <wsdl:portType name="IEncoderContract">
+    <wsdl:operation name="Echo">
+      <wsdl:input message="tns:IEncoderContract_Echo_InputMessage"/>
+      <wsdl:output message="tns:IEncoderContract_Echo_OutputMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+  <wsdl:binding name="BasicHttpBinding_IEncoderContract" type="tns:IEncoderContract">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Echo">
+      <soap:operation soapAction="urn:brightree-tests/IEncoderContract/Echo" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:service name="EncoderContract">
+    <wsdl:port name="BasicHttpBinding_IEncoderContract" binding="tns:BasicHttpBinding_IEncoderContract">
+      <soap:address location="http://localhost.invalid/encoder-contract"/>
+    </wsdl:port>
+  </wsdl:service>
+
+</wsdl:definitions>

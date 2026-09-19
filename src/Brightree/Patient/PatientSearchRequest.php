@@ -4,6 +4,7 @@ namespace Brightree\Patient;
 
 use Brightree\ApiMessageServices\LookupValue;
 use Brightree\CommonServices\Address;
+use Brightree\Enums\PatientCustomerType;
 
 class PatientSearchRequest {
   public LookupValue $AccountGroup;
@@ -20,7 +21,7 @@ class PatientSearchRequest {
 
   public ?array $CustomFieldSearchParams = null;
 
-  public ?string $CustomerType = null;
+  public PatientCustomerType|string|null $CustomerType = null;
 
   public ?string $DateOfBirthDateTimeEnd = null;
 
@@ -105,7 +106,7 @@ class PatientSearchRequest {
     return $this;
   }
 
-  public function setCustomerType(?string $CustomerType): self {
+  public function setCustomerType(PatientCustomerType|string|null $CustomerType): self {
     $this->CustomerType = $CustomerType;
     return $this;
   }

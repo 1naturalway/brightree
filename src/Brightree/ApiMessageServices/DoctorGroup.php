@@ -3,11 +3,11 @@
 namespace Brightree\ApiMessageServices;
 
 class DoctorGroup {
-  public int $BrightreeID;
+  public ?int $BrightreeID = null;
 
-  public int $BrightreeParentID;
+  public ?int $BrightreeParentID = null;
 
-  public string $Description;
+  public ?string $Description = null;
 
-  public string $DoctorGroupName;
+  public ?string $DoctorGroupName = null;
 }

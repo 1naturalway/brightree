@@ -2,8 +2,11 @@
 
 namespace Brightree\SalesOrder;
 
-use Brightree\ApiMessageServices\LookupValue;
 use Brightree\ApiMessageServices\ICDCodeInfo;
+use Brightree\ApiMessageServices\LookupValue;
+use Brightree\Enums\PriceOverride;
+use Brightree\Enums\SalesOrder\ItemType;
+use Brightree\Enums\SalesOrder\PriceType;
 
 class SalesOrderItemInfo {
   public ?bool $AcceptAssignment = null;
@@ -36,7 +39,8 @@ class SalesOrderItemInfo {
 
   public ?float $DelTaxAmt = null;
 
-  public ICDCodeInfo $DiagnosisCodes;
+  /** @var ICDCodeInfo[] */
+  public array $DiagnosisCodes = [];
 
   public ?string $DOSToDt = null;
 
@@ -56,7 +60,8 @@ class SalesOrderItemInfo {
 
   public ?string $ItemName = null;
 
-  public array $LotNumbers;
+  /** @var LotNumberInfo[] */
+  public array $LotNumbers = [];
 
   public ?string $NextDOSDt = null;
 
@@ -76,7 +81,8 @@ class SalesOrderItemInfo {
 
   public ?float $OverrideTaxRate = null;
 
-  public ItemPayors $Payors;
+  /** @var SalesOrderItemPayorInfo[] */
+  public array $Payors = [];
 
   public ?int $PickupAvailableQuantity = null;
 
@@ -94,9 +100,10 @@ class SalesOrderItemInfo {
 
   public ?float $ResponsibilityAmt = null;
 
-  public ?string $SaleType = null;
+  public PriceType|string|null $SaleType = null;
 
-  public array $SerialNumbers;
+  /** @var SerialNumberInfo[] */
+  public array $SerialNumbers = [];
 
   public ?string $ServiceDt = null;
 
@@ -148,7 +155,7 @@ class SalesOrderItemInfo {
 
   public ?int $CTPPeriod = null;
 
-  public ?string $ItemType = null;
+  public ItemType|string|null $ItemType = null;
 
   public ?bool $Kit = null;
 
@@ -168,17 +175,33 @@ class SalesOrderItemInfo {
 
   public ?string $PatientExhaustDate = null;
 
-  public ?string $PriceOverride = null;
+  public PriceOverride|string|null $PriceOverride = null;
 
   public function __construct() {
-    $this->DiagnosisCodes = new ICDCodeInfo();
     $this->DefaultManufacturer = new LookupValue();
     $this->InventoryLocation = new LookupValue();
     $this->ItemGroup = new LookupValue();
-    $this->LotNumbers = array();
     $this->NonTaxReason = new LookupValue();
-    $this->Payors = new ItemPayors();
-    $this->SerialNumbers = array();
     $this->StockingUOM = new LookupValue();
+  }
+
+  public function addDiagnosisCode(ICDCodeInfo $diagnosisCode): self {
+    $this->DiagnosisCodes[] = $diagnosisCode;
+    return $this;
+  }
+
+  public function addLotNumber(LotNumberInfo $lotNumber): self {
+    $this->LotNumbers[] = $lotNumber;
+    return $this;
+  }
+
+  public function addPayor(SalesOrderItemPayorInfo $payor): self {
+    $this->Payors[] = $payor;
+    return $this;
+  }
+
+  public function addSerialNumber(SerialNumberInfo $serialNumber): self {
+    $this->SerialNumbers[] = $serialNumber;
+    return $this;
   }
 }

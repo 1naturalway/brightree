@@ -2,16 +2,17 @@
 
 namespace Brightree\ApiMessageServices;
 
-use Brightree\CommonServices\Name;
-use Brightree\CommonServices\Address;
-use Brightree\ApiMessageServices\MedicalInfo;
 use Brightree\ApiMessageServices\GoScriptsSettings;
+use Brightree\ApiMessageServices\MedicalInfo;
+use Brightree\CommonServices\Address;
 use Brightree\CommonServices\ContactInfo;
+use Brightree\CommonServices\Name;
+use Brightree\Enums\PreferredMethodContactType;
 
 class Doctor {
   public Address $Address;
 
-  public int $BrightreeID;
+  public ?int $BrightreeID = null;
 
   public LookupValue $CMNFaxSchedule;
 
@@ -19,13 +20,13 @@ class Doctor {
 
   public DoctorGroup $DoctorGroup;
 
-  public string $ExternalID;
+  public ?string $ExternalID = null;
 
   public Facility $Facility;
 
   public GoScriptsSettings $GoScriptsSettings;
 
-  public bool $Inactive;
+  public ?bool $Inactive = null;
 
   public MarketingRep $MarketingRep;
 
@@ -33,7 +34,7 @@ class Doctor {
 
   public Name $Name;
 
-  public string $PreferredMethodOfContact;
+  public PreferredMethodContactType|string|null $PreferredMethodOfContact = null;
 
   public UserDefinedData $UserDefindedData;
 

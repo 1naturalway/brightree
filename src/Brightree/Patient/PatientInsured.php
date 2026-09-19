@@ -2,12 +2,14 @@
 
 namespace Brightree\Patient;
 
+use Brightree\Enums\Gender;
+
 class PatientInsured extends Contact {
   public ?string $BirthDate = null;
 
   public ?string $SSN = null;
 
-  public ?string $Gender = null;
+  public Gender|string|null $Gender = null;
 
   public ?string $Employer = null;
 

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         recordTestRunHistory="false"
+         beStrictAboutOutputDuringTests="true"
+         failOnDeprecation="true"
+         failOnNotice="true"
+         failOnRisky="true"
+         failOnWarning="true"
+         displayDetailsOnSkippedTests="true">
+  <testsuites>
+    <!-- Tier A runs everywhere. Tier B needs Brightree's proprietary WSDLs and
+         skips itself when they are absent; see tests/TestCase.php. -->
+    <testsuite name="tier-a">
+      <directory>tests/Soap</directory>
+      <directory>tests/Serialization</directory>
+      <directory>tests/Services</directory>
+      <exclude>tests/Serialization/BrightreeRegressionTest.php</exclude>
+    </testsuite>
+    <testsuite name="tier-b">
+      <directory>tests/Contract</directory>
+      <file>tests/Serialization/BrightreeRegressionTest.php</file>
+    </testsuite>
+  </testsuites>
+
+  <source>
+    <include>
+      <directory>src</directory>
+    </include>
+  </source>
+</phpunit>

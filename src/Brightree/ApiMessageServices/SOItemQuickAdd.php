@@ -2,8 +2,10 @@
 
 namespace Brightree\ApiMessageServices;
 
+use Brightree\Enums\SalesOrder\PriceType;
+
 class SOItemQuickAdd {
-  public ?string $PriceType = null;
+  public PriceType|string|null $PriceType = null;
 
   public ?int $Qty = null;
 

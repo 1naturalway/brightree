@@ -42,12 +42,19 @@ class BrightreeClient {
   /**
    * Default SoapClient options, overridable via the 'soap' key.
    *
+   * Brightree's WSDLs are large (SalesOrderService is ~388 KB) and change
+   * only when Brightree ships a new service version, so they are cached to
+   * disk — PHP's own default — rather than refetched per call. Pass
+   * 'soap' => ['cache_wsdl' => WSDL_CACHE_NONE] to opt out while developing
+   * against a changing WSDL; soap.wsdl_cache_ttl in php.ini controls how long
+   * a cached copy lives.
+   *
    * @var array<string, mixed>
    */
   public const DEFAULT_SOAP_OPTIONS = [
     'trace' => 1,
     'exceptions' => true,
-    'cache_wsdl' => WSDL_CACHE_NONE,
+    'cache_wsdl' => WSDL_CACHE_DISK,
     'keep_alive' => false,
   ];
 

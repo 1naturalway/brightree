@@ -3,7 +3,14 @@
 namespace Brightree\Services;
 
 use Brightree\Services\BaseService;
-use Brightree\ApiMessageServices\Facility;
+use Brightree\Types\ContactType;
+use Brightree\Types\FacilityNote;
+use Brightree\Types\ReferenceData\Facility;
+use Brightree\Types\ReferralContact;
+use Brightree\Types\ReferralContactSearchRequest;
+use Brightree\Types\ReferralContactSortParameter;
+use Brightree\Types\ReferralSearchRequest;
+use Brightree\Types\ReferralSortParameter;
 
 class ReferenceDataService extends BaseService {
   public function __construct(array $params) {
@@ -24,6 +31,9 @@ class ReferenceDataService extends BaseService {
     ]);
   }
 
+  /**
+   * @param ContactType|null $ContactType
+   */
   public function contactTypeCreate(mixed $ContactType = null): mixed {
     return $this->apiCall('ContactTypeCreate', [
       'ContactType' => $ContactType
@@ -42,6 +52,9 @@ class ReferenceDataService extends BaseService {
     ]);
   }
 
+  /**
+   * @param ContactType|null $ContactType
+   */
   public function contactTypeUpdate(?int $BrightreeID = null, mixed $ContactType = null): mixed {
     return $this->apiCall('ContactTypeUpdate', [
       'BrightreeID' => $BrightreeID,
@@ -49,6 +62,9 @@ class ReferenceDataService extends BaseService {
     ]);
   }
 
+  /**
+   * @param Facility|null $Facility
+   */
   public function facilityCreate(?Facility $Facility = null): mixed {
     return $this->apiCall('FacilityCreate', [
       'Facility' => $Facility
@@ -73,6 +89,9 @@ class ReferenceDataService extends BaseService {
     ]);
   }
 
+  /**
+   * @param FacilityNote|null $facilityNote
+   */
   public function facilityNoteCreate(mixed $facilityNote = null): mixed {
     return $this->apiCall('FacilityNoteCreate', [
       'facilityNote' => $facilityNote
@@ -91,6 +110,9 @@ class ReferenceDataService extends BaseService {
     ]);
   }
 
+  /**
+   * @param FacilityNote|null $facilityNote
+   */
   public function facilityNoteUpdate(?int $brightreeID = null, mixed $facilityNote = null): mixed {
     return $this->apiCall('FacilityNoteUpdate', [
       'brightreeID' => $brightreeID,
@@ -104,6 +126,9 @@ class ReferenceDataService extends BaseService {
     ]);
   }
 
+  /**
+   * @param Facility|null $Facility
+   */
   public function facilityUpdate(?int $BrightreeID = null, ?Facility $Facility = null): mixed {
     return $this->apiCall('FacilityUpdate', [
       'BrightreeID' => $BrightreeID,
@@ -130,6 +155,9 @@ class ReferenceDataService extends BaseService {
     ]);
   }
 
+  /**
+   * @param ReferralContact|null $Contact
+   */
   public function referralContactCreate(mixed $Contact = null): mixed {
     return $this->apiCall('ReferralContactCreate', [
       'Contact' => $Contact
@@ -148,6 +176,10 @@ class ReferenceDataService extends BaseService {
     ]);
   }
 
+  /**
+   * @param ReferralContactSearchRequest|null $SearchParams
+   * @param ReferralContactSortParameter[]|null $SortParams
+   */
   public function referralContactSearch(mixed $SearchParams = null, ?array $SortParams = null, ?int $pageSize = null, ?int $page = null): mixed {
     return $this->apiCall('ReferralContactSearch', [
       'SearchParams' => $SearchParams,
@@ -157,6 +189,9 @@ class ReferenceDataService extends BaseService {
     ]);
   }
 
+  /**
+   * @param ReferralContact|null $contact
+   */
   public function referralContactUpdate(?int $BrightreeID = null, mixed $contact = null): mixed {
     return $this->apiCall('ReferralContactUpdate', [
       'BrightreeID' => $BrightreeID,
@@ -170,6 +205,10 @@ class ReferenceDataService extends BaseService {
     ]);
   }
 
+  /**
+   * @param ReferralSearchRequest|null $SearchParams
+   * @param ReferralSortParameter[]|null $SortParams
+   */
   public function referralSearch(mixed $SearchParams = null, ?array $SortParams = null, ?int $pageSize = null, ?int $page = null): mixed {
     return $this->apiCall('ReferralSearch', [
       'SearchParams' => $SearchParams,

@@ -10,7 +10,8 @@ class SalesOrderInsuranceInfo {
 
   public ?bool $InsuranceVerified = null;
 
-  public Payors $Payors;
+  /** @var SalesOrderPayorInfo[] */
+  public array $Payors = [];
 
   public eClaimsInfo $eClaimsInfo;
 
@@ -19,13 +20,21 @@ class SalesOrderInsuranceInfo {
   public ?bool $SignatureGeneratedByProvider = null;
 
   public function __construct() {
-    $this->Payors = new Payors();
     $this->eClaimsInfo = new eClaimsInfo();
     $this->workersCompensation = new workersCompensation();
   }
 
-  public function getPayors(Payors $payors): Payors {
-    return $this->Payors = $payors;
+  /**
+   * @param SalesOrderPayorInfo[] $payors
+   */
+  public function setPayors(array $payors): self {
+    $this->Payors = $payors;
+    return $this;
+  }
+
+  public function addPayor(SalesOrderPayorInfo $payor): self {
+    $this->Payors[] = $payor;
+    return $this;
   }
 
   public function getEClaimsInfo(eClaimsInfo $info): eClaimsInfo {

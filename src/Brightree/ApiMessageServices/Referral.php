@@ -3,6 +3,7 @@
 namespace Brightree\ApiMessageServices;
 
 use Brightree\CommonServices\Address;
+use Brightree\Enums\ReferralType;
 
 class Referral {
   public Address $Address;
@@ -19,7 +20,7 @@ class Referral {
 
   public ?string $PhoneNumber = null;
 
-  public ?string $ReferralType = null;
+  public ReferralType|string|null $ReferralType = null;
 
   public ?int $ReferralTypeBrightreeID = null;
 
@@ -65,7 +66,7 @@ class Referral {
     return $this;
   }
 
-  public function setReferralType(?string $ReferralType): self {
+  public function setReferralType(ReferralType|string|null $ReferralType): self {
     $this->ReferralType = $ReferralType;
     return $this;
   }

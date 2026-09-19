@@ -2,9 +2,10 @@
 
 namespace Brightree\ApiMessageServices;
 
+use Brightree\CommonServices\Address;
 use Brightree\CommonServices\ContactInfo;
 use Brightree\CommonServices\Name;
-use Brightree\CommonServices\Address;
+use Brightree\Enums\Gender;
 
 class PatientInfo {
   public ?int $BrightreeID = null;
@@ -19,7 +20,7 @@ class PatientInfo {
 
   public ?LookupValue $Practitioner = null;
 
-  public ?string $Gender = null;
+  public Gender|string|null $Gender = null;
 
   public ?int $PatientID = null;
 
@@ -46,7 +47,7 @@ class PatientInfo {
     $this->AccountGroup = new LookupValue();
   }
 
-  public function setGender(?string $Gender): self {
+  public function setGender(Gender|string|null $Gender): self {
     $this->Gender = $Gender;
     return $this;
   }

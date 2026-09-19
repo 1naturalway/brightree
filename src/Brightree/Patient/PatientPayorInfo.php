@@ -2,6 +2,7 @@
 
 namespace Brightree\Patient;
 
+use Brightree\CommonServices\BasePayorInfo;
 use Brightree\CommonServices\Address;
 
 class PatientPayorInfo extends BasePayorInfo {

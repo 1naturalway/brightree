@@ -2,9 +2,14 @@
 
 namespace Brightree\Traits;
 
+use Brightree\Soap\RequestPruner;
+use Brightree\Soap\SoapClientFactory;
 use RuntimeException;
-use SoapClient;
 
+/**
+ * Depends on $wsdl_path, $params and $prune, which BaseService declares. The
+ * trait is only meant to be composed into that class or a subclass of it.
+ */
 trait ApiTrait {
   public function apiCall(string $call, mixed $query): mixed {
     if ($this->wsdl_path === '') {
@@ -13,12 +18,10 @@ trait ApiTrait {
       );
     }
 
-    $client = new SoapClient($this->wsdl_path, $this->params);
-    $response = $client->$call($query);
+    if ($this->prune) {
+      $query = RequestPruner::payload($query);
+    }
 
-    unset($client); // Closes the SOAP connection
-    gc_collect_cycles(); // Force cleanup in long-running workers
-
-    return $response;
+    return SoapClientFactory::make($this->wsdl_path, $this->params)->$call($query);
   }
 }

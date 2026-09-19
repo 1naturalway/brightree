@@ -3,6 +3,9 @@
 namespace Brightree\Patient;
 
 use Brightree\ApiMessageServices\LookupValue;
+use Brightree\Enums\ClaimCodes;
+use Brightree\Enums\RelationshipToInsured;
+use Brightree\Enums\TypeCodes;
 
 class PatientPolicy {
   public ?string $StartDate = null;
@@ -25,15 +28,15 @@ class PatientPolicy {
 
   public ?string $User4 = null;
 
-  public ?string $Relationship = null;
+  public RelationshipToInsured|string|null $Relationship = null;
 
   public ?string $PayorId = null;
 
   public LookupValue $SecondaryTypeCode;
 
-  public ?string $ClaimCode = null;
+  public ClaimCodes|string|null $ClaimCode = null;
 
-  public ?string $TypeCode = null;
+  public TypeCodes|string|null $TypeCode = null;
 
   public ?string $AdditionalPatientID = null;
 

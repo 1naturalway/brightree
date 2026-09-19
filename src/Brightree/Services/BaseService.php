@@ -25,6 +25,15 @@ class BaseService {
    */
   public string $wsdl_path = '';
 
+  /**
+   * Whether to strip unset values from requests before sending them.
+   *
+   * On by default: see RequestPruner for why an unpruned payload is hazardous
+   * against WCF Update operations. Turn it off for a call that genuinely needs
+   * to send an explicit null and so blank a field server-side.
+   */
+  public bool $prune = true;
+
   public function __construct(array $params) {
     $this->params = $params;
   }

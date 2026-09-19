@@ -3,15 +3,16 @@
 namespace Brightree\SalesOrder;
 
 use Brightree\ApiMessageServices\BrightShip;
-use Brightree\ApiMessageServices\PointOfDeliveryInfo;
 use Brightree\ApiMessageServices\LookupValue;
+use Brightree\ApiMessageServices\PointOfDeliveryInfo;
+use Brightree\Enums\QMBStatus;
 
 class SalesOrder {
   public BrightShip $BrightShip;
 
   public ?int $BrightreeID = null;
 
-  public DeliveryInfo $DeliveryInfo;
+  public SalesOrderDeliveryInfo $DeliveryInfo;
 
   public ?string $ExternalID = null;
 
@@ -19,7 +20,7 @@ class SalesOrder {
 
   public PointOfDeliveryInfo $PointOfDeliveryInfo;
 
-  public ?string $QMBStatus = null;
+  public QMBStatus|string|null $QMBStatus = null;
 
   public SalesOrderAuditInfo $SalesOrderAuditInfo;
 
@@ -31,19 +32,22 @@ class SalesOrder {
 
   public SalesOrderInsuranceInfo $SalesOrderInsuranceInfo;
 
-  public SalesOrderItems $SalesOrderItems;
+  /** @var SalesOrderItemInfo[] */
+  public array $SalesOrderItems = [];
 
   public SalesOrderMessages $SalesOrderMessages;
 
-  public SalesOrderPharmacyItems $SalesOrderPharmacyItems;
+  /** @var SalesOrderPharmacyItemInfo[] */
+  public array $SalesOrderPharmacyItems = [];
 
   public SalesOrderWIPInfo $SalesOrderWIPInfo;
 
-  public ShippingTrackingInfos $ShippingTrackingInfos;
+  /** @var ShippingTrackingInfo[] */
+  public array $ShippingTrackingInfos = [];
 
   public function __construct() {
     $this->BrightShip = new BrightShip();
-    $this->DeliveryInfo = new DeliveryInfo();
+    $this->DeliveryInfo = new SalesOrderDeliveryInfo();
     $this->PointOfDeliveryInfo = new PointOfDeliveryInfo();
     $this->SalesOrderAuditInfo = new SalesOrderAuditInfo();
     $this->SalesOrderAutoConfirmInfo = new SalesOrderAutoConfirmInfo();
@@ -52,17 +56,53 @@ class SalesOrder {
     $this->SalesOrderInsuranceInfo = new SalesOrderInsuranceInfo();
     $this->SalesOrderMessages = new SalesOrderMessages();
     $this->SalesOrderWIPInfo = new SalesOrderWIPInfo();
-    $this->SalesOrderItems = new SalesOrderItems();
-    $this->SalesOrderPharmacyItems = new SalesOrderPharmacyItems();
-    $this->ShippingTrackingInfos = new ShippingTrackingInfos();
   }
 
   public function getBrightShip(BrightShip $brightship): void {
     $this->BrightShip = $brightship;
   }
 
-  public function setDeliveryInfo(DeliveryInfo $info): void {
+  public function setDeliveryInfo(SalesOrderDeliveryInfo $info): void {
     $this->DeliveryInfo = $info;
+  }
+
+  /**
+   * @param SalesOrderItemInfo[] $items
+   */
+  public function setSalesOrderItems(array $items): self {
+    $this->SalesOrderItems = $items;
+    return $this;
+  }
+
+  public function addSalesOrderItem(SalesOrderItemInfo $item): self {
+    $this->SalesOrderItems[] = $item;
+    return $this;
+  }
+
+  /**
+   * @param SalesOrderPharmacyItemInfo[] $items
+   */
+  public function setSalesOrderPharmacyItems(array $items): self {
+    $this->SalesOrderPharmacyItems = $items;
+    return $this;
+  }
+
+  public function addSalesOrderPharmacyItem(SalesOrderPharmacyItemInfo $item): self {
+    $this->SalesOrderPharmacyItems[] = $item;
+    return $this;
+  }
+
+  /**
+   * @param ShippingTrackingInfo[] $infos
+   */
+  public function setShippingTrackingInfos(array $infos): self {
+    $this->ShippingTrackingInfos = $infos;
+    return $this;
+  }
+
+  public function addShippingTrackingInfo(ShippingTrackingInfo $info): self {
+    $this->ShippingTrackingInfos[] = $info;
+    return $this;
   }
 
   public function getPointOfDeliveryInfo(PointOfDeliveryInfo $pointOfDeliveryInfo): void {
@@ -112,7 +152,7 @@ class SalesOrder {
     return $this;
   }
 
-  public function setQMBStatus(?string $QMBStatus): self {
+  public function setQMBStatus(QMBStatus|string|null $QMBStatus): self {
     $this->QMBStatus = $QMBStatus;
     return $this;
   }

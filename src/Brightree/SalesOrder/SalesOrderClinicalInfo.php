@@ -3,16 +3,18 @@
 namespace Brightree\SalesOrder;
 
 use Brightree\ApiMessageServices\DoctorInfo;
-use Brightree\ApiMessageServices\DiagnosisCodes;
-use Brightree\ApiMessageServices\PatientInfo;
-use Brightree\ApiMessageServices\RenderingProvider;
+use Brightree\ApiMessageServices\ICDCodeInfo;
 use Brightree\ApiMessageServices\LookupValue;
+use Brightree\ApiMessageServices\PatientInfo;
 use Brightree\ApiMessageServices\Referral;
+use Brightree\ApiMessageServices\RenderingProvider;
+use Brightree\Enums\EPSDTCertificationCondInd;
 
 class SalesOrderClinicalInfo {
-  public DiagnosisCodes $DiagnosisCodes;
+  /** @var ICDCodeInfo[] */
+  public array $DiagnosisCodes = [];
 
-  public ?string $EPSDTCertificationCodeIndicator = null;
+  public EPSDTCertificationCondInd|string|null $EPSDTCertificationCodeIndicator = null;
 
   public LookupValue $EPSDTConditionCode;
 
@@ -29,15 +31,22 @@ class SalesOrderClinicalInfo {
   public ?float $SOWeight = null;
 
   public function __construct() {
-    $this->DiagnosisCodes = new DiagnosisCodes();
     $this->EPSDTConditionCode = new LookupValue();
     $this->OrderingDoctor = new DoctorInfo();
     $this->Patient = new PatientInfo();
     $this->RenderingProvider = new RenderingProvider();
   }
 
-  public function setDiagnosisCodes(DiagnosisCodes $diagnosisCodes): void {
+  /**
+   * @param ICDCodeInfo[] $diagnosisCodes
+   */
+  public function setDiagnosisCodes(array $diagnosisCodes): void {
     $this->DiagnosisCodes = $diagnosisCodes;
+  }
+
+  public function addDiagnosisCode(ICDCodeInfo $diagnosisCode): self {
+    $this->DiagnosisCodes[] = $diagnosisCode;
+    return $this;
   }
 
   public function setOrderingDoctor(DoctorInfo $doctorInfo): void {
@@ -52,7 +61,7 @@ class SalesOrderClinicalInfo {
     $this->RenderingProvider = $renderingProvider;
   }
 
-  public function setEPSDTCertificationCodeIndicator(?string $EPSDTCertificationCodeIndicator): self {
+  public function setEPSDTCertificationCodeIndicator(EPSDTCertificationCondInd|string|null $EPSDTCertificationCodeIndicator): self {
     $this->EPSDTCertificationCodeIndicator = $EPSDTCertificationCodeIndicator;
     return $this;
   }

@@ -2,16 +2,18 @@
 
 namespace Brightree\ApiMessageServices;
 
+use Brightree\Enums\DiagType;
+
 class ICDCodeInfo {
-  public string $ICDCode;
+  public ?string $ICDCode = null;
 
-  public string $Description;
+  public ?string $Description = null;
 
-  public ?int $Sequence = 1;
+  public ?int $Sequence = null;
 
-  public bool $SelectedForUse;
+  public ?bool $SelectedForUse = null;
 
-  public ?string $DiagType = null;
+  public DiagType|string|null $DiagType = null;
 
   public function setICDCode(string $ICDCode): self {
     $this->ICDCode = $ICDCode;
@@ -33,7 +35,7 @@ class ICDCodeInfo {
     return $this;
   }
 
-  public function setDiagType(?string $DiagType): self {
+  public function setDiagType(DiagType|string|null $DiagType): self {
     $this->DiagType = $DiagType;
     return $this;
   }

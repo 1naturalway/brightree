@@ -2,7 +2,8 @@
 
 namespace Brightree\CommonServices;
 
-use Brightree\Patient\BasePayorInfo;
+use Brightree\Enums\ClaimFormType;
+use Brightree\Enums\SubmissionMethod;
 
 /**
  * Extends BasePayorInfo, matching the WSDL where InvoicePolicyInfo derives from
@@ -21,13 +22,13 @@ class InvoicePolicyInfo extends BasePayorInfo {
 
   public ?string $Box24Jb = null;
 
-  public ?string $ClaimFormType = null;
+  public ClaimFormType|string|null $ClaimFormType = null;
 
   public ?bool $IncludeBox24Jb = null;
 
   public ?bool $IncludeeClaimAttachment = null;
 
-  public ?string $SubmissionMethod = null;
+  public SubmissionMethod|string|null $SubmissionMethod = null;
 
   public function setAttachmentNumber(?string $AttachmentNumber): self {
     $this->AttachmentNumber = $AttachmentNumber;
@@ -59,7 +60,7 @@ class InvoicePolicyInfo extends BasePayorInfo {
     return $this;
   }
 
-  public function setClaimFormType(?string $ClaimFormType): self {
+  public function setClaimFormType(ClaimFormType|string|null $ClaimFormType): self {
     $this->ClaimFormType = $ClaimFormType;
     return $this;
   }
@@ -74,7 +75,7 @@ class InvoicePolicyInfo extends BasePayorInfo {
     return $this;
   }
 
-  public function setSubmissionMethod(?string $SubmissionMethod): self {
+  public function setSubmissionMethod(SubmissionMethod|string|null $SubmissionMethod): self {
     $this->SubmissionMethod = $SubmissionMethod;
     return $this;
   }

@@ -2,6 +2,9 @@
 
 namespace Brightree\CommonServices;
 
+use Brightree\Enums\EmergencyContactTypeEnum;
+use Brightree\Enums\PatientContactType;
+
 class EmergencyContact {
   public Address $Address;
 
@@ -15,9 +18,9 @@ class EmergencyContact {
 
   public ?string $PhoneNumber = null;
 
-  public ?string $ContactType = null;
+  public PatientContactType|string|null $ContactType = null;
 
-  public ?string $EmergencyContactType = null;
+  public EmergencyContactTypeEnum|string|null $EmergencyContactType = null;
 
   public function __construct() {
     $this->Address = new Address();

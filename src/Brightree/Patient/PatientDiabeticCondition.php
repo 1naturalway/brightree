@@ -2,6 +2,8 @@
 
 namespace Brightree\Patient;
 
+use Brightree\Enums\TestingFrequencyEnum;
+
 class PatientDiabeticCondition {
   public ?bool $IsDiabetic = null;
 
@@ -9,11 +11,11 @@ class PatientDiabeticCondition {
 
   public ?string $LastDoctorVisitDate = null;
 
-  public ?string $PatientTestingFrequency = null;
+  public TestingFrequencyEnum|string|null $PatientTestingFrequency = null;
 
   public ?int $PatientTestingInterval = null;
 
-  public ?string $PhysicianOrderedTestingFrequency = null;
+  public TestingFrequencyEnum|string|null $PhysicianOrderedTestingFrequency = null;
 
   public ?int $PhysicianOrderedTestingInterval = null;
 }

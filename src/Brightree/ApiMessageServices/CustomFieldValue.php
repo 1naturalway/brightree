@@ -2,8 +2,10 @@
 
 namespace Brightree\ApiMessageServices;
 
+use Brightree\Enums\CustomFieldCategory;
+
 class CustomFieldValue {
-  public ?string $CustomFieldCategory = null;
+  public CustomFieldCategory|string|null $CustomFieldCategory = null;
 
   public ?int $FieldStorageNumber = null;
 

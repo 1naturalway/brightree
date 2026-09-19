@@ -3,11 +3,12 @@
 namespace Brightree\SalesOrder;
 
 use Brightree\CommonServices\PayorPolicyInfo;
+use Brightree\Enums\PayorLevel;
 
 class SalesOrderPayorInfo {
   public ?string $PayPercent = null;
 
-  public ?string $payorLevel = null;
+  public PayorLevel|string|null $payorLevel = null;
 
   public PayorPolicyInfo $payorPolicyInfo;
 
@@ -42,7 +43,7 @@ class SalesOrderPayorInfo {
     return $this;
   }
 
-  public function setPayorLevel(?string $payorLevel): self {
+  public function setPayorLevel(PayorLevel|string|null $payorLevel): self {
     $this->payorLevel = $payorLevel;
     return $this;
   }

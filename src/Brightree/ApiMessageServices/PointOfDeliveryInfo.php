@@ -2,12 +2,14 @@
 
 namespace Brightree\ApiMessageServices;
 
+use Brightree\Enums\PODStatus;
+
 class PointOfDeliveryInfo {
   public ?string $LastMessage = null;
 
   public ?string $LastMessageDateTime = null;
 
-  public ?string $Status = null;
+  public PODStatus|string|null $Status = null;
 
   public ?string $StatusDateTime = null;
 
@@ -21,7 +23,7 @@ class PointOfDeliveryInfo {
     return $this;
   }
 
-  public function setStatus(?string $Status): self {
+  public function setStatus(PODStatus|string|null $Status): self {
     $this->Status = $Status;
     return $this;
   }

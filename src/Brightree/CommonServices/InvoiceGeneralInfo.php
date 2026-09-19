@@ -3,11 +3,13 @@
 namespace Brightree\CommonServices;
 
 use Brightree\ApiMessageServices\LookupValue;
+use Brightree\Enums\InvoiceCorrectionTypes;
+use Brightree\Enums\InvoiceStatus;
 
 class InvoiceGeneralInfo {
   public ?bool $BillingStatementHold = null;
 
-  public ?string $CorrectionType = null;
+  public InvoiceCorrectionTypes|string|null $CorrectionType = null;
 
   public ?string $CreatedDate = null;
 
@@ -19,7 +21,7 @@ class InvoiceGeneralInfo {
 
   public ?string $InvoiceNumber = null;
 
-  public ?string $InvoiceStatus = null;
+  public InvoiceStatus|string|null $InvoiceStatus = null;
 
   public ?string $LastPrinted = null;
 
@@ -54,7 +56,7 @@ class InvoiceGeneralInfo {
     return $this;
   }
 
-  public function setCorrectionType(?string $CorrectionType): self {
+  public function setCorrectionType(InvoiceCorrectionTypes|string|null $CorrectionType): self {
     $this->CorrectionType = $CorrectionType;
     return $this;
   }
@@ -84,7 +86,7 @@ class InvoiceGeneralInfo {
     return $this;
   }
 
-  public function setInvoiceStatus(?string $InvoiceStatus): self {
+  public function setInvoiceStatus(InvoiceStatus|string|null $InvoiceStatus): self {
     $this->InvoiceStatus = $InvoiceStatus;
     return $this;
   }

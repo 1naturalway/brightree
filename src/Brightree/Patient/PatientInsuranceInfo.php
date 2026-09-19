@@ -2,11 +2,12 @@
 
 namespace Brightree\Patient;
 
-use Brightree\Patient\Payors;
 use Brightree\ApiMessageServices\WorkersCompensation;
+use Brightree\Enums\EmploymentStatus;
+use Brightree\Enums\MaritalStatus;
 
 class PatientInsuranceInfo {
-  public string $EmploymentStatus;
+  public EmploymentStatus|string|null $EmploymentStatus = null;
 
   public ?int $HardshipDiscountPct = null;
 
@@ -14,18 +15,18 @@ class PatientInsuranceInfo {
 
   public ?string $HardshipStartDate = null;
 
-  public bool $IsHardship;
+  public ?bool $IsHardship = null;
 
-  public string $MaritalStatus;
+  public MaritalStatus|string|null $MaritalStatus = null;
 
-  public Payors $Payors;
+  /** @var PatientPayorInfo[] */
+  public array $Payors = [];
 
-  public bool $PrintAmountOnDeliveryTicket;
+  public ?bool $PrintAmountOnDeliveryTicket = null;
 
   public WorkersCompensation $workersCompensation;
 
   public function __construct() {
-    $this->Payors = new Payors();
     $this->workersCompensation = new WorkersCompensation();
   }
 

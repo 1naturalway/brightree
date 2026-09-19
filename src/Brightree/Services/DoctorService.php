@@ -2,8 +2,11 @@
 
 namespace Brightree\Services;
 
-use Brightree\Services\BaseService;
 use Brightree\ApiMessageServices\Doctor;
+use Brightree\Services\BaseService;
+use Brightree\Types\DoctorNote;
+use Brightree\Types\DoctorSearchRequest;
+use Brightree\Types\DoctorSortParameter;
 
 class DoctorService extends BaseService {
   public function __construct(array $params) {
@@ -11,6 +14,9 @@ class DoctorService extends BaseService {
     $this->wsdl_path = "https://webservices.brightree.net/v0100-2602/DoctorService/DoctorService.svc?singleWsdl";
   }
 
+  /**
+   * @param Doctor|null $doctor
+   */
   public function doctorCreate(?Doctor $doctor): mixed {
     return $this->apiCall('DoctorCreate', ['Doctor' => $doctor]);
   }
@@ -34,6 +40,9 @@ class DoctorService extends BaseService {
     ]);
   }
 
+  /**
+   * @param DoctorNote|null $doctorNote
+   */
   public function doctorNoteCreate(mixed $doctorNote = null): mixed {
     return $this->apiCall('DoctorNoteCreate', [
       'doctorNote' => $doctorNote
@@ -52,6 +61,9 @@ class DoctorService extends BaseService {
     ]);
   }
 
+  /**
+   * @param DoctorNote|null $doctorNote
+   */
   public function doctorNoteUpdate(?int $brightreeID = null, mixed $doctorNote = null): mixed {
     return $this->apiCall('DoctorNoteUpdate', [
       'brightreeID' => $brightreeID,
@@ -65,6 +77,10 @@ class DoctorService extends BaseService {
     ]);
   }
 
+  /**
+   * @param DoctorSearchRequest|null $searchRequest
+   * @param DoctorSortParameter[]|null $sortRequest
+   */
   public function doctorSearch(mixed $searchRequest = null, ?array $sortRequest = null, ?int $pageSize = null, ?int $page = null): mixed {
     return $this->apiCall('DoctorSearch', [
       'searchRequest' => $searchRequest,
@@ -74,6 +90,9 @@ class DoctorService extends BaseService {
     ]);
   }
 
+  /**
+   * @param Doctor|null $Doctor
+   */
   public function doctorUpdate(?int $BrightreeID = null, ?Doctor $Doctor = null): mixed {
     return $this->apiCall('DoctorUpdate', [
       'BrightreeID' => $BrightreeID,

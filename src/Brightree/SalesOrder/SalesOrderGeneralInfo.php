@@ -3,6 +3,8 @@
 namespace Brightree\SalesOrder;
 
 use Brightree\ApiMessageServices\LookupValue;
+use Brightree\Enums\SalesOrderStatus;
+use Brightree\Enums\SalesOrderTemplateStatus;
 
 class SalesOrderGeneralInfo {
   public LookupValue $Branch;
@@ -35,13 +37,13 @@ class SalesOrderGeneralInfo {
 
   public SalesOrderClassification $SalesOrderClassification;
 
-  public ?string $Status = null;
+  public SalesOrderStatus|string|null $Status = null;
 
   public ?string $StopDate = null;
 
   public ?string $Reference = null;
 
-  public ?string $TemplateStatus = null;
+  public SalesOrderTemplateStatus|string|null $TemplateStatus = null;
 
   public ?string $User1 = null;
 
@@ -146,7 +148,7 @@ class SalesOrderGeneralInfo {
     return $this;
   }
 
-  public function setStatus(?string $Status): self {
+  public function setStatus(SalesOrderStatus|string|null $Status): self {
     $this->Status = $Status;
     return $this;
   }
@@ -161,7 +163,7 @@ class SalesOrderGeneralInfo {
     return $this;
   }
 
-  public function setTemplateStatus(?string $TemplateStatus): self {
+  public function setTemplateStatus(SalesOrderTemplateStatus|string|null $TemplateStatus): self {
     $this->TemplateStatus = $TemplateStatus;
 
     return $this;

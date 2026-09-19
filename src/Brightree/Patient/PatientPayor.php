@@ -2,6 +2,8 @@
 
 namespace Brightree\Patient;
 
+use Brightree\Enums\PayorLevel;
+
 class PatientPayor {
   public ?string $Box10d = null;
 
@@ -25,7 +27,7 @@ class PatientPayor {
 
   public ?string $PolicyContact = null;
 
-  public ?string $payorLevel = null;
+  public PayorLevel|string|null $payorLevel = null;
 
   public function __construct() {
     $this->EligibilityInfo = new EligibilityVerification();

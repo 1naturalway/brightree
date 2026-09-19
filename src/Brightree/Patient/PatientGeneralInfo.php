@@ -5,16 +5,17 @@ namespace Brightree\Patient;
 use Brightree\ApiMessageServices\LookupValue;
 use Brightree\CommonServices\Address;
 use Brightree\CommonServices\ContactInfo;
-use Brightree\CommonServices\Name;
 use Brightree\CommonServices\EmergencyContact;
-use Brightree\CommonServices\ResponsiblePartyContact;
+use Brightree\CommonServices\Name;
+use Brightree\CommonServices\ResponsibleParty;
+use Brightree\Enums\PatientCustomerType;
 
 class PatientGeneralInfo {
   public LookupValue $AccountGroup;
 
-  public string $AccountNumber;
+  public ?string $AccountNumber = null;
 
-  public bool $AccountOnHold;
+  public ?bool $AccountOnHold = null;
 
   public Address $BillingAddress;
 
@@ -24,7 +25,7 @@ class PatientGeneralInfo {
 
   public LookupValue $Branch;
 
-  public string $CustomerType;
+  public PatientCustomerType|string|null $CustomerType = null;
 
   public ?string $DateOfAdmission = null;
 
@@ -32,43 +33,43 @@ class PatientGeneralInfo {
 
   public Address $DeliveryAddress;
 
-  public string $DeliveryNote;
+  public ?string $DeliveryNote = null;
 
-  public string $DeliveryPhone;
+  public ?string $DeliveryPhone = null;
 
-  public float $DiscountPercent;
+  public ?float $DiscountPercent = null;
 
   public EmergencyContact $EmergencyContact;
 
   public LookupValue $Facility;
 
-  public bool $HIPAASignatureOnFile;
+  public ?bool $HIPAASignatureOnFile = null;
 
-  public bool $HoldBillingStatement;
+  public ?bool $HoldBillingStatement = null;
 
   public Name $Name;
 
   public LookupValue $PlaceOfService;
 
-  public string $PtID;
+  public ?string $PtID = null;
 
-  public ResponsiblePartyContact $ResponsiblePartyContact;
+  public ResponsibleParty $ResponsiblePartyContact;
 
-  public bool $RestrictedAccess;
+  public ?bool $RestrictedAccess = null;
 
-  public string $SSN;
+  public ?string $SSN = null;
 
   public LookupValue $SecurityGroup;
 
   public LookupValue $TaxZone;
 
-  public string $User1;
+  public ?string $User1 = null;
 
-  public string $User2;
+  public ?string $User2 = null;
 
-  public string $User3;
+  public ?string $User3 = null;
 
-  public string $User4;
+  public ?string $User4 = null;
 
   public ?bool $PatientHubRegistered = null;
 
@@ -82,7 +83,7 @@ class PatientGeneralInfo {
     $this->Facility = new LookupValue();
     $this->Name = new Name();
     $this->PlaceOfService = new LookupValue();
-    $this->ResponsiblePartyContact = new ResponsiblePartyContact();
+    $this->ResponsiblePartyContact = new ResponsibleParty();
     $this->SecurityGroup = new LookupValue();
     $this->TaxZone = new LookupValue();
   }
@@ -179,7 +180,7 @@ class PatientGeneralInfo {
     return $this;
   }
 
-  public function getResponsiblePartyContact(): ResponsiblePartyContact {
+  public function getResponsiblePartyContact(): ResponsibleParty {
     return $this->ResponsiblePartyContact;
   }
 

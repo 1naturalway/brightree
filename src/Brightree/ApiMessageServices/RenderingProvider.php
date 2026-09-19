@@ -2,12 +2,14 @@
 
 namespace Brightree\ApiMessageServices;
 
+use Brightree\Enums\RenderingProviderType;
+
 class RenderingProvider {
   public ?LookupValue $Doctor = null;
 
   public ?LookupValue $Facility = null;
 
-  public ?string $Type = null;
+  public RenderingProviderType|string|null $Type = null;
 
   public function setDoctor(?LookupValue $Doctor): self {
     $this->Doctor = $Doctor;
@@ -19,7 +21,7 @@ class RenderingProvider {
     return $this;
   }
 
-  public function setType(?string $Type): self {
+  public function setType(RenderingProviderType|string|null $Type): self {
     $this->Type = $Type;
     return $this;
   }

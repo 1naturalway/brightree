@@ -3,6 +3,7 @@
 namespace Brightree\Services;
 
 use Brightree\Services\BaseService;
+use Brightree\Types\PriceDetail;
 
 class PricingService extends BaseService {
   public function __construct(array $params) {
@@ -27,6 +28,9 @@ class PricingService extends BaseService {
     ]);
   }
 
+  /**
+   * @param PriceDetail|null $PriceDtl
+   */
   public function priceDetailCreate(?int $BrightreeID = null, mixed $PriceDtl = null): mixed {
     return $this->apiCall('PriceDetailCreate', [
       'BrightreeID' => $BrightreeID,
@@ -40,6 +44,9 @@ class PricingService extends BaseService {
     ]);
   }
 
+  /**
+   * @param PriceDetail|null $PriceDtl
+   */
   public function priceDetailUpdate(?int $BrightreeID = null, ?int $BrightreeDtlID = null, mixed $PriceDtl = null): mixed {
     return $this->apiCall('PriceDetailUpdate', [
       'BrightreeID' => $BrightreeID,

@@ -3,6 +3,7 @@
 namespace Brightree\DocumentManagement;
 
 use Brightree\ApiMessageServices\LookupValue;
+use Brightree\Enums\DocumentReviewModeType;
 
 class DocumentType {
   public ?int $BrightreeID = null;
@@ -11,7 +12,7 @@ class DocumentType {
 
   public LookupValue $DocumentCategory;
 
-  public ?string $DocumentReviewMode = null;
+  public DocumentReviewModeType|string|null $DocumentReviewMode = null;
 
   public ?bool $Enabled = null;
 
@@ -39,7 +40,7 @@ class DocumentType {
     return $this;
   }
 
-  public function setDocumentReviewMode(?string $DocumentReviewMode): self {
+  public function setDocumentReviewMode(DocumentReviewModeType|string|null $DocumentReviewMode): self {
     $this->DocumentReviewMode = $DocumentReviewMode;
     return $this;
   }

@@ -3,6 +3,21 @@
 namespace Brightree\Services;
 
 use Brightree\Services\BaseService;
+use Brightree\Types\BranchOfficeInsurance;
+use Brightree\Types\CommercialEligibilityPayerSearchRequest;
+use Brightree\Types\CommercialEligibilityPayerSortParameter;
+use Brightree\Types\CommercialPayerSearchRequest;
+use Brightree\Types\CommercialPayerSortParameter;
+use Brightree\Types\Insurance;
+use Brightree\Types\InsuranceCarrierCode;
+use Brightree\Types\InsuranceSearchRequest;
+use Brightree\Types\InsuranceSortParameter;
+use Brightree\Types\InsuranceSpanDateHoldInclusion;
+use Brightree\Types\InsuranceSpanDateOverride;
+use Brightree\Types\PriceTableSearchRequest;
+use Brightree\Types\PriceTableSortParameter;
+use Brightree\Types\PriceTableUpdateRequest;
+use Brightree\Types\SpanDateSplit;
 
 class InsuranceService extends BaseService {
   public function __construct(array $params) {
@@ -17,6 +32,9 @@ class InsuranceService extends BaseService {
     ]);
   }
 
+  /**
+   * @param BranchOfficeInsurance|null $InputObj
+   */
   public function branchOfficeInsuranceUpdate(?int $BrightreeID = null, mixed $InputObj = null): mixed {
     return $this->apiCall('BranchOfficeInsuranceUpdate', [
       'BrightreeID' => $BrightreeID,
@@ -24,6 +42,10 @@ class InsuranceService extends BaseService {
     ]);
   }
 
+  /**
+   * @param CommercialEligibilityPayerSearchRequest|null $searchParams
+   * @param CommercialEligibilityPayerSortParameter[]|null $sortParams
+   */
   public function commercialEligibilityPayerSearch(mixed $searchParams = null, ?array $sortParams = null, ?int $pageSize = null, ?int $page = null): mixed {
     return $this->apiCall('CommercialEligibilityPayerSearch', [
       'searchParams' => $searchParams,
@@ -33,6 +55,10 @@ class InsuranceService extends BaseService {
     ]);
   }
 
+  /**
+   * @param CommercialPayerSearchRequest|null $searchParams
+   * @param CommercialPayerSortParameter[]|null $sortParams
+   */
   public function commercialPayerSearch(mixed $searchParams = null, ?array $sortParams = null, ?int $pageSize = null, ?int $page = null): mixed {
     return $this->apiCall('CommercialPayerSearch', [
       'searchParams' => $searchParams,
@@ -48,6 +74,9 @@ class InsuranceService extends BaseService {
     ]);
   }
 
+  /**
+   * @param InsuranceCarrierCode|null $InsCarrierCode
+   */
   public function insuranceCarrierCodeCreate(mixed $InsCarrierCode = null): mixed {
     return $this->apiCall('InsuranceCarrierCodeCreate', [
       'InsCarrierCode' => $InsCarrierCode
@@ -60,6 +89,9 @@ class InsuranceService extends BaseService {
     ]);
   }
 
+  /**
+   * @param InsuranceCarrierCode|null $InsCarrierCode
+   */
   public function insuranceCarrierCodeUpdate(?int $InsCarrierCodeBrightreeID = null, mixed $InsCarrierCode = null): mixed {
     return $this->apiCall('InsuranceCarrierCodeUpdate', [
       'InsCarrierCodeBrightreeID' => $InsCarrierCodeBrightreeID,
@@ -67,6 +99,9 @@ class InsuranceService extends BaseService {
     ]);
   }
 
+  /**
+   * @param Insurance|null $Insurance
+   */
   public function insuranceCreate(mixed $Insurance = null): mixed {
     return $this->apiCall('InsuranceCreate', [
       'Insurance' => $Insurance
@@ -85,6 +120,10 @@ class InsuranceService extends BaseService {
     ]);
   }
 
+  /**
+   * @param InsuranceSearchRequest|null $searchRequest
+   * @param InsuranceSortParameter[]|null $sortRequest
+   */
   public function insuranceSearch(mixed $searchRequest = null, ?array $sortRequest = null, ?int $pageSize = null, ?int $page = null): mixed {
     return $this->apiCall('InsuranceSearch', [
       'searchRequest' => $searchRequest,
@@ -94,6 +133,9 @@ class InsuranceService extends BaseService {
     ]);
   }
 
+  /**
+   * @param InsuranceSpanDateHoldInclusion|null $InsSpanDateHoldInclusion
+   */
   public function insuranceSpanDateHoldInclusionCreate(mixed $InsSpanDateHoldInclusion = null): mixed {
     return $this->apiCall('InsuranceSpanDateHoldInclusionCreate', [
       'InsSpanDateHoldInclusion' => $InsSpanDateHoldInclusion
@@ -106,6 +148,9 @@ class InsuranceService extends BaseService {
     ]);
   }
 
+  /**
+   * @param InsuranceSpanDateOverride|null $inputObj
+   */
   public function insuranceSpanDateOverrideCreate(mixed $inputObj = null): mixed {
     return $this->apiCall('InsuranceSpanDateOverrideCreate', [
       'inputObj' => $inputObj
@@ -118,6 +163,9 @@ class InsuranceService extends BaseService {
     ]);
   }
 
+  /**
+   * @param InsuranceSpanDateOverride|null $inputObj
+   */
   public function insuranceSpanDateOverrideUpdate(?int $BrightreeID = null, mixed $inputObj = null): mixed {
     return $this->apiCall('InsuranceSpanDateOverrideUpdate', [
       'BrightreeID' => $BrightreeID,
@@ -125,6 +173,9 @@ class InsuranceService extends BaseService {
     ]);
   }
 
+  /**
+   * @param Insurance|null $Insurance
+   */
   public function insuranceUpdate(?int $BrightreeID = null, mixed $Insurance = null): mixed {
     return $this->apiCall('InsuranceUpdate', [
       'BrightreeID' => $BrightreeID,
@@ -158,6 +209,10 @@ class InsuranceService extends BaseService {
     ]);
   }
 
+  /**
+   * @param PriceTableSearchRequest|null $searchParams
+   * @param PriceTableSortParameter[]|null $sortParams
+   */
   public function priceTableSearch(mixed $searchParams = null, ?array $sortParams = null, ?int $pageSize = null, ?int $page = null): mixed {
     return $this->apiCall('PriceTableSearch', [
       'searchParams' => $searchParams,
@@ -167,6 +222,9 @@ class InsuranceService extends BaseService {
     ]);
   }
 
+  /**
+   * @param PriceTableUpdateRequest|null $PriceTable
+   */
   public function priceTableUpdate(?int $BrightreeID = null, mixed $PriceTable = null): mixed {
     return $this->apiCall('PriceTableUpdate', [
       'BrightreeID' => $BrightreeID,
@@ -174,6 +232,9 @@ class InsuranceService extends BaseService {
     ]);
   }
 
+  /**
+   * @param SpanDateSplit|null $SpanDateSplitObj
+   */
   public function spanDateSplit(mixed $SpanDateSplitObj = null): mixed {
     return $this->apiCall('SpanDateSplit', [
       'SpanDateSplitObj' => $SpanDateSplitObj

@@ -4,6 +4,7 @@
 
     <file>src</file>
     <file>samples</file>
+    <file>tests</file>
 
     <exclude-pattern>vendor/*</exclude-pattern>
 
@@ -35,8 +36,11 @@
     <rule ref="Generic.Functions.OpeningFunctionBraceKernighanRitchie" />
     <rule ref="Generic.Classes.OpeningBraceSameLine"/>
 
+    <!-- A handful of Brightree types start with a lowercase letter; the classes
+         mirror the WSDL names so they stay greppable against the schema. -->
     <rule ref="Squiz.Classes.ValidClassName">
       <exclude-pattern>src/Brightree/ApiMessageServices/eClaimsInfo</exclude-pattern>
+      <exclude-pattern>src/Brightree/Enums/eClaimsTransmissionType</exclude-pattern>
     </rule>
 
     <rule ref="Squiz.WhiteSpace">

@@ -2,8 +2,22 @@
 
 namespace Brightree\Services;
 
-use Brightree\Services\BaseService;
 use Brightree\SalesOrder\ShippingTrackingInfo;
+use Brightree\Services\BaseService;
+use Brightree\Types\InventoryAdjustmentDetails;
+use Brightree\Types\InventoryPurchaseDetails;
+use Brightree\Types\InventoryTransactionInfo;
+use Brightree\Types\InventoryTransferDetails;
+use Brightree\Types\Item;
+use Brightree\Types\ItemLocInfo;
+use Brightree\Types\ItemMaintenance;
+use Brightree\Types\ItemMaintenanceNote;
+use Brightree\Types\ItemSearchRequest;
+use Brightree\Types\ItemSortParameter;
+use Brightree\Types\ItemVendor;
+use Brightree\Types\LocationInfo;
+use Brightree\Types\ManufacturerContractPrice;
+use Brightree\Types\VendorItem;
 
 class InventoryService extends BaseService {
   public function __construct(array $params) {
@@ -28,6 +42,10 @@ class InventoryService extends BaseService {
     ]);
   }
 
+  /**
+   * @param InventoryTransactionInfo|null $transInfo
+   * @param InventoryPurchaseDetails[]|null $transDetails
+   */
   public function inventoryItemAddLots(?int $ItemBrightreeID = null, mixed $transInfo = null, ?array $transDetails = null): mixed {
     return $this->apiCall('InventoryItemAddLots', [
       'ItemBrightreeID' => $ItemBrightreeID,
@@ -36,6 +54,10 @@ class InventoryService extends BaseService {
     ]);
   }
 
+  /**
+   * @param InventoryTransactionInfo|null $transInfo
+   * @param InventoryPurchaseDetails[]|null $transDetails
+   */
   public function inventoryItemAddSerialNumbers(?int $ItemBrightreeID = null, mixed $transInfo = null, ?array $transDetails = null): mixed {
     return $this->apiCall('InventoryItemAddSerialNumbers', [
       'ItemBrightreeID' => $ItemBrightreeID,
@@ -44,6 +66,10 @@ class InventoryService extends BaseService {
     ]);
   }
 
+  /**
+   * @param InventoryTransactionInfo|null $transInfo
+   * @param InventoryAdjustmentDetails[]|null $transDetails
+   */
   public function inventoryItemAdjustment(?int $ItemBrightreeID = null, mixed $transInfo = null, ?array $transDetails = null): mixed {
     return $this->apiCall('InventoryItemAdjustment', [
       'ItemBrightreeID' => $ItemBrightreeID,
@@ -52,6 +78,10 @@ class InventoryService extends BaseService {
     ]);
   }
 
+  /**
+   * @param InventoryTransactionInfo|null $transInfo
+   * @param InventoryTransferDetails[]|null $transDetails
+   */
   public function inventoryItemTransfer(?int $ItemBrightreeID = null, mixed $transInfo = null, ?array $transDetails = null): mixed {
     return $this->apiCall('InventoryItemTransfer', [
       'ItemBrightreeID' => $ItemBrightreeID,
@@ -60,6 +90,9 @@ class InventoryService extends BaseService {
     ]);
   }
 
+  /**
+   * @param LocationInfo|null $location
+   */
   public function itemAddToLocation(?int $ItemBrightreeID = null, mixed $location = null): mixed {
     return $this->apiCall('ItemAddToLocation', [
       'ItemBrightreeID' => $ItemBrightreeID,
@@ -67,6 +100,9 @@ class InventoryService extends BaseService {
     ]);
   }
 
+  /**
+   * @param LocationInfo[]|null $locations
+   */
   public function itemAddToLocations(?int $ItemBrightreeID = null, ?array $locations = null): mixed {
     return $this->apiCall('ItemAddToLocations', [
       'ItemBrightreeID' => $ItemBrightreeID,
@@ -74,6 +110,9 @@ class InventoryService extends BaseService {
     ]);
   }
 
+  /**
+   * @param Item|null $Item
+   */
   public function itemCreate(mixed $Item = null): mixed {
     return $this->apiCall('ItemCreate', [
       'Item' => $Item
@@ -104,6 +143,9 @@ class InventoryService extends BaseService {
     ]);
   }
 
+  /**
+   * @param ItemLocInfo|null $itemLoc
+   */
   public function itemLocationUpdate(?int $ItemBrightreeID = null, mixed $itemLoc = null): mixed {
     return $this->apiCall('ItemLocationUpdate', [
       'ItemBrightreeID' => $ItemBrightreeID,
@@ -111,6 +153,9 @@ class InventoryService extends BaseService {
     ]);
   }
 
+  /**
+   * @param ItemLocInfo[]|null $itemLocs
+   */
   public function itemLocationsUpdate(?int $ItemBrightreeID = null, ?array $itemLocs = null): mixed {
     return $this->apiCall('ItemLocationsUpdate', [
       'ItemBrightreeID' => $ItemBrightreeID,
@@ -118,6 +163,9 @@ class InventoryService extends BaseService {
     ]);
   }
 
+  /**
+   * @param ShippingTrackingInfo|null $TrackingInfo
+   */
   public function itemMaintenanceAddTracking(?int $BrightreeID = null, ?ShippingTrackingInfo $TrackingInfo = null): mixed {
     return $this->apiCall('ItemMaintenanceAddTracking', [
       'BrightreeID' => $BrightreeID,
@@ -131,6 +179,9 @@ class InventoryService extends BaseService {
     ]);
   }
 
+  /**
+   * @param ItemMaintenanceNote|null $note
+   */
   public function itemMaintenanceNoteCreate(?int $ItemMaintenanceBrightreeID = null, mixed $note = null): mixed {
     return $this->apiCall('ItemMaintenanceNoteCreate', [
       'ItemMaintenanceBrightreeID' => $ItemMaintenanceBrightreeID,
@@ -138,6 +189,9 @@ class InventoryService extends BaseService {
     ]);
   }
 
+  /**
+   * @param ItemMaintenance|null $itemMaintenance
+   */
   public function itemMaintenanceUpdate(?int $BrightreeID = null, mixed $itemMaintenance = null): mixed {
     return $this->apiCall('ItemMaintenanceUpdate', [
       'BrightreeID' => $BrightreeID,
@@ -145,6 +199,10 @@ class InventoryService extends BaseService {
     ]);
   }
 
+  /**
+   * @param ItemSearchRequest|null $searchRequest
+   * @param ItemSortParameter[]|null $sortRequest
+   */
   public function itemSearch(mixed $searchRequest = null, ?array $sortRequest = null, ?int $pageSize = null, ?int $page = null): mixed {
     return $this->apiCall('ItemSearch', [
       'searchRequest' => $searchRequest,
@@ -154,6 +212,10 @@ class InventoryService extends BaseService {
     ]);
   }
 
+  /**
+   * @param ItemSearchRequest|null $searchRequest
+   * @param ItemSortParameter[]|null $sortRequest
+   */
   public function itemSearchWithDetails(mixed $searchRequest = null, ?array $sortRequest = null, ?int $pageSize = null, ?int $page = null): mixed {
     return $this->apiCall('ItemSearchWithDetails', [
       'searchRequest' => $searchRequest,
@@ -163,12 +225,18 @@ class InventoryService extends BaseService {
     ]);
   }
 
+  /**
+   * @param Item|null $Item
+   */
   public function itemUpdate(mixed $Item = null): mixed {
     return $this->apiCall('ItemUpdate', [
       'Item' => $Item
     ]);
   }
 
+  /**
+   * @param VendorItem|null $VendorItem
+   */
   public function itemVendorCreate(mixed $VendorItem = null): mixed {
     return $this->apiCall('ItemVendorCreate', [
       'VendorItem' => $VendorItem
@@ -187,6 +255,9 @@ class InventoryService extends BaseService {
     ]);
   }
 
+  /**
+   * @param ItemVendor|null $ItemVendor
+   */
   public function itemVendorUpdate(mixed $ItemVendor = null): mixed {
     return $this->apiCall('ItemVendorUpdate', [
       'ItemVendor' => $ItemVendor
@@ -199,6 +270,9 @@ class InventoryService extends BaseService {
     ]);
   }
 
+  /**
+   * @param ManufacturerContractPrice|null $Pricing
+   */
   public function manufacturerContractPricingAddPricing(mixed $Pricing = null): mixed {
     return $this->apiCall('ManufacturerContractPricingAddPricing', [
       'Pricing' => $Pricing
@@ -217,6 +291,9 @@ class InventoryService extends BaseService {
     ]);
   }
 
+  /**
+   * @param ManufacturerContractPrice|null $Pricing
+   */
   public function manufacturerContractPricingUpdatePricing(mixed $Pricing = null): mixed {
     return $this->apiCall('ManufacturerContractPricingUpdatePricing', [
       'Pricing' => $Pricing
